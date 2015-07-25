@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   has_many :follower_follows, class_name: "Follow", foreign_key: :follower_id
   has_many :followees, through: :follower_follows
 
+
   def self.authenticate(username, password)
     user = User.find_by(username: username)
     if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
