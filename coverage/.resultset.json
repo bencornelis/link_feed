@@ -395,9 +395,120 @@
         1,
         null
       ],
+      "/Users/bencornelis/Desktop/hubski_clone/spec/models/comment_spec.rb": [
+        1,
+        null,
+        1,
+        2,
+        2,
+        2,
+        null
+      ],
+      "/Users/bencornelis/Desktop/hubski_clone/app/models/comment.rb": [
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/bencornelis/Desktop/hubski_clone/spec/models/follow_spec.rb": [
+        1,
+        null,
+        1,
+        2,
+        2,
+        null
+      ],
+      "/Users/bencornelis/Desktop/hubski_clone/app/models/follow.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
+      "/Users/bencornelis/Desktop/hubski_clone/spec/models/post_spec.rb": [
+        1,
+        null,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        null
+      ],
+      "/Users/bencornelis/Desktop/hubski_clone/app/models/post.rb": [
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null
+      ],
+      "/Users/bencornelis/Desktop/hubski_clone/spec/models/share_spec.rb": [
+        1,
+        null,
+        1,
+        2,
+        2,
+        null
+      ],
+      "/Users/bencornelis/Desktop/hubski_clone/app/models/share.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
+      "/Users/bencornelis/Desktop/hubski_clone/spec/models/tag_spec.rb": [
+        1,
+        null,
+        1,
+        2,
+        null
+      ],
+      "/Users/bencornelis/Desktop/hubski_clone/app/models/tag.rb": [
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/bencornelis/Desktop/hubski_clone/spec/models/user_spec.rb": [
+        1,
+        null,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        null
+      ],
       "/Users/bencornelis/Desktop/hubski_clone/app/models/user.rb": [
         1,
         1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
         1,
         1,
         null,
@@ -443,6 +554,6 @@
         null
       ]
     },
-    "timestamp": 1437861474
+    "timestamp": 1437864087
   }
 }
