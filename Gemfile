@@ -10,7 +10,7 @@ gem 'turbolinks'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'sass-rails', '>= 3.2'
 gem 'pundit'
-gem 'devise'
+gem 'bcrypt-ruby', '~> 3.1.5', require: "bcrypt"
 
 group :development do
   gem 'byebug'
@@ -29,7 +29,4 @@ group :test do
   gem 'capybara'
   gem 'factory_girl_rails'
   gem 'simplecov', require: false
-  gem 'poltergeist'
-  gem 'phantomjs', require: 'phantomjs/poltergeist'
-  gem 'database_cleaner'
 end

@@ -1,0 +1,23 @@
+require "rails_helper"
+
+describe 'logging in' do
+  it 'redirects to the home page on successful login' do
+    user = FactoryGirl.create(:user)
+    visit root_path
+    click_on 'Login'
+    fill_in 'username', with: user.username
+    fill_in 'password', with: user.password
+    click_on 'login'
+    expect(page).to have_content("You've been logged in.")
+  end
+
+  it 'redirects to the login on failed login attempt' do
+    user = FactoryGirl.create(:user)
+    visit root_path
+    click_on 'Login'
+    fill_in 'username', with: "foo"
+    fill_in 'password', with: user.password
+    click_on 'login'
+    expect(page).to have_content("There was a problem logging you in.")
+  end
+end
