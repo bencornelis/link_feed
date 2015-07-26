@@ -13,4 +13,9 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
   helper_method :user_logged_in?
+
+  private
+  def authenticate_user!
+    redirect_to login_path unless user_logged_in?
+  end
 end

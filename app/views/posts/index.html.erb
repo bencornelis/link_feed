@@ -1,5 +1,14 @@
-<% if user_logged_in? %>
-  <%= link_to "Logout", logout_path %>
-<% else %>
-  <%= link_to "Login", login_path %> | <%= link_to "Join Us", new_user_path %>
-<% end %>
+<div>
+  <% if user_logged_in? %>
+    <%= link_to "Logout", logout_path %> |
+  <% else %>
+    <%= link_to "Login", login_path %> | <%= link_to "Join Us", join_path %> |
+  <% end %>
+
+  <%= link_to "Post +", new_post_path %>
+</div>
+<hr>
+
+<div class="posts">
+  <%= render @posts %>
+</div>

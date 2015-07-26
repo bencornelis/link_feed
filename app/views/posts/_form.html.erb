@@ -3,21 +3,24 @@
     <%= f.label :title, "title" %>
     <%= f.text_field :title %>
   </div>
+  <hr>
   <div>
     <%= f.label :url, "url" %>
-    <%= f.text_field :url %>
+    <%= f.url_field :url %>
   </div>
+  or
   <div>
     <%= f.label :text, "text" %>
-    <%= f.text_field :text %>
+    <%= f.text_area :text %>
+  </div>
+  <hr>
+  <div>
+    <%= f.label :tag1_name, "tag" %>
+    <%= f.text_field :tag1_name %>
   </div>
   <div>
-    <%= f.label :tag1, "tag" %>
-    <%= f.text_field :tag1 %>
-  </div>
-  <div>
-    <%= f.label :tag2, "tag" %>
-    <%= f.text_field :tag2 %>
+    <%= f.label :tag2_name, "tag" %>
+    <%= f.text_field :tag2_name %>
   </div>
 
   <%= f.submit "submit" %>

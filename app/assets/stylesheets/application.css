@@ -13,3 +13,24 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+  font-family: "proxima-nova-1","proxima-nova-2",arial,helvetica,sans-serif;
+  font-size: 14px;
+  color: #222;
+}
+
+a:link {
+  text-decoration: none;
+  color: #222;
+}
+
+a:visited {
+  text-decoration: none;
+  color: #222;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #777;
+}

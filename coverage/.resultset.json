@@ -618,6 +618,7 @@
         2,
         2,
         2,
+        2,
         null
       ],
       "/Users/bencornelis/Desktop/hubski_clone/app/models/post.rb": [
@@ -628,6 +629,10 @@
         1,
         1,
         1,
+        1,
+        1,
+        1,
+        null,
         1,
         null,
         1,
@@ -662,6 +667,34 @@
         null
       ],
       "/Users/bencornelis/Desktop/hubski_clone/app/models/share.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
+      "/Users/bencornelis/Desktop/hubski_clone/spec/models/tag_spec.rb": [
+        1,
+        null,
+        1,
+        2,
+        2,
+        null
+      ],
+      "/Users/bencornelis/Desktop/hubski_clone/app/models/tag.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
+      "/Users/bencornelis/Desktop/hubski_clone/spec/models/tagging_spec.rb": [
+        1,
+        null,
+        1,
+        2,
+        2,
+        null
+      ],
+      "/Users/bencornelis/Desktop/hubski_clone/app/models/tagging.rb": [
         1,
         1,
         1,
@@ -750,6 +783,6 @@
         null
       ]
     },
-    "timestamp": 1437879738
+    "timestamp": 1437926887
   }
 }

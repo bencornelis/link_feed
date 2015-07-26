@@ -14,14 +14,14 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2015-07-25T20:02:18-07:00">2015-07-25T20:02:18-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2015-07-26T09:08:07-07:00">2015-07-26T09:08:07-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="green">97.07%</span></span>
+    (<span class="covered_percent"><span class="green">97.25%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
@@ -31,9 +31,9 @@
   </h2>
   <a name="AllFiles"></a>
   <div>
-    <b>53</b> files in total.
-    <b>273</b> relevant lines. 
-    <span class="green"><b>265</b> lines covered</span> and
+    <b>57</b> files in total.
+    <b>291</b> relevant lines. 
+    <span class="green"><b>283</b> lines covered</span> and
     <span class="red"><b>8</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -212,16 +212,36 @@
       
       <tr>
         <td class="strong"><a href="#7c4ab165643cc683dec3a3d043c4ee508fb901bf" class="src_link" title="app/models/post.rb">app/models/post.rb</a></td>
-        <td class="yellow strong">85.71 %</td>
-        <td>31</td>
-        <td>14</td>
-        <td>12</td>
+        <td class="yellow strong">88.24 %</td>
+        <td>35</td>
+        <td>17</td>
+        <td>15</td>
         <td>2</td>
         <td>0.9</td>
       </tr>
       
       <tr>
         <td class="strong"><a href="#7f8563fb0094f7993110e1e8d4b11453e07b61e5" class="src_link" title="app/models/share.rb">app/models/share.rb</a></td>
+        <td class="green strong">100.0 %</td>
+        <td>4</td>
+        <td>3</td>
+        <td>3</td>
+        <td>0</td>
+        <td>1.0</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#975e1d1b6e4adcf338dd2523c76bb77664259300" class="src_link" title="app/models/tag.rb">app/models/tag.rb</a></td>
+        <td class="green strong">100.0 %</td>
+        <td>4</td>
+        <td>3</td>
+        <td>3</td>
+        <td>0</td>
+        <td>1.0</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#e53653954bd562be955c7b07dab93aceab2ca3a4" class="src_link" title="app/models/tagging.rb">app/models/tagging.rb</a></td>
         <td class="green strong">100.0 %</td>
         <td>4</td>
         <td>3</td>
@@ -533,15 +553,35 @@
       <tr>
         <td class="strong"><a href="#f0a7370bce4ba9428db6f4263c990b48eba44edc" class="src_link" title="spec/models/post_spec.rb">spec/models/post_spec.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>9</td>
-        <td>7</td>
-        <td>7</td>
+        <td>10</td>
+        <td>8</td>
+        <td>8</td>
         <td>0</td>
-        <td>1.7</td>
+        <td>1.8</td>
       </tr>
       
       <tr>
         <td class="strong"><a href="#c9b51664994355009121bfcca9086903bf8e6199" class="src_link" title="spec/models/share_spec.rb">spec/models/share_spec.rb</a></td>
+        <td class="green strong">100.0 %</td>
+        <td>6</td>
+        <td>4</td>
+        <td>4</td>
+        <td>0</td>
+        <td>1.5</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#9a86cc24dd71e80b8fc0ad1240b9c0efeb0b2a4a" class="src_link" title="spec/models/tag_spec.rb">spec/models/tag_spec.rb</a></td>
+        <td class="green strong">100.0 %</td>
+        <td>6</td>
+        <td>4</td>
+        <td>4</td>
+        <td>0</td>
+        <td>1.5</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#fd5ae4c6b0b68a359f648acaffbe0e359eeb4f86" class="src_link" title="spec/models/tagging_spec.rb">spec/models/tagging_spec.rb</a></td>
         <td class="green strong">100.0 %</td>
         <td>6</td>
         <td>4</td>
@@ -1649,10 +1689,10 @@
         <div class="source_table" id="7c4ab165643cc683dec3a3d043c4ee508fb901bf">
   <div class="header">
     <h3>app/models/post.rb</h3>
-    <h4><span class="yellow">85.71 %</span> covered</h4>
+    <h4><span class="yellow">88.24 %</span> covered</h4>
     <div>
-      <b>14</b> relevant lines. 
-      <span class="green"><b>12</b> lines covered</span> and
+      <b>17</b> relevant lines. 
+      <span class="green"><b>15</b> lines covered</span> and
       <span class="red"><b>2</b> lines missed.</span>
     </div>
   </div>
@@ -1708,16 +1748,16 @@
           <code class="ruby">  has_many :users_shared_by, through: :shares, source: :user</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="9">
+        <li class="covered" data-hits="1" data-linenumber="9">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">  has_many :taggings</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="10">
           <span class="hits">1</span>
           
-          <code class="ruby">  scope :recent, -&gt; (count) { order(&quot;created_at DESC&quot;).limit(count) }</code>
+          <code class="ruby">  has_many :tags, through: :taggings</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="11">
@@ -1726,64 +1766,64 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="12">
-          
-          
-          <code class="ruby">  # constants</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="13">
+        <li class="covered" data-hits="1" data-linenumber="12">
           <span class="hits">1</span>
           
-          <code class="ruby">  MAX_TAG_COUNT = 2</code>
+          <code class="ruby">  delegate :username, to: :user</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="14">
+        <li class="never" data-hits="" data-linenumber="13">
           
           
           <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="14">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  scope :recent, -&gt; (count) { order(&quot;created_at DESC&quot;).limit(count) }</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="15">
           
           
-          <code class="ruby">  # Statistics</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="16">
+        <li class="never" data-hits="" data-linenumber="16">
+          
+          
+          <code class="ruby">  # constants</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="17">
           <span class="hits">1</span>
           
-          <code class="ruby">  def share_count</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="17">
-          
-          
-          <code class="ruby">    shares.size</code>
+          <code class="ruby">  MAX_TAG_COUNT = 2</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="18">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="19">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">  # Statistics</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="20">
           <span class="hits">1</span>
           
-          <code class="ruby">  def comment_count</code>
+          <code class="ruby">  def share_count</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="21">
           
           
-          <code class="ruby">    comments.size</code>
+          <code class="ruby">    shares.size</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="22">
@@ -1801,46 +1841,70 @@
         <li class="covered" data-hits="1" data-linenumber="24">
           <span class="hits">1</span>
           
-          <code class="ruby">  private</code>
+          <code class="ruby">  def comment_count</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="25">
+        <li class="missed" data-hits="0" data-linenumber="25">
           
           
-          <code class="ruby">  # def tag_count_within_bounds</code>
+          <code class="ruby">    comments.size</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="26">
           
           
-          <code class="ruby">  #   if tags.size &gt; MAX_TAG_COUNT</code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="27">
           
           
-          <code class="ruby">  #     errors.add(:base, &quot;Too many tags&quot;)</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="28">
+        <li class="covered" data-hits="1" data-linenumber="28">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  #     false</code>
+          <code class="ruby">  private</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="29">
           
           
-          <code class="ruby">  #   end</code>
+          <code class="ruby">  # def tag_count_within_bounds</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="30">
           
           
-          <code class="ruby">  # end</code>
+          <code class="ruby">  #   if tags.size &gt; MAX_TAG_COUNT</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="31">
+          
+          
+          <code class="ruby">  #     errors.add(:base, &quot;Too many tags&quot;)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="32">
+          
+          
+          <code class="ruby">  #     false</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="33">
+          
+          
+          <code class="ruby">  #   end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="34">
+          
+          
+          <code class="ruby">  # end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="35">
           
           
           <code class="ruby">end</code>
@@ -1880,6 +1944,90 @@
           <span class="hits">1</span>
           
           <code class="ruby">  belongs_to :post</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="4">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="975e1d1b6e4adcf338dd2523c76bb77664259300">
+  <div class="header">
+    <h3>app/models/tag.rb</h3>
+    <h4><span class="green">100.0 %</span> covered</h4>
+    <div>
+      <b>3</b> relevant lines. 
+      <span class="green"><b>3</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class Tag &lt; ActiveRecord::Base</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  has_many :taggings</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="3">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  has_many :posts, through: :taggings</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="4">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="e53653954bd562be955c7b07dab93aceab2ca3a4">
+  <div class="header">
+    <h3>app/models/tagging.rb</h3>
+    <h4><span class="green">100.0 %</span> covered</h4>
+    <div>
+      <b>3</b> relevant lines. 
+      <span class="green"><b>3</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class Tagging &lt; ActiveRecord::Base</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  belongs_to :post</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="3">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  belongs_to :tag</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="4">
@@ -4771,8 +4919,8 @@
     <h3>spec/models/post_spec.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>7</b> relevant lines. 
-      <span class="green"><b>7</b> lines covered</span> and
+      <b>8</b> relevant lines. 
+      <span class="green"><b>8</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -4819,16 +4967,22 @@
         <li class="covered" data-hits="2" data-linenumber="7">
           <span class="hits">2</span>
           
-          <code class="ruby">  it { should have_many :users_shared_by}</code>
+          <code class="ruby">  it { should have_many :users_shared_by }</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="8">
           <span class="hits">2</span>
           
-          <code class="ruby">  it { should have_and_belong_to_many :tags }</code>
+          <code class="ruby">  it { should have_many :taggings }</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="9">
+        <li class="covered" data-hits="2" data-linenumber="9">
+          <span class="hits">2</span>
+          
+          <code class="ruby">  it { should have_many :tags }</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="10">
           
           
           <code class="ruby">end</code>
@@ -4874,6 +5028,114 @@
           <span class="hits">2</span>
           
           <code class="ruby">  it { should belong_to :user }</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="5">
+          <span class="hits">2</span>
+          
+          <code class="ruby">  it { should belong_to :post }</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="6">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="9a86cc24dd71e80b8fc0ad1240b9c0efeb0b2a4a">
+  <div class="header">
+    <h3>spec/models/tag_spec.rb</h3>
+    <h4><span class="green">100.0 %</span> covered</h4>
+    <div>
+      <b>4</b> relevant lines. 
+      <span class="green"><b>4</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require &#39;rails_helper&#39;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="2">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="3">
+          <span class="hits">1</span>
+          
+          <code class="ruby">RSpec.describe Tag, type: :model do</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="4">
+          <span class="hits">2</span>
+          
+          <code class="ruby">  it { should have_many :taggings }</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="5">
+          <span class="hits">2</span>
+          
+          <code class="ruby">  it { should have_many :posts }</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="6">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="fd5ae4c6b0b68a359f648acaffbe0e359eeb4f86">
+  <div class="header">
+    <h3>spec/models/tagging_spec.rb</h3>
+    <h4><span class="green">100.0 %</span> covered</h4>
+    <div>
+      <b>4</b> relevant lines. 
+      <span class="green"><b>4</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require &#39;rails_helper&#39;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="2">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="3">
+          <span class="hits">1</span>
+          
+          <code class="ruby">RSpec.describe Tagging, type: :model do</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="4">
+          <span class="hits">2</span>
+          
+          <code class="ruby">  it { should belong_to :tag }</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="5">
