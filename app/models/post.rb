@@ -7,6 +7,8 @@ class Post < ActiveRecord::Base
   has_many :shares
   has_many :users_shared_by, through: :shares, source: :user
 
+  delegate :username, to: :user
+
   scope :recent, -> (count) { order("created_at DESC").limit(count) }
 
   # constants
