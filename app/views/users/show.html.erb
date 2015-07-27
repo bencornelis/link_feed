@@ -1,16 +1,40 @@
-<h4><%= @user.username %></h4>
-<div>
-  <div class="followees">
-    <%= followees(@user) %>
-  </div>
+<div class="user-info-panel">
+  <h4><%= @user.username %></h4>
+  <div class="user-stats">
+    <h5 class="user-info-header">stats</h5>
+    <div class="followees">
+      <%= followees(@user) %>
+    </div>
 
-  <div class="followers">
-    <%= followers(@user) %>
-  </div>
+    <div class="followers">
+      <%= followers(@user) %>
+    </div>
 
-  <div class="follow_link">
-    <%= follow_link(@user) %>
-  </div>
+    <div class="follow_link">
+      <%= follow_link(@user) %>
+    </div>
 
-  <h5>Shares: <%= @user.share_count %></h5>
+    <h5>Shares: <%= @user.share_count %></h5>
+  </div>
+</div>
+
+<div class="user-info-panel">
+  <h5 class="user-info-header">posts</h5>
+  <ul>
+    <%= render @user.posts %>
+  </ul>
+</div>
+
+<div class="user-info-panel">
+  <h5 class="user-info-header">shares</h5>
+  <ul>
+    <%= render @user.shared_posts %>
+  </ul>
+</div>
+
+<div class="user-info-panel">
+  <h5 class="user-info-header">comments</h5>
+  <ul>
+    <%= render @user.comments %>
+  </ul>
 </div>
