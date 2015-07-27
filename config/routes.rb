@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   resources :users do
     resources :follows
   end
-  
+
   resources :posts do
+    resources :shares
     resources :comments
   end
 

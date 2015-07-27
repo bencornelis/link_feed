@@ -21,4 +21,12 @@ module PostsHelper
       concat link_to post.second_tag_name, root_path
     end
   end
+
+  def shares(post)
+    share_count = post.share_count
+    share_text = "#{share_count} shares"
+    share_text.chop! if share_count == 1
+    share_text
+  end
+
 end

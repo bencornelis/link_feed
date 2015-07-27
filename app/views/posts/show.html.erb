@@ -1,5 +1,8 @@
-<h3><%= @post.title %></h3>
+<h3><%= @post.title %> - <%= link_to "share +", post_shares_path(@post), remote: true, method: :post %></h3>
 <h5><%= link_to @post.username, user_path(@post.user) %> <%= time_since_updated(@post) %></h5>
+<div class="shares">
+  <%= shares(@post) %>
+</div>
 <p class="post-text">
   <%= @post.text %>
 </p>
