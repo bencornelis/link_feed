@@ -29,4 +29,9 @@ module PostsHelper
     share_text
   end
 
+  def share_link(post)
+    if policy(post).share?
+      link_to "share +", post_shares_path(post), remote: true, method: :post
+    end
+  end
 end

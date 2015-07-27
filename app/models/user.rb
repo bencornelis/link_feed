@@ -48,6 +48,10 @@ class User < ActiveRecord::Base
     followees.exists?(other_user.id)
   end
 
+  def has_shared?(post)
+    shared_posts.exists?(post.id)
+  end
+
   private
   def encrypt_password
     self.password_salt = BCrypt::Engine.generate_salt
