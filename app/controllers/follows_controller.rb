@@ -6,7 +6,7 @@ class FollowsController < ApplicationController
     Follow.create(followee_id: @followee.id,
                   follower_id: current_user.id)
     respond_to do |format|
-      format.js
+      format.js 
     end
   end
 
