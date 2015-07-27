@@ -8,7 +8,7 @@
 </head>
 <body id="<%= params[:controller].parameterize %>_controller">
 
-<nav>
+<nav id="main-nav">
   <%= link_to "Home", root_path %> |
 
   <% if user_logged_in? %>
@@ -20,7 +20,7 @@
 
   <%= link_to "Post +", new_post_path %>
 </nav>
-<hr>
+
 <div>
   <%= flash[:notice] %>
   <%= flash[:alert] %>

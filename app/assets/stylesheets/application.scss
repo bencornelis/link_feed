@@ -20,38 +20,31 @@ body {
   color: #222;
 }
 
-.post_info {
-  color: #777;
-}
-
-.post_info a:visited {
-  color: #777;
-}
-
-a:link {
-  text-decoration: none;
+a {
   color: #222;
-}
 
-a:visited {
-  text-decoration: none;
-  color: #222;
-}
+  &:link {
+    text-decoration: none;
+  }
 
-a:hover {
-  text-decoration: underline;
-  cursor: pointer;
-  color: #222;
+  &:visited {
+    text-decoration: none;
+  }
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }
 
 ul {
   list-style: none;
-}
 
-li {
-  border-bottom: 1px dotted black;
-  border-left: 1px dotted black;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-bottom: 10px;
+  li {
+    border-bottom: 1px dotted black;
+    border-left: 1px dotted black;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10px;
+  }
 }
