@@ -3,8 +3,7 @@ class PostsController < ApplicationController
 
   def index
     # redirect_to feed_path if user_logged_in?
-
-    @posts = Post.all
+    @posts = Post.sort_global(params[:sort])
   end
 
   def show

@@ -15,6 +15,19 @@ class Post < ActiveRecord::Base
 
   scope :recent, -> (count) { order("created_at DESC").limit(count) }
 
+  def self.sort_global(sort_option)
+    case sort_option
+    when nil
+      all
+    when "time"
+      order("created_at desc")
+    when "comments"
+      order("comments_count desc")
+    when "shares"
+      order("shares_count desc")
+    end
+  end
+
   def text_only?
     url.empty?
   end

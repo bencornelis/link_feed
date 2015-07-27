@@ -1,4 +1,14 @@
 module PostsHelper
+  def sort_options
+    capture do
+      concat link_to "time", { sort: "time" }
+      concat " | "
+      concat link_to "comments", { sort: "comments" }
+      concat " | "
+      concat link_to "shares", { sort: "shares" }
+    end
+  end
+
   def post_link(post)
     if post.text_only?
       link_to post.title, post_path(post)

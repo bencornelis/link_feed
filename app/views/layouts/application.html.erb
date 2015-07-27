@@ -6,9 +6,9 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body id="<%= params[:controller].parameterize %>_controller">
 
-<div>
+<nav>
   <%= link_to "Home", root_path %> |
 
   <% if user_logged_in? %>
@@ -19,7 +19,7 @@
   <% end %>
 
   <%= link_to "Post +", new_post_path %>
-</div>
+</nav>
 <hr>
 <div>
   <%= flash[:notice] %>
