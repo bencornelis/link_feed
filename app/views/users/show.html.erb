@@ -8,7 +8,9 @@
     <%= followers(@user) %>
   </div>
 
-  <%= link_to "follow #{@user.username}", user_follows_path(@user),
-                                          remote: true, method: :post %>
+  <div class="follow_link">
+    <%= follow_link(@user) %>
+  </div>
+
   <h5>Shares: <%= @user.share_count %></h5>
 </div>

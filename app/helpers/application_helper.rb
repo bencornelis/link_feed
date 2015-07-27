@@ -1,6 +1,6 @@
 module ApplicationHelper
-  def time_since_updated(content)
-    time_elapsed = (Time.now - content.updated_at).seconds.to_i
+  def time_since(time)
+    time_elapsed = (Time.now - time).seconds.to_i
     if time_elapsed < 60
       time_unit = "seconds"
     elsif time_elapsed < 60*60

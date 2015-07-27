@@ -43,6 +43,11 @@ class User < ActiveRecord::Base
     shares.size
   end
 
+  # instance methods
+  def is_following?(other_user)
+    followees.exists?(other_user.id)
+  end
+
   private
   def encrypt_password
     self.password_salt = BCrypt::Engine.generate_salt

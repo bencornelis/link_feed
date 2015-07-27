@@ -13,4 +13,10 @@ module UsersHelper
     "Following (#{user.followee_count}): #{followee_list}".html_safe
   end
 
+  def follow_link(user)
+    if policy(user).follow?
+      link_to "follow #{@user.username}", user_follows_path(@user),
+                                          remote: true, method: :post
+    end
+  end
 end
