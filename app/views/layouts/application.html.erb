@@ -9,10 +9,13 @@
 <body>
 
 <div>
+  <%= link_to "Home", root_path %> |
+
   <% if user_logged_in? %>
-  <%= link_to "Logout", logout_path %> |
+    <%= link_to "Logout", logout_path %> |
+    <%= link_to "Profile", user_path(current_user) %> |
   <% else %>
-  <%= link_to "Login", login_path %> | <%= link_to "Join Us", join_path %> |
+    <%= link_to "Login", login_path %> | <%= link_to "Join Us", join_path %> |
   <% end %>
 
   <%= link_to "Post +", new_post_path %>

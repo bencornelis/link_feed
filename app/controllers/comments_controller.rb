@@ -1,10 +1,11 @@
 class CommentsController < ApplicationController
-  before_filter :authenticate_user!
 
   def new
     @commentable = find_commentable
     respond_to do |format|
-      format.js
+      format.js {
+        render :js => "window.location = '#{login_path}'" unless user_logged_in?
+      }
     end
   end
 

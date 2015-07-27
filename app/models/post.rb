@@ -16,7 +16,7 @@ class Post < ActiveRecord::Base
   scope :recent, -> (count) { order("created_at DESC").limit(count) }
 
   def text_only?
-    url.nil?
+    url.empty?
   end
 
   def first_tag_name

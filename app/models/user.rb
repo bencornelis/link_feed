@@ -39,6 +39,10 @@ class User < ActiveRecord::Base
     posts.size
   end
 
+  def share_count
+    shares.size
+  end
+
   private
   def encrypt_password
     self.password_salt = BCrypt::Engine.generate_salt

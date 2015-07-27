@@ -258,6 +258,12 @@
         1,
         1,
         1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
         null,
         1,
         1,
@@ -348,6 +354,37 @@
       ],
       "/Users/Guest/Desktop/hubski-clone/app/controllers/comments_controller.rb": [
         1,
+        null,
+        1,
+        0,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null,
+        1,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null,
         null
       ],
       "/Users/Guest/Desktop/hubski-clone/app/controllers/application_controller.rb": [
@@ -649,6 +686,8 @@
         1,
         1,
         null,
+        1,
+        null,
         null
       ],
       "/Users/Guest/Desktop/hubski-clone/spec/models/follow_spec.rb": [
@@ -865,6 +904,6 @@
         null
       ]
     },
-    "timestamp": 1438015458
+    "timestamp": 1438021183
   }
 }

@@ -1,5 +1,5 @@
 <h3><%= @post.title %></h3>
-<h5><%= @post.username %> <%= time_since_updated(@post) %></h5>
+<h5><%= link_to @post.username, user_path(@post.user) %> <%= time_since_updated(@post) %></h5>
 <p class="post-text">
   <%= @post.text %>
 </p>

@@ -1,5 +1,5 @@
 <%= content_tag_for :li, comment do %>
-  <h5><%= comment.username %> <%= time_since_updated(comment) %> |
+  <h5><%= link_to comment.username, user_path(comment.user) %> <%= time_since_updated(comment) %> |
     <%= link_to "reply", new_comment_comment_path(comment), remote: true %>
   </h5>
   <p class="post_text">
