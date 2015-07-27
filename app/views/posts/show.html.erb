@@ -1,0 +1,11 @@
+<h3><%= @post.title %></h3>
+<h5><%= @post.username %> <%= time_since_updated(@post) %></h5>
+<p class="post-text">
+  <%= @post.text %>
+</p>
+<hr>
+<%= render "comments/form", commentable: @post %>
+<hr>
+<ul class="comments">
+  <%= render @post.comments, commentable: @post %>
+</ul>

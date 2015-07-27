@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   end
 
   def show
-
+    @post = Post.find(params[:id])
   end
 
   def new
@@ -20,7 +20,6 @@ class PostsController < ApplicationController
   end
 
   def create
-    binding.pry
     @post = current_user.posts.new(post_params)
     if @post.save
       redirect_to root_path

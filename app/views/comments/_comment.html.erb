@@ -1,0 +1,14 @@
+<%= content_tag_for :li, comment do %>
+  <h5><%= comment.username %> <%= time_since_updated(comment) %> |
+    <%= link_to "reply", new_comment_comment_path(comment), remote: true %>
+  </h5>
+  <p class="post_text">
+    <%= comment.text %>
+  </p>
+  <p class="new_comment">
+
+  </p>
+  <ul class="comments">
+    <%= render comment.comments, commentable: comment %>
+  </ul>
+<% end %>

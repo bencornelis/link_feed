@@ -5,7 +5,7 @@ class Post < ActiveRecord::Base
   before_save :add_tags
 
   belongs_to :user
-  has_many :comments
+  has_many :comments, :as => :commentable
   has_many :shares
   has_many :users_shared_by, through: :shares, source: :user
   has_many :taggings
@@ -16,7 +16,7 @@ class Post < ActiveRecord::Base
   scope :recent, -> (count) { order("created_at DESC").limit(count) }
 
   def text_only?
-    url.empty?
+    url.nil?
   end
 
   def first_tag_name
