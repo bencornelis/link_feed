@@ -1,12 +1,12 @@
 module PostsHelper
   def sort_options
-    capture do
-      concat link_to "time", { sort: "time" }
-      concat " | "
-      concat link_to "comments", { sort: "comments" }
-      concat " | "
-      concat link_to "shares", { sort: "shares" }
-    end
+    ["time", "comments", "shares"].map { |sort_option|
+      if params[:sort] == sort_option
+        link_to sort_option, { sort: sort_option }, class: "btn-blue"
+      else
+        link_to sort_option, { sort: sort_option }
+      end
+    }.join(" | ").html_safe
   end
 
   def post_link(post)
