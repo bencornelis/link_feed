@@ -31,9 +31,9 @@ class Post < ActiveRecord::Base
     end
   end
 
-  def self.tagged_with(tag_name)
-    if tag_name
-      Tag.find_by_tag_name(tag_name).posts
+  def self.tagged_with(name)
+    if name
+      Tag.find_by_name(name).posts
     else
       all
     end
@@ -44,11 +44,11 @@ class Post < ActiveRecord::Base
   end
 
   def first_tag_name
-    tags.first.name
+    tags.first.with_hash
   end
 
   def second_tag_name
-    tags.last.name
+    tags.last.with_hash
   end
 
   # Statistics
@@ -64,7 +64,7 @@ class Post < ActiveRecord::Base
   def add_tags
     [tag1_name, tag2_name].each do |tag_name|
       next unless tag_name
-      tag = Tag.find_by_tag_name(tag_name)
+      tag = Tag.find_by_name(tag_name)
       unless tag
         tag = Tag.create(name: tag_name)
       end

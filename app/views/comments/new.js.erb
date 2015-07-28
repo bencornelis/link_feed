@@ -1,6 +1,6 @@
-$("#comment_<%= @commentable.id %> .new_comment").first()
-                                                 .html("<%= j render 'form', commentable: @commentable, top_level: false %>")
-                                                 .find("form .hide")
-                                                 .click(function() {
-                                                   $(this).parent().empty();
-                                                 });
+$formDiv = $("#comment_<%= @commentable.id %> .comment_form").first();
+$formDiv.html("<%= j render 'new_comment_form', commentable: @commentable, top_level: false %>")
+        .find("form .hide")
+        .click(function() {
+          $(this).parent().empty();
+        });

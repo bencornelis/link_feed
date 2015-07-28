@@ -2,7 +2,7 @@
   <h4><%= post_link(post) %></h4>
   <div class="post_info">
     <div class="author">
-      <%= link_to post.username, user_path(post.user) %>
+      <%= user_link(post.user) %>
     </div>
     <div class="comment-stats">
       <%= comments_link(post) %> / <%= tag_links(post) %>

@@ -7,4 +7,7 @@ class Comment < ActiveRecord::Base
 
   delegate :username, to: :user
 
+  def edited?
+    created_at != updated_at
+  end
 end

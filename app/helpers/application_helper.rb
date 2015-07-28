@@ -19,4 +19,12 @@ module ApplicationHelper
     time_unit.chop! if time_elapsed == 1
     "#{time_elapsed} #{time_unit} ago"
   end
+
+  def user_link(user)
+    if user_logged_in? && current_user.is_following?(user)
+      link_to user.username, user_path(user), class: "following"
+    else
+      link_to user.username, user_path(user)
+    end
+  end
 end

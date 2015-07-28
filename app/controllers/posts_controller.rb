@@ -3,7 +3,8 @@ class PostsController < ApplicationController
 
   def index
     # redirect_to feed_path if user_logged_in?
-    @posts = Post.tagged_with(params[:tag])
+    @posts = Post.includes(:tags)
+                 .tagged_with(params[:tag])
                  .sorted_by(params[:sort])
                  .paginate(page: params[:page], per_page: 7)
   end

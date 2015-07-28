@@ -12,6 +12,13 @@ class CommentsController < ApplicationController
     end
   end
 
+  def edit
+    @comment = Comment.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def create
     @commentable = find_commentable
     @comment = @commentable.comments.new(comment_params)
@@ -20,6 +27,20 @@ class CommentsController < ApplicationController
     redirect_to :back
   end
 
+  def update
+    @comment = Comment.find(params[:id])
+    @comment.update(comment_params)
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def destroy
+    comment = Comment.find(params[:id])
+    authorize comment
+    comment.destroy
+    redirect_to :back
+  end
 
   private
   def comment_params
