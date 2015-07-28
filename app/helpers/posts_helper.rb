@@ -2,9 +2,9 @@ module PostsHelper
   def sort_options
     ["time", "comments", "shares"].map { |sort_option|
       if params[:sort] == sort_option
-        link_to sort_option, { sort: sort_option }, class: "btn-blue"
+        link_to sort_option, params.merge({ sort: sort_option }), class: "btn-blue"
       else
-        link_to sort_option, { sort: sort_option }
+        link_to sort_option, params.merge({ sort: sort_option })
       end
     }.join(" | ").html_safe
   end
@@ -26,9 +26,9 @@ module PostsHelper
 
   def tag_links(post)
     capture do
-      concat link_to post.first_tag_name, { tag: post.first_tag_name[1..-1] }
+      concat link_to post.first_tag_name, params.merge({ tag: post.first_tag_name[1..-1] })
       concat " / "
-      concat link_to post.second_tag_name, { tag: post.second_tag_name[1..-1] }
+      concat link_to post.second_tag_name, params.merge({ tag: post.second_tag_name[1..-1] })
     end
   end
 
