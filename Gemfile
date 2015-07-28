@@ -12,6 +12,7 @@ gem 'sass-rails', '>= 3.2'
 gem 'pundit'
 gem 'bcrypt-ruby', '~> 3.1.5', require: "bcrypt"
 gem 'faker'
+gem 'will_paginate', '~> 3.0.6'
 
 group :development do
   gem 'byebug'

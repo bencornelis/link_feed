@@ -53,11 +53,22 @@ a {
   }
 }
 
-input[type="submit"], .btn {
+input[type="submit"], .btn-blue {
   border: none;
   background: #e4edf4;
   padding:5px;
   color: #3e6d8e;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.btn-yellow {
+  color: #FF9900;
+  background: #FFFFB2;
+  border: none;
+  padding:5px;
 
   &:hover {
     cursor: pointer;
