@@ -2,10 +2,6 @@ def random(number)
   rand(number) + 1
 end
 
-def random_user(user_count)
-  User.find(random(user_count))
-end
-
 def generate_users(user_count)
   users = []
   user_count.times do
@@ -19,28 +15,30 @@ def generate_users(user_count)
 end
 
 def generate_user_activity(options)
-  post_count, comment_count = 0, 0
+  user_count, post_count, comment_count = options[:user_count], 0, 0
 
-  options[:user_count].times do |user_id|
+  user_count.times do |count|
+    user_id = count + 1
 
     # generate posts
     rand(options[:max_posts_per_user]).times do |i|
       if i % 2 == 0
         Post.create(
-          title:   Faker::Company.catch_phrase,
-          url:     Faker::Internet.url,
-          text:    Faker::Hacker.say_something_smart,
-          tag1:    Faker::Hacker.adjective,
-          tag2:    Faker::Hacker.abbreviation,
-          user_id: user_id
+          title:        Faker::Company.catch_phrase,
+          url:          Faker::Internet.url,
+          text:         Faker::Hacker.say_something_smart,
+          tag1_name:    Faker::Hacker.adjective,
+          tag2_name:    Faker::Hacker.abbreviation,
+          user_id:      user_id
         )
       else
-        poster.posts.create(
-          title:   Faker::Hacker.ingverb,
-          text:    Faker::Hacker.say_something_smart,
-          tag1:    Faker::Hacker.adjective,
-          tag2:    Faker::Hacker.abbreviation,
-          user_id: user_id
+        Post.create(
+          title:        Faker::Hacker.say_something_smart,
+          url:          "",
+          text:         Faker::Hacker.say_something_smart,
+          tag1_name:    Faker::Hacker.adjective,
+          tag2_name:    Faker::Hacker.abbreviation,
+          user_id:      user_id
         )
       end
 

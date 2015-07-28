@@ -5,7 +5,7 @@
       <%= link_to post.username, user_path(post.user) %>
     </div>
     <div class="comment-stats">
-      <%= comments_link(post) %> * <%= tag_links(post) %>
+      <%= comments_link(post) %> / <%= tag_links(post) %>
     </div>
   </div>
 <% end %>

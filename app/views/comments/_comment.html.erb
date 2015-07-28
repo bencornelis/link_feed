@@ -1,4 +1,4 @@
-<%= content_tag_for :li, comment do %>
+<%= comment_li(comment) do %>
   <h5><%= link_to comment.username, user_path(comment.user) %> <%= time_since(comment.created_at) %> |
     <%= link_to "reply", new_comment_comment_path(comment), remote: true %>
   </h5>

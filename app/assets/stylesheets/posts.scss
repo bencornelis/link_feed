@@ -15,9 +15,8 @@
   }
 
   .post_info {
-    color: #777;
     a {
-      &:visited {
+      &:link, &:visited {
         color: #777;
       }
     }
