@@ -2,4 +2,8 @@
   <%= f.text_area :text, class: "comment-textarea", rows: 5, cols: 40 %>
 
   <%= f.submit "comment" %>
+
+  <% unless top_level %>
+    <%= content_tag 'a', 'hide', class: 'hide btn-yellow' %>
+  <% end %>
 <% end %>

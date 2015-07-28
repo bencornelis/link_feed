@@ -4,7 +4,10 @@ class CommentsController < ApplicationController
     @commentable = find_commentable
     respond_to do |format|
       format.js {
-        render :js => "window.location = '#{login_path}'" unless user_logged_in?
+        unless user_logged_in?
+          flash[:alert] = "You must be logged in to do that"
+          render :js => "window.location = '#{login_path}'"
+        end
       }
     end
   end

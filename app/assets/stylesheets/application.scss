@@ -83,12 +83,12 @@ ul {
 
     &.post {
       padding-left: 15px;
-      border-bottom: 1px dotted #3e6d8e;
+      border-bottom: 1px dashed #3e6d8e;
     }
 
     &.nested-comment {
-      padding-left: 30px;
-      border-left: 1px dotted #3e6d8e;
+      padding-left: 20px;
+      border-left: 1px dashed #3e6d8e;
     }
   }
 
