@@ -1,9 +1,10 @@
-<h3>
+<h2>
   <%= @post.title %>
-</h3>
+</h2>
 
 <h5>
-  <%= link_to @post.username, user_path(@post.user) %> <%= time_since(@post.created_at) %> |
+  <%= link_to @post.username, user_path(@post.user) %>
+  <%= time_since(@post.created_at) %> |
   <%= shares(@post) %>
   <% if policy(@post).share? %>
     | <%= share_link(@post) %>
@@ -14,8 +15,9 @@
   <%= @post.text %>
 </article>
 
-<hr>
+
 <%= render "comments/form", commentable: @post %>
+
 <hr>
 
 <ul class="comments">
