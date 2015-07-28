@@ -21,20 +21,20 @@
 <div class="user-info-panel">
   <h5 class="user-info-header">posts</h5>
   <ul>
-    <%= render @user.posts %>
+    <%= render @user.posts.limit(10) %>
   </ul>
 </div>
 
 <div class="user-info-panel">
   <h5 class="user-info-header">shares</h5>
   <ul>
-    <%= render @user.shared_posts %>
+    <%= render @user.shared_posts.limit(10) %>
   </ul>
 </div>
 
 <div class="user-info-panel">
   <h5 class="user-info-header">comments</h5>
   <ul>
-    <%= render @user.comments %>
+    <%= render @user.comments.limit(10), show_subcomments: false %>
   </ul>
 </div>

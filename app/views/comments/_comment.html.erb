@@ -8,7 +8,9 @@
   <p class="new_comment">
 
   </p>
-  <ul class="comments">
-    <%= render comment.comments, commentable: comment %>
-  </ul>
+  <% if show_subcomments %>
+    <ul class="comments">
+      <%= render comment.comments, commentable: comment, show_subcomments: true %>
+    </ul>
+  <% end %>
 <% end %>
