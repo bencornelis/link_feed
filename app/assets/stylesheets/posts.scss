@@ -3,15 +3,15 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #posts_controller {
-  #main-nav {
-    border-bottom: 1px solid #777;
-    padding: 7px;
-  }
 
   #sub-nav {
     float: right;
     border-bottom: 1px solid #777;
     padding: 7px;
+
+    a {
+      color: #3e6d8e;
+    }
   }
 
   .post_info {
@@ -21,5 +21,16 @@
         color: #777;
       }
     }
+  }
+
+  .post-text {
+    padding: 20px;
+  }
+
+  .comment-textarea {
+    display: block;
+    margin-bottom: 10px;
+    border-radius: 2px;
+    border-color: #777;
   }
 }

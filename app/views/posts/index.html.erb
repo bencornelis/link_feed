@@ -1,6 +1,8 @@
-<nav id="sub-nav">
-  sort by: <%= sort_options %>
-</nav>
+<% content_for :sub_nav do %>
+  <nav id="sub-nav">
+    sort by: <%= sort_options %>
+  </nav>
+<% end %>
 
 <ul class="posts">
   <%= render @posts %>

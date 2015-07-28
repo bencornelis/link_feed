@@ -13,18 +13,20 @@ class Post < ActiveRecord::Base
 
   delegate :username, to: :user
 
-  scope :recent, -> (count) { order("created_at DESC").limit(count) }
+  scope :recent,        -> { order("created_at DESC") }
+  scope :most_comments, -> { order("comments_count desc") }
+  scope :most_shares,   -> { order("shares_count desc") }
 
   def self.sort_global(sort_option)
     case sort_option
-    when nil
-      all
     when "time"
-      order("created_at desc")
+      recent
     when "comments"
-      order("comments_count desc")
+      most_comments
     when "shares"
-      order("shares_count desc")
+      most_shares
+    else
+      all
     end
   end
 

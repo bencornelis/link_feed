@@ -1,17 +1,23 @@
-<h3><%= @post.title %></h3>
-<div class="share_link">
-  <%= share_link(@post) %>
-</div>
-<h5><%= link_to @post.username, user_path(@post.user) %> <%= time_since(@post.created_at) %></h5>
-<div class="shares">
+<h3>
+  <%= @post.title %>
+</h3>
+
+<h5>
+  <%= link_to @post.username, user_path(@post.user) %> <%= time_since(@post.created_at) %> |
   <%= shares(@post) %>
-</div>
-<p class="post-text">
+  <% if policy(@post).share? %>
+    | <%= share_link(@post) %>
+  <% end %>
+</h5>
+
+<article class="post-text">
   <%= @post.text %>
-</p>
+</article>
+
 <hr>
 <%= render "comments/form", commentable: @post %>
 <hr>
+
 <ul class="comments">
   <%= render @post.comments, commentable: @post %>
 </ul>

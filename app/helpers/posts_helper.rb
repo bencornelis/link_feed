@@ -36,12 +36,12 @@ module PostsHelper
     share_count = post.share_count
     share_text = "#{share_count} shares"
     share_text.chop! if share_count == 1
-    share_text
+    content_tag :span, share_text, class: "shares"
   end
 
   def share_link(post)
-    if policy(post).share?
-      link_to "share +", post_shares_path(post), remote: true, method: :post
-    end
+    link_to "+ share", post_shares_path(post),
+                         remote: true, method: :post,
+                         class:share_link
   end
 end
