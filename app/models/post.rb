@@ -32,7 +32,7 @@ class Post < ActiveRecord::Base
 
   def self.tagged_with(tag_name)
     if tag_name
-      Tag.find_by(name: tag_name).posts
+      Tag.find_by_tag_name(tag_name).posts
     else
       all
     end
