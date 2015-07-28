@@ -16,8 +16,9 @@ class Post < ActiveRecord::Base
   scope :recent,        -> { order("created_at DESC") }
   scope :most_comments, -> { order("comments_count desc") }
   scope :most_shares,   -> { order("shares_count desc") }
+  scope :with_shares,   -> { where("shares_count > 0")}
 
-  def self.sort_global(sort_option)
+  def self.sorted_by(sort_option)
     case sort_option
     when "time"
       recent

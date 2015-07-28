@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  resources :tags
+
   get "/global" => "posts#index"
   get "/feed"   => "posts#feed"
 

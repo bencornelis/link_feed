@@ -23,10 +23,27 @@ body {
 #main-nav {
   border-bottom: 1px solid #777;
   padding: 10px;
+  height: 20px;
   color: #3e6d8e;
   a {
     color: #3e6d8e;
   }
+
+  #left-nav {
+    float: left;
+  }
+
+  #right-nav {
+    float: right;
+
+    a {
+      margin: 0 10px;
+    }
+  }
+}
+
+#flash {
+  padding: 10px;
 }
 
 #main {

@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   has_many :follower_follows, class_name: "Follow", foreign_key: :follower_id
   has_many :followees, through: :follower_follows
 
-  # Class Methods
+  # class Methods
   def self.authenticate(username, password)
     user = User.find_by(username: username)
     if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
@@ -50,6 +50,16 @@ class User < ActiveRecord::Base
 
   def has_shared?(post)
     shared_posts.exists?(post.id)
+  end
+
+  def feed_posts
+    # sort posts by the number of followees that have shared it
+    post_ids = followees.joins(:shares)
+                        .group("shares.post_id")
+                        .order('count_all desc')
+                        .count
+                        .keys
+    Post.find(post_ids)
   end
 
   private
