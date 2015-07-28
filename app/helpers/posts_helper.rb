@@ -26,9 +26,9 @@ module PostsHelper
 
   def tag_links(post)
     capture do
-      concat link_to post.first_tag_name, root_path
+      concat link_to post.first_tag_name, { tag: post.first_tag_name }
       concat " / "
-      concat link_to post.second_tag_name, root_path
+      concat link_to post.second_tag_name, { tag: post.second_tag_name }
     end
   end
 

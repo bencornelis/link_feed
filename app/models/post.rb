@@ -30,6 +30,14 @@ class Post < ActiveRecord::Base
     end
   end
 
+  def self.tagged_with(tag_name)
+    if tag_name
+      Tag.find_by(name: tag_name).posts
+    else
+      all
+    end
+  end
+
   def text_only?
     url.empty?
   end
@@ -55,7 +63,10 @@ class Post < ActiveRecord::Base
   def add_tags
     [tag1_name, tag2_name].each do |tag_name|
       next unless tag_name
-      tag = Tag.find_or_create_by(name: tag_name)
+      tag = Tag.find_by_tag_name(tag_name)
+      unless tag
+        tag = Tag.create(name: tag_name)
+      end
       tags << tag
     end
   end
