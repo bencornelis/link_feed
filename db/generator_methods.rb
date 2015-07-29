@@ -48,9 +48,10 @@ def generate_user_activity(options)
 
     # generate comments
     rand(options[:max_comments_per_user]).times do |i|
-      i % 2 == 0 ? text = Faker::Lorem.sentence : Faker::Hacker.say_something_smart
+      text = i % 2 == 0 ? Faker::Lorem.sentence : Faker::Hacker.say_something_smart
 
-      if i % 3 == 0
+      if i % 3 == 0 || comment_count == 0
+        # create a top level comment on a post
         Comment.create(
           user_id:          user_id,
           text:             text,
@@ -58,6 +59,7 @@ def generate_user_activity(options)
           commentable_type: "Post"
         )
       else
+        # create a comment on a comment
         Comment.create(
           user_id:          user_id,
           text:             text,

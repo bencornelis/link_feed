@@ -3,14 +3,11 @@ class PostsController < ApplicationController
 
   def index
     # redirect_to feed_path if user_logged_in?
-    @posts = Post.includes(:tags)
-                 .tagged_with(params[:tag])
-                 .sorted_by(params[:sort])
-                 .paginate(page: params[:page], per_page: 7)
+    @posts = Post.filter_global(filter_params)
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.includes(:comments).find(params[:id])
   end
 
   def new
@@ -49,6 +46,10 @@ class PostsController < ApplicationController
     params.require(:post).permit(
       :title, :url, :text, :tag1_name, :tag2_name
     )
+  end
+
+  def filter_params
+    params.permit(:sort, :tag, :page)
   end
 
 end

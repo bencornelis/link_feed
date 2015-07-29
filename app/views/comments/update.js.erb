@@ -1,3 +1,3 @@
 $commentText = $("#comment_<%= @comment.id %> .comment_text").first();
-$commentText.addClass("edited");
+$commentText.html("<span class='edited'><%= @comment.text %></span>");
 $("#comment_<%= @comment.id %> .comment_form").first().empty();

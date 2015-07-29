@@ -13,10 +13,11 @@ class Post < ActiveRecord::Base
 
   delegate :username, to: :user
 
-  scope :recent,        -> { order("created_at DESC") }
-  scope :most_comments, -> { order("comments_count desc") }
-  scope :most_shares,   -> { order("shares_count desc") }
-  scope :with_shares,   -> { where("shares_count > 0")}
+  scope :recent,             -> { order("created_at DESC") }
+  scope :most_comments,      -> { order("comments_count desc") }
+  scope :most_shares,        -> { order("shares_count desc") }
+  scope :with_shares,        -> { where("shares_count > 0")}
+  scope :find_with_comments, -> (id) { includes(:comments).find(id) }
 
   def self.sorted_by(sort_option)
     case sort_option
@@ -32,11 +33,13 @@ class Post < ActiveRecord::Base
   end
 
   def self.tagged_with(name)
-    if name
-      Tag.find_by_name(name).posts
-    else
-      all
-    end
+    name ? Tag.find_by_name(name).posts : all
+  end
+
+  def self.filter_global(options)
+    includes(:tags).tagged_with(options[:tag])
+                   .sorted_by(options[:sort])
+                   .paginate(page: options[:page], per_page: 7)
   end
 
   def text_only?
