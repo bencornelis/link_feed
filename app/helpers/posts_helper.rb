@@ -15,8 +15,7 @@ def sortable(sort_option)
 
   def comments_link(post)
     comment_count = post.comment_count
-    link_text = "#{comment_count} comments"
-    link_text.chop! if comment_count == 1
+    link_text = "#{comment_count} #{comment_count == 1 ? 'comment' : 'comments'}"
     link_to link_text, post_path(post)
   end
 
@@ -41,8 +40,7 @@ def sortable(sort_option)
 
   def shares(post)
     share_count = post.share_count
-    share_text = "#{share_count} shares"
-    share_text.chop! if share_count == 1
+    share_text = "#{share_count} #{share_count == 1 ? 'share' : 'shares'}"
     content_tag :span, share_text, class: "shares"
   end
 
