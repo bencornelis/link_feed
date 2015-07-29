@@ -4,7 +4,7 @@
 
 #posts_controller {
 
-  #sub-nav {
+  #sub_nav {
     float: right;
     border-bottom: 1px solid #777;
     padding: 15px 7px 7px 7px;
@@ -14,7 +14,7 @@
     }
   }
 
-  .post_info {
+  .post_info, .comment_info {
     font-size: 12px;
 
     a {
@@ -24,12 +24,11 @@
     }
   }
 
-  .post-text {
+  .post_text {
     padding: 20px;
   }
 
-  .comment-text {
-    padding: 10px;
+  .comment_text {
   }
 
   .edited {
@@ -37,7 +36,7 @@
     background: #FFFFB2;
   }
 
-  .comment-textarea {
+  .comment_textarea {
     display: block;
     margin-bottom: 10px;
     border-radius: 2px;

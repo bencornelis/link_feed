@@ -1,7 +1,7 @@
-<div class="user-info-panel">
+<div class="user_info_panel">
   <h4><%= @user.username %></h4>
-  <div class="user-stats">
-    <h5 class="user-info-header">stats</h5>
+  <div class="user_stats">
+    <h5 class="user_info_header">stats</h5>
     <div class="followees">
       <%= followees(@user) %>
     </div>
@@ -18,22 +18,22 @@
   </div>
 </div>
 
-<div class="user-info-panel">
-  <h5 class="user-info-header">posts</h5>
+<div class="user_info_panel">
+  <h5 class="user_info_header">posts</h5>
   <ul>
     <%= render @user.posts.limit(10) %>
   </ul>
 </div>
 
-<div class="user-info-panel">
-  <h5 class="user-info-header">shares</h5>
+<div class="user_info_panel">
+  <h5 class="user_info_header">shares</h5>
   <ul>
     <%= render @user.shared_posts.limit(10) %>
   </ul>
 </div>
 
-<div class="user-info-panel">
-  <h5 class="user-info-header">comments</h5>
+<div class="user_info_panel">
+  <h5 class="user_info_header">comments</h5>
   <ul>
     <%= render @user.comments.limit(10), show_subcomments: false %>
   </ul>

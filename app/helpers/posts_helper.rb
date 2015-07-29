@@ -2,7 +2,7 @@ module PostsHelper
   def sort_options
     ["time", "comments", "shares"].map { |sort_option|
       if params[:sort] == sort_option
-        link_to sort_option, params.merge({ sort: sort_option }), class: "btn-blue"
+        link_to sort_option, params.merge({ sort: sort_option }), class: "btn_blue"
       else
         link_to sort_option, params.merge({ sort: sort_option })
       end
@@ -42,6 +42,6 @@ module PostsHelper
   def share_link(post)
     link_to "+ share", post_shares_path(post),
                          remote: true, method: :post,
-                         class: "share-link btn-yellow"
+                         class: "share_link btn_yellow"
   end
 end

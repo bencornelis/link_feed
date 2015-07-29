@@ -6,15 +6,16 @@
       | edited <%= time_since(comment.updated_at) %>
     <% end %>
   </h5>
-  <p class="comment-text">
+  <p class="comment_text">
     <%= comment.text %>
   </p>
   <%= link_to "reply", new_comment_comment_path(comment), remote: true %>
+  <%= link_to_parent(comment) %>
   <% if policy(comment).update? %>
-    | <%= link_to "edit", edit_comment_path(comment), class: "btn-blue", remote: true %>
+    | <%= link_to "edit", edit_comment_path(comment), class: "btn_blue", remote: true %>
   <% end %>
   <% if policy(comment).destroy? %>
-    | <%= link_to "delete", comment_path(comment), class: "btn-yellow", method: :delete %>
+    | <%= link_to "delete", comment_path(comment), class: "btn_yellow", method: :delete %>
   <% end %>
   <p class="comment_form">
 

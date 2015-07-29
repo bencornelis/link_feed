@@ -17,7 +17,7 @@ module UsersHelper
     if policy(user).follow?
       link_to "follow #{@user.username}", user_follows_path(@user),
                                           remote: true, method: :post,
-                                          class: "btn-yellow"
+                                          class: "btn_yellow"
     end
   end
 end

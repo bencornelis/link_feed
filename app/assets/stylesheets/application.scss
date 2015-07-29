@@ -20,7 +20,7 @@ body {
   color: #222;
 }
 
-#main-nav {
+#main_nav {
   border-bottom: 1px solid #777;
   padding: 10px;
   height: 20px;
@@ -29,11 +29,11 @@ body {
     color: #3e6d8e;
   }
 
-  #left-nav {
+  #left_nav {
     float: left;
   }
 
-  #right-nav {
+  #right_nav {
     float: right;
 
     a {
@@ -70,7 +70,7 @@ a {
   }
 }
 
-input[type="submit"], .btn-blue {
+input[type="submit"], .btn_blue {
   border: none;
   background: #e4edf4;
   padding:5px;
@@ -81,7 +81,7 @@ input[type="submit"], .btn-blue {
   }
 }
 
-.btn-yellow {
+.btn_yellow {
   color: #CC6600;
   background: #FFFFB2;
   border: none;
@@ -103,7 +103,7 @@ ul {
       border-bottom: 1px dashed #3e6d8e;
     }
 
-    &.nested-comment {
+    &.nested_comment {
       padding-left: 20px;
       border-left: 1px dashed #3e6d8e;
     }

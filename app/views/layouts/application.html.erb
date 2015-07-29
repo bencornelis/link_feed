@@ -8,8 +8,8 @@
 </head>
 <body id="<%= params[:controller].parameterize %>_controller">
 
-<nav id="main-nav">
-  <div id="left-nav">
+<nav id="main_nav">
+  <div id="left_nav">
     <%= link_to "Home", root_path %> |
 
     <% if user_logged_in? %>
@@ -20,13 +20,13 @@
     <% end %>
   </div>
 
-  <div id="right-nav">
+  <div id="right_nav">
     <% if user_logged_in? %>
       <%= link_to "feed", feed_path %>
     <% end %>
     <%= link_to "global", root_path %>
     <%= link_to "tags", tags_path %>
-    <%= link_to "+ post", new_post_path, class: "btn-blue" %>
+    <%= link_to "+ post", new_post_path, class: "btn_blue" %>
   </div>
 
 </nav>

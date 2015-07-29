@@ -1,9 +1,9 @@
 <%= form_for [commentable, Comment.new] do |f| %>
-  <%= f.text_area :text, class: "comment-textarea", rows: 5, cols: 40 %>
+  <%= f.text_area :text, class: "comment_textarea", rows: 5, cols: 40 %>
 
   <%= f.submit "comment" %>
 
   <% unless top_level %>
-    <%= content_tag 'a', 'hide', class: 'hide btn-yellow' %>
+    <%= content_tag 'a', 'hide', class: 'hide btn_yellow' %>
   <% end %>
 <% end %>
