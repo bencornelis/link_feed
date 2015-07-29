@@ -37,9 +37,9 @@ class Post < ActiveRecord::Base
   end
 
   def self.filter_global(options)
-    includes(:tags).tagged_with(options[:tag])
-                   .sorted_by(options[:sort])
-                   .paginate(page: options[:page], per_page: 7)
+    includes(:tags, :user).tagged_with(options[:tag])
+                          .sorted_by(options[:sort])
+                          .paginate(page: options[:page], per_page: 7)
   end
 
   def text_only?

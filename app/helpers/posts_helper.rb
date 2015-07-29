@@ -1,12 +1,8 @@
 module PostsHelper
-  def sort_options
-    ["time", "comments", "shares"].map { |sort_option|
-      if params[:sort] == sort_option
-        link_to sort_option, params.merge({ sort: sort_option }), class: "btn_blue"
-      else
-        link_to sort_option, params.merge({ sort: sort_option })
-      end
-    }.join(" | ").html_safe
+def sortable(sort_option)
+    is_sorted_by = params[:sort] == sort_option
+    link_to sort_option, params.merge({ sort: sort_option }),
+                         class: ("btn_blue" if is_sorted_by)
   end
 
   def post_link(post)

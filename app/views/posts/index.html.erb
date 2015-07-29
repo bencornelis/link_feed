@@ -1,6 +1,7 @@
 <% content_for :sub_nav do %>
   <nav id="sub_nav">
-    sort by: <%= sort_options %>
+    sort by:
+    <%= sortable "time" %> | <%= sortable "shares" %> | <%= sortable "comments" %>
   </nav>
 <% end %>
 
