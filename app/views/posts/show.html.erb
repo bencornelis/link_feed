@@ -5,9 +5,7 @@
 <h5 class="post_details">
   <%= link_to @post.username, user_path(@post.user) %>
   <%= time_since(@post.created_at) %> | <%= shares(@post) %>
-  <% if policy(@post).share? %>
-    | <%= share_link(@post) %>
-  <% end %>
+  <%= share_link(@post) %>
 </h5>
 
 <article class="post_text">

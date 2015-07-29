@@ -14,8 +14,9 @@
     }
   }
 
-  .post_details, .comment_details {
+  .post_details, .comment_details, .comment_links {
     font-size: 12px;
+    color: #777;
 
     a {
       &:link, &:visited {
@@ -29,6 +30,7 @@
   }
 
   .comment_text {
+    font-weight: 500;
   }
 
   .edited {

@@ -28,6 +28,8 @@ def sortable(sort_option)
     end
   end
 
+
+
   def shares(post)
     share_count = post.share_count
     share_text = "#{share_count} shares"
@@ -36,8 +38,13 @@ def sortable(sort_option)
   end
 
   def share_link(post)
-    link_to "+ share", post_shares_path(post),
-                         remote: true, method: :post,
-                         class: "share_link btn_yellow"
+    if policy(post).share?
+      content_tag :span, class: "share_link" do
+        concat "| "
+        concat link_to "+ share", post_shares_path(post),
+                                  remote: true, method: :post,
+                                  class: "btn_yellow"
+      end
+    end
   end
 end
