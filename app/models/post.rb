@@ -14,10 +14,10 @@ class Post < ActiveRecord::Base
 
   delegate :username, to: :user
 
-  scope :recent,             -> { order("created_at DESC") }
-  scope :most_comments,      -> { order("comments_count desc") }
-  scope :most_shares,        -> { order("shares_count desc") }
-  scope :with_shares,        -> { where("shares_count > 0")}
+  scope :recent,             -> { order("posts.created_at DESC") }
+  scope :most_comments,      -> { order("posts.comments_count desc") }
+  scope :most_shares,        -> { order("posts.shares_count desc") }
+  scope :with_shares,        -> { where("posts.shares_count > 0")}
   scope :find_with_comments, -> (id) { includes(:comments).find(id) }
 
   def self.sorted_by(sort_option)
@@ -37,10 +37,14 @@ class Post < ActiveRecord::Base
     name ? Tag.find_by_name(name).posts : all
   end
 
+  def self.filter(options)
+    tagged_with(options[:tag])
+      .sorted_by(options[:sort])
+      .paginate(page: options[:page], per_page: 7)
+  end
+
   def self.filter_global(options)
-    includes(:tags, :user).tagged_with(options[:tag])
-                          .sorted_by(options[:sort])
-                          .paginate(page: options[:page], per_page: 7)
+    includes(:tags, :user).filter(options)
   end
 
   def self.filter_feed(user, options)
@@ -55,7 +59,7 @@ class Post < ActiveRecord::Base
         .where("shares.user_id IN (?)", user_followee_ids)
         .group("posts.id")
         .order("followee_shares_count desc")
-        .filter_global(options)
+        .filter(options)
   end
 
   def text_only?
