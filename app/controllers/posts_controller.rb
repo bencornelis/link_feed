@@ -40,8 +40,7 @@ class PostsController < ApplicationController
   end
 
   def feed
-    @posts = current_user.feed_posts
-
+    @posts = Post.filter_feed(current_user)
     render :index
   end
 

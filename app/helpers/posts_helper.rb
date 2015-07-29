@@ -28,7 +28,16 @@ def sortable(sort_option)
     end
   end
 
-
+  def followee_shares(post)
+    count = post.try(:followee_shares_count)
+    if count
+      text = "#{count} followee #{count == 1 ? 'share' : 'shares'}"
+      capture do
+        concat " / "
+        concat content_tag :span, text, class: "followee_shares"
+      end
+    end
+  end
 
   def shares(post)
     share_count = post.share_count

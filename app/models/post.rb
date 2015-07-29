@@ -42,6 +42,20 @@ class Post < ActiveRecord::Base
                           .paginate(page: options[:page], per_page: 7)
   end
 
+  def self.filter_feed(user)
+    user_followee_ids = user.followees.pluck(:id).to_a
+    includes(:tags, :user)
+        .select("posts.id",
+                "posts.url",
+                "posts.title",
+                "posts.user_id",
+                "count(shares.id) AS followee_shares_count")
+        .joins(:shares)
+        .where("shares.user_id IN (?)", user_followee_ids)
+        .group("posts.id")
+        .order("followee_shares_count desc")
+  end
+
   def text_only?
     url.empty?
   end
