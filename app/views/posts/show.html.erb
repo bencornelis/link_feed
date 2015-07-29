@@ -2,10 +2,9 @@
   <%= @post.title %>
 </h2>
 
-<h5>
+<h5 class="post_details">
   <%= link_to @post.username, user_path(@post.user) %>
-  <%= time_since(@post.created_at) %> |
-  <%= shares(@post) %>
+  <%= time_since(@post.created_at) %> | <%= shares(@post) %>
   <% if policy(@post).share? %>
     | <%= share_link(@post) %>
   <% end %>
@@ -14,7 +13,6 @@
 <article class="post_text">
   <%= @post.text %>
 </article>
-
 
 <%= render "comments/new_comment_form", commentable: @post, top_level: true %>
 

@@ -1,28 +1,34 @@
 <%= comment_li(comment) do %>
-  <h5>
+
+  <h5 class="comment_details">
     <%= user_link(comment.user) %>
     <%= time_since(comment.created_at) %>
     <% if comment.edited? %>
       | edited <%= time_since(comment.updated_at) %>
     <% end %>
   </h5>
+
   <p class="comment_text">
     <%= comment.text %>
   </p>
-  <%= link_to "reply", new_comment_comment_path(comment), remote: true %>
-  <%= link_to_parent(comment) %>
-  <% if policy(comment).update? %>
-    | <%= link_to "edit", edit_comment_path(comment), class: "btn_blue", remote: true %>
-  <% end %>
-  <% if policy(comment).destroy? %>
-    | <%= link_to "delete", comment_path(comment), class: "btn_yellow", method: :delete %>
-  <% end %>
-  <p class="comment_form">
 
-  </p>
+  <footer class="comment_links">
+    <%= link_to "reply", new_comment_comment_path(comment), remote: true %>
+    <%= link_to_parent(comment) %>
+    <% if policy(comment).update? %>
+      | <%= link_to "edit", edit_comment_path(comment), class: "btn_blue", remote: true %>
+    <% end %>
+    <% if policy(comment).destroy? %>
+      | <%= link_to "delete", comment_path(comment), class: "btn_yellow", method: :delete %>
+    <% end %>
+  </footer>
+
+  <p class="comment_form"></p>
+
   <% if show_subcomments %>
     <ul class="comments">
       <%= render comment.comments, commentable: comment, show_subcomments: true %>
     </ul>
   <% end %>
+
 <% end %>
