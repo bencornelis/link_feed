@@ -1,10 +1,11 @@
 require Rails.root + "db/generator_methods.rb"
 
-user_count = 200
+user_count = 50
 generate_users(user_count)
 User.create(username: "watiki",
             password: "asdf",
-            email:    "ben@gmail.com")
+            email:    "ben@gmail.com",
+            avatar:   Faker::Avatar.image)
 
 generate_user_activity(
   user_count:            user_count,

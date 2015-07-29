@@ -1,4 +1,5 @@
 <div class="user_info_panel">
+  <%= image_tag @user.avatar.url(:thumb), class: "avatar" %>
   <h4><%= @user.username %></h4>
   <div class="user_stats">
     <h5 class="user_info_header">stats</h5>

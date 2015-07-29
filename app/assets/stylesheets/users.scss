@@ -2,11 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.user-info-header {
+.user_info_header {
   text-decoration: underline;
 }
 
-.user-info-panel {
+.user_info_panel {
   float: left;
   width: 24%;
   padding: 3px;
@@ -16,8 +16,13 @@ ul {
   padding-left: 0px;
 }
 
-.user-stats {
+.user_stats {
   div {
     margin: 20px 0;
   }
+}
+
+.avatar {
+  border-radius: 50%;
+  border: 1px solid #777;
 }

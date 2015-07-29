@@ -8,7 +8,8 @@ def generate_users(user_count)
     users << {
       username: Faker::Internet.user_name,
       password: Faker::Internet.password(8),
-      email:    Faker::Internet.email
+      email:    Faker::Internet.email,
+      avatar:   Faker::Avatar.image
     }
   end
   User.create(users)

@@ -10,8 +10,6 @@
 
 <nav id="main_nav">
   <div id="left_nav">
-    <%= link_to "Home", root_path %> |
-
     <% if user_logged_in? %>
       <%= link_to "Logout", logout_path %> |
       <%= link_to "Profile", user_path(current_user) %>
