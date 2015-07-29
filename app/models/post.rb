@@ -43,7 +43,7 @@ class Post < ActiveRecord::Base
                           .paginate(page: options[:page], per_page: 7)
   end
 
-  def self.filter_feed(user)
+  def self.filter_feed(user, options)
     user_followee_ids = user.followees.pluck(:id).to_a
     includes(:tags, :user)
         .select("posts.id",
@@ -55,6 +55,7 @@ class Post < ActiveRecord::Base
         .where("shares.user_id IN (?)", user_followee_ids)
         .group("posts.id")
         .order("followee_shares_count desc")
+        .filter_global(options)
   end
 
   def text_only?
