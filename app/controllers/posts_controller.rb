@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show]
+  before_filter :find_post, only: [:edit, :update, :destroy]
 
   def index
     # redirect_to feed_path if user_logged_in?
@@ -15,7 +16,6 @@ class PostsController < ApplicationController
   end
 
   def edit
-
   end
 
   def create
@@ -28,11 +28,15 @@ class PostsController < ApplicationController
   end
 
   def update
-
+    authorize @post
+    @post.update(post_params)
+    redirect_to post_path(@post)
   end
 
   def destroy
-
+    authorize @post
+    @post.destroy
+    redirect_to root_path
   end
 
   def feed
@@ -50,6 +54,10 @@ class PostsController < ApplicationController
 
   def filter_params
     params.permit(:sort, :tag, :page)
+  end
+
+  def find_post
+    @post = Post.find(params[:id])
   end
 
 end

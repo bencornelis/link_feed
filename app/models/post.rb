@@ -46,6 +46,10 @@ class Post < ActiveRecord::Base
     url.empty?
   end
 
+  def edited?
+    created_at != updated_at
+  end
+
   def first_tag_name
     tags.first.with_hash
   end

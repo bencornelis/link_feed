@@ -1,0 +1,18 @@
+<%= form_for @post do |f| %>
+  <div>
+    <%= f.label :title, "title" %>
+    <%= f.text_field :title %>
+  </div>
+  <% if @post.url? %>
+    <div>
+      <%= f.label :url, "url" %>
+      <%= f.url_field :url %>
+    </div>
+  <% end %>
+  <div>
+    <%= f.label :text, "text" %>
+    <%= f.text_area :text %>
+  </div>
+
+  <%= f.submit "submit edit" %>
+<% end %>
