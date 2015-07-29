@@ -1,0 +1,13 @@
+<%= comment_li(comment, false) do %>
+
+  <h5 class="comment_details">
+    <%= user_link(comment.user) %> /
+    <%= link_to "parent", post_path(comment.post) + "#comment_#{comment.commentable_id}" %> /
+    <%= link_to "link", post_path(comment.post) %> /
+    post: <%= link_to comment.post.title, post_path(comment.post) %>
+  </h5>
+
+  <p class="comment_text">
+    <%= comment.text %>
+  </p>
+<% end %>

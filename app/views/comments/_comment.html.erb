@@ -25,9 +25,9 @@
 
   <p class="comment_form"></p>
 
-  <% if show_subcomments %>
+  <% if comment.comments.any? %>
     <ul class="comments">
-      <%= render comment.comments, commentable: comment, show_subcomments: true %>
+      <%= render comment.comments, commentable: comment %>
     </ul>
   <% end %>
 

@@ -30,5 +30,5 @@
 <hr>
 
 <ul class="comments">
-  <%= render @post.comments, commentable: @post, show_subcomments: true %>
+  <%= render @post.top_level_comments, commentable: @post %>
 </ul>

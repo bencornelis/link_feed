@@ -1,8 +1,8 @@
 module CommentsHelper
 
-  def comment_li(comment, &block)
+  def comment_li(comment, display_nesting = true, &block)
     content = capture(&block)
-    is_nested = comment.commentable.class == Comment
+    is_nested = comment.commentable.class == Comment && display_nesting
     content_tag_for :li, comment, class: ("nested_comment" if is_nested) do
       content
     end

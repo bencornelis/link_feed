@@ -95,17 +95,16 @@ input[type="submit"], .btn_blue {
 ul {
   list-style: none;
   li {
-    padding-bottom: 15px;
-    margin-bottom: 10px;
 
     &.post {
-      padding-left: 15px;
+      padding-left: 0px;
+      padding-bottom: 10px;
       border-bottom: 1px dashed #3e6d8e;
     }
 
     &.nested_comment {
-      padding-left: 20px;
-      border-left: 1px dashed #3e6d8e;
+      padding-left: 30px;
+      /* border-left: 1px dashed #3e6d8e; */
     }
   }
 
@@ -123,4 +122,15 @@ hr {
   color: #3e6d8e;
   background-color: #3e6d8e;
   opacity: 0.4;
+}
+
+.post_details, .comment_details, .comment_links {
+  font-size: 12px;
+  color: #777;
+
+  a {
+    &:link, &:visited {
+      color: #777;
+    }
+  }
 }
