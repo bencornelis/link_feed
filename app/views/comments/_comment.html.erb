@@ -1,11 +1,12 @@
 <%= comment_li(comment) do %>
-
   <h5 class="comment_details">
+    <span class="comment_toggler">[-]</span>
     <%= user_link(comment.user) %>
     <%= time_since(comment.created_at) %>
     <% if comment.edited? %>
       | edited <%= time_since(comment.updated_at) %>
     <% end %>
+    <span class="comments_count">(<%= comments_count(comment) %>)</span>
   </h5>
 
   <div class="comment_main">

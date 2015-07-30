@@ -4,6 +4,15 @@
 
 #posts_controller {
 
+  .comment_toggler {
+    position: absolute;
+    left: -20px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
   #sub_nav {
     float: right;
     border-bottom: 1px solid #e3e3e3;
@@ -23,6 +32,14 @@
         color: #777;
       }
     }
+  }
+
+  .comment_details {
+    position: relative;
+  }
+
+  .comments_count {
+    display: none;
   }
 
   .post_text {

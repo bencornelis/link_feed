@@ -13,10 +13,12 @@ def sortable(sort_option)
     end
   end
 
+  def comments_count(commentable)
+    "#{commentable.comments_count} #{commentable.comments_count == 1 ? 'comment' : 'comments'}"
+  end
+
   def comments_link(post)
-    comment_count = post.comments_count
-    link_text = "#{comment_count} #{comment_count == 1 ? 'comment' : 'comments'}"
-    link_to link_text, post_path(post)
+    link_to comments_count(post), post_path(post)
   end
 
   def post_tag_links(post)
