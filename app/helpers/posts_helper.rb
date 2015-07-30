@@ -39,7 +39,7 @@ def sortable(sort_option)
   end
 
   def shares(post)
-    share_count = post.share_count
+    share_count = post.shares_count
     share_text = "#{share_count} #{share_count == 1 ? 'share' : 'shares'}"
     content_tag :span, share_text, class: "shares"
   end

@@ -27,7 +27,7 @@
 
   <% if comment.top_level_comments.any? %>
     <ul class="comments">
-      <%= render comment.top_level_comments, commentable: comment %>
+      <%= render comment.top_level_comments %>
     </ul>
   <% end %>
 
