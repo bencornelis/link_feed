@@ -19,7 +19,7 @@ class Comment < ActiveRecord::Base
     if commentable_type == "Comment"
       self.post_id = commentable.post_id
     else
-      self.post_id = commentable.id
+      self.post_id = commentable_id
     end
   end
 end

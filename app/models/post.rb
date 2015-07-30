@@ -78,23 +78,11 @@ class Post < ActiveRecord::Base
     tags.last
   end
 
-  # Statistics
-  def share_count
-    shares.size
-  end
-
-  def comment_count
-    comments.size
-  end
-
   private
   def add_tags
     [tag1_name, tag2_name].each do |tag_name|
       next unless tag_name
-      tag = Tag.find_by_name(tag_name)
-      unless tag
-        tag = Tag.create(name: tag_name)
-      end
+      tag = Tag.find_or_create_by_name(tag_name)
       tags << tag
     end
   end

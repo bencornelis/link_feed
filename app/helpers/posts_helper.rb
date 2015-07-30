@@ -14,7 +14,7 @@ def sortable(sort_option)
   end
 
   def comments_link(post)
-    comment_count = post.comment_count
+    comment_count = post.comments_count
     link_text = "#{comment_count} #{comment_count == 1 ? 'comment' : 'comments'}"
     link_to link_text, post_path(post)
   end
