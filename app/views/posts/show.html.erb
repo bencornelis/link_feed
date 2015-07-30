@@ -1,31 +1,33 @@
-<h2>
-  <%= @post.title %>
-</h2>
+<div id="post_main">
+  <h2>
+    <%= @post.title %>
+  </h2>
 
-<h5 class="post_details">
-  <%= link_to @post.username, user_path(@post.user) %>
-  <%= time_since(@post.created_at) %> |
-  <% if @post.edited? %>
-    edited <%= time_since(@post.updated_at) %> |
-  <% end %>
-  <%= shares(@post) %>
-  <%= share_link(@post) %>
-</h5>
+  <h5 class="post_details">
+    <%= link_to @post.username, user_path(@post.user) %>
+    <%= time_since(@post.created_at) %> |
+    <% if @post.edited? %>
+      edited <%= time_since(@post.updated_at) %> |
+    <% end %>
+    <%= shares(@post) %>
+    <%= share_link(@post) %>
+  </h5>
 
-<article class="post_text">
-  <%= @post.text %>
-</article>
+  <article class="post_text">
+    <%= @post.text %>
+  </article>
 
-<footer class="post_options">
-  <% if policy(@post).update? %>
-    <%= link_to "edit", edit_post_path(@post), class: "btn_blue" %>
-  <% end %>
-  <% if policy(@post).destroy? %>
-    <%= link_to "delete", post_path(@post), class: "btn_yellow", method: :delete %>
-  <% end %>
-</footer>
+  <footer class="post_options">
+    <% if policy(@post).update? %>
+      <%= link_to "edit", edit_post_path(@post), class: "btn_blue" %>
+    <% end %>
+    <% if policy(@post).destroy? %>
+      <%= link_to "delete", post_path(@post), class: "btn_yellow", method: :delete %>
+    <% end %>
+  </footer>
 
-<%= render "comments/new_comment_form", commentable: @post, top_level: true %>
+  <%= render "comments/new_comment_form", commentable: @post, top_level: true %>
+</div>
 
 <hr>
 

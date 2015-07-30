@@ -1,0 +1,5 @@
+$commentable = $("#comment_<%= @commentable.id %>");
+$commentable.find(".comment_form").first().empty();
+$commentable.find("ul.comments")
+            .first()
+            .prepend("<%= j render 'comment', comment: @comment %>");

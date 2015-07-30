@@ -24,7 +24,9 @@ class CommentsController < ApplicationController
     @comment = @commentable.top_level_comments.new(comment_params)
     current_user.comments << @comment
     @comment.save
-    redirect_to :back
+    respond_to do |format|
+      format.js { render "create_#{@comment.commentable_type.downcase}_comment" }
+    end
   end
 
   def update
