@@ -19,7 +19,6 @@ class Comment < ActiveRecord::Base
     if commentable_type == "Comment"
       self.post_id = commentable.post_id
     else
-      binding.pry
       self.post_id = commentable.id
     end
   end

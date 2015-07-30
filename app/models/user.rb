@@ -55,14 +55,16 @@ class User < ActiveRecord::Base
     shared_posts.exists?(post.id)
   end
 
-  def feed_posts
-    # sort posts by the number of followees that have shared it
-    post_ids = followees.joins(:shares)
-                        .group("shares.post_id")
-                        .order('count_all desc')
-                        .count
-                        .keys
-    Post.find(post_ids)
+  def recent_posts(number = 5)
+    posts.includes(:tags).limit(number)
+  end
+
+  def recent_shared_posts(number = 5)
+    shared_posts.includes(:tags).limit(number)
+  end
+
+  def recent_comments(number = 5)
+    comments.includes(:commentable, :post).limit(number)
   end
 
   private

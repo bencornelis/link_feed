@@ -19,11 +19,11 @@ def sortable(sort_option)
     link_to link_text, post_path(post)
   end
 
-  def tag_links(post)
+  def post_tag_links(post)
     capture do
-      concat link_to post.first_tag_name, params.merge({ tag: post.first_tag_name[1..-1] })
+      concat tag_link(post.first_tag)
       concat " / "
-      concat link_to post.second_tag_name, params.merge({ tag: post.second_tag_name[1..-1] })
+      concat tag_link(post.second_tag)
     end
   end
 

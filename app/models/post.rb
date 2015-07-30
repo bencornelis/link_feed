@@ -10,7 +10,7 @@ class Post < ActiveRecord::Base
   has_many :shares
   has_many :users_shared_by, through: :shares, source: :user
   has_many :taggings
-  has_many :tags, through: :taggings
+  has_many :tags, through: :taggings, :counter_cache => true
 
   delegate :username, to: :user
 
@@ -70,12 +70,12 @@ class Post < ActiveRecord::Base
     created_at != updated_at
   end
 
-  def first_tag_name
-    tags.first.with_hash
+  def first_tag
+    tags.first
   end
 
-  def second_tag_name
-    tags.last.with_hash
+  def second_tag
+    tags.last
   end
 
   # Statistics

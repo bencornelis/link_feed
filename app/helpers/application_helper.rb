@@ -20,6 +20,12 @@ module ApplicationHelper
     "#{time_elapsed} #{time_unit} ago"
   end
 
+  def tag_link(tag)
+    link_to tag.with_hash, root_path(
+      params.merge({ tag: tag.name }).permit(:sort, :tag, :page)
+    )
+  end
+
   def user_link(user)
     # find a way to use eager loading here
     if user_logged_in? && current_user.is_following?(user)

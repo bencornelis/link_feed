@@ -22,21 +22,21 @@
 <div class="user_info_panel">
   <h5 class="user_info_header">posts</h5>
   <ul>
-    <%= render @user.posts.limit(10) %>
+    <%= render @recent_posts %>
   </ul>
 </div>
 
 <div class="user_info_panel">
   <h5 class="user_info_header">shares</h5>
   <ul>
-    <%= render @user.shared_posts.limit(10) %>
+    <%= render @recent_shared_posts %>
   </ul>
 </div>
 
 <div class="user_info_panel">
   <h5 class="user_info_header">comments</h5>
   <ul>
-    <% @user.comments.limit(10).each do |comment| %>
+    <% @recent_comments.each do |comment| %>
       <%= render "comments/comment_blurb", comment: comment %>
     <% end %>
   </ul>
