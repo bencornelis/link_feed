@@ -3,7 +3,6 @@ class PostsController < ApplicationController
   before_filter :find_post, only: [:edit, :update, :destroy]
 
   def index
-    # redirect_to feed_path if user_logged_in?
     @posts = Post.filter_global(filter_params)
   end
 

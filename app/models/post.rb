@@ -10,7 +10,7 @@ class Post < ActiveRecord::Base
   has_many :shares
   has_many :users_shared_by, through: :shares, source: :user
   has_many :taggings
-  has_many :tags, through: :taggings, :counter_cache => true
+  has_many :tags, through: :taggings
 
   delegate :username, to: :user
 
@@ -54,6 +54,8 @@ class Post < ActiveRecord::Base
                 "posts.url",
                 "posts.title",
                 "posts.user_id",
+                "posts.comments_count",
+                "posts.shares_count",
                 "count(shares.id) AS followee_shares_count")
         .joins(:shares)
         .where("shares.user_id IN (?)", user_followee_ids)

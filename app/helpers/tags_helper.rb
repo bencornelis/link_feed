@@ -5,13 +5,11 @@ module TagsHelper
 
   def list_with_post_count(tags)
     content_tag :ul do
-      tags.each do |tag|
+      tags.map { |tag|
         content_tag :li do
-          concat tag_link(tag)
-          concat ": "
-          concat tag.posts_count
+          tag_link(tag) + ": #{tag.posts_count}"
         end
-      end
+      }.join.html_safe
     end
   end
 end

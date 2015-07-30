@@ -8,27 +8,28 @@
     <% end %>
   </h5>
 
-  <p class="comment_text">
-    <%= comment.text %>
-  </p>
+  <div class="comment_main">
+    <p class="comment_text">
+      <%= comment.text %>
+    </p>
 
-  <footer class="comment_links">
-    <%= link_to "reply", new_comment_comment_path(comment), remote: true %>
-    <%= link_to_parent(comment) %>
-    <% if policy(comment).update? %>
-      | <%= link_to "edit", edit_comment_path(comment), class: "btn_blue", remote: true %>
+    <footer class="comment_links">
+      <%= link_to "reply", new_comment_comment_path(comment), remote: true %>
+      <%= link_to_parent(comment) %>
+      <% if policy(comment).update? %>
+        | <%= link_to "edit", edit_comment_path(comment), class: "btn_blue", remote: true %>
+      <% end %>
+      <% if policy(comment).destroy? %>
+        | <%= link_to "delete", comment_path(comment), class: "btn_yellow", method: :delete %>
+      <% end %>
+    </footer>
+
+    <p class="comment_form"></p>
+
+    <% if comment.top_level_comments.any? %>
+      <ul class="comments">
+        <%= render comment.top_level_comments %>
+      </ul>
     <% end %>
-    <% if policy(comment).destroy? %>
-      | <%= link_to "delete", comment_path(comment), class: "btn_yellow", method: :delete %>
-    <% end %>
-  </footer>
-
-  <p class="comment_form"></p>
-
-  <% if comment.top_level_comments.any? %>
-    <ul class="comments">
-      <%= render comment.top_level_comments %>
-    </ul>
-  <% end %>
-
+  </div>
 <% end %>
