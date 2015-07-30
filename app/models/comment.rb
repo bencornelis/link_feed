@@ -2,7 +2,7 @@ class Comment < ActiveRecord::Base
   validates_presence_of :text
 
   belongs_to :commentable, :polymorphic => true, :counter_cache => true
-  has_many :comments, :as => :commentable
+  has_many :top_level_comments, class_name: "Comment", :as => :commentable
   belongs_to :user
   belongs_to :post, :counter_cache => true
 
@@ -19,6 +19,7 @@ class Comment < ActiveRecord::Base
     if commentable_type == "Comment"
       self.post_id = commentable.post_id
     else
+      binding.pry
       self.post_id = commentable.id
     end
   end

@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
 
   def create
     @commentable = find_commentable
-    @comment = @commentable.comments.new(comment_params)
+    @comment = @commentable.top_level_comments.new(comment_params)
     current_user.comments << @comment
     @comment.save
     redirect_to :back
