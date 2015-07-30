@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show]
   before_filter :find_post, only: [:edit, :update, :destroy]
+  before_filter :reload_user_followees!, only: [:index, :show, :feed]
 
   def index
     @posts = Post.filter_global(filter_params)

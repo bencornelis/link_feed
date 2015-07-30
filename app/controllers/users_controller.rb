@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
+  before_filter :reload_user_followees!, only: [:show]
+
   def show
-    @user                = User.find(params[:id])
+    @user                = User.includes(:followees, :followers).find(params[:id])
     @recent_posts        = @user.recent_posts
     @recent_shared_posts = @user.recent_shared_posts
     @recent_comments     = @user.recent_comments
@@ -19,12 +21,10 @@ class UsersController < ApplicationController
     end
   end
 
-
-
   private
   def user_params
     params.require(:user).permit(
-      :username, :email, :password, :password_confirmation
+      :username, :email, :password, :password_confirmation, :id
     )
   end
 end

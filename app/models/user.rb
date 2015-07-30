@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
 
   # instance methods
   def is_following?(other_user)
-    followees.exists?(other_user.id)
+    followees.include?(other_user)
   end
 
   def has_shared?(post)
