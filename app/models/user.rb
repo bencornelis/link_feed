@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 
   validates_confirmation_of :password
   before_save :encrypt_password
+  before_save :assign_robot_avatar
 
   has_many :posts
   has_many :comments
@@ -73,4 +74,7 @@ class User < ActiveRecord::Base
     self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
   end
 
+  def assign_robot_avatar
+    self.avatar = Faker::Avatar.image
+  end
 end
