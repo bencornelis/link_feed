@@ -14,16 +14,20 @@
     }
   }
 
-  li {
-    &.post {
-      padding-left: 0px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid #e3e3e3;
-    }
+  ul {
+    padding-left: 0px;
 
-    &.nested_comment {
-      padding-left: 30px;
-      /* border-left: 1px dashed #3e6d8e; */
+    li {
+      &.post {
+        padding-left: 0px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #e3e3e3;
+      }
+
+      &.nested_comment {
+        padding-left: 30px !important;
+        /* border-left: 1px dashed #3e6d8e; */
+      }
     }
   }
 

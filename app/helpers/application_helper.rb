@@ -27,11 +27,8 @@ module ApplicationHelper
   end
 
   def user_link(user)
-    # find a way to use eager loading here
-    if user_logged_in? && current_user.is_following?(user)
-      link_to user.username, user_path(user), class: "following"
-    else
-      link_to user.username, user_path(user)
-    end
+    user_is_followee = user_logged_in? && current_user.is_following?(user)
+    link_to user.username, user_path(user),
+      class: ("following" if user_is_followee)
   end
 end

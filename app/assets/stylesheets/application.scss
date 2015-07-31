@@ -70,6 +70,14 @@ hr {
 
 #flash {
   padding: 10px;
+
+  .notice {
+    color: #FF9900;
+  }
+
+  .alert {
+    color: #CC3300;
+  }
 }
 
 #main {
@@ -81,7 +89,7 @@ hr {
 
 .btn_yellow, .btn_blue {
   border: none;
-  padding:5px;
+  padding: 7px;
 
   &:hover {
     cursor: pointer;
@@ -99,7 +107,11 @@ hr {
 }
 
 .following {
-  color: #3e6d8e;
+  color: #FF9900 !important;
+}
+
+.subdued {
+  opacity: 0.4;
 }
 
 .post_details, .comment_details, .comment_links {
@@ -117,10 +129,25 @@ hr {
   position: relative;
 }
 
-.form_group {
-  margin: 10px;
+table.form_table {
+  td {
+    padding: 5px;
+  }
 
-  input {
+  .form_input, .form_input_wide {
     padding: 2px;
+    height: 20px;
+  }
+
+  .form_input_wide {
+    width: 374px;
+  }
+
+  .form_textarea {
+    padding: 3px;
+  }
+
+  .form_label {
+    font-weight: 500;
   }
 }

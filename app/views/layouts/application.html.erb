@@ -31,10 +31,7 @@
 
 <%= yield :sub_nav %>
 
-<div id="flash">
-  <%= flash[:notice] %>
-  <%= flash[:alert] %>
-</div>
+<%= render "layouts/flash" %>
 
 <div id="main">
   <%= yield %>

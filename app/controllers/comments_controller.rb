@@ -5,8 +5,8 @@ class CommentsController < ApplicationController
     respond_to do |format|
       format.js {
         unless user_logged_in?
-          flash[:alert] = "You must be logged in to do that."
-          render :js => "window.location = '#{login_path}'"
+          # flash[:notice] = "You must be logged in to do that."
+          render :js => "window.location = '#{login_path}'", alert: "You must be logged in to do that."
         end
       }
     end

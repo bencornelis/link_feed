@@ -1,21 +1,30 @@
-<h4>Join Us</h4>
 <%= form_for @user do |f| %>
-  <div>
-    <%= f.label :username, "username" %>
-    <%= f.text_field :username %>
-  </div>
-  <div>
-    <%= f.label :email, "email" %>
-    <%= f.email_field :email %>
-  </div>
-  <div>
-    <%= f.label :password, "password" %>
-    <%= f.password_field :password %>
-  </div>
-  <div>
-    <%= f.label :password_confirmation, "password confirmation" %>
-    <%= f.password_field :password_confirmation %>
-  </div>
+  <table class="form_table">
+    <tbody>
+      <tr>
+        <td><%= f.label :username, "username", class: "form_label" %></td>
+        <td><%= f.text_field :username, class: "form_input" %></td>
+      </tr>
 
-  <%= f.submit "join", class: "btn_blue" %>
+      <tr>
+        <td><%= f.label :email, "email", class: "form_label" %></td>
+        <td><%= f.email_field :email, class: "form_input" %></td>
+      </tr>
+
+      <tr>
+        <td><%= f.label :password, "password", class: "form_label" %></td>
+        <td><%= f.password_field :password, class: "form_input" %></td>
+      </tr>
+
+      <tr>
+        <td><%= f.label :password_confirmation, "password confirmation", class: "form_label" %></td>
+        <td><%= f.password_field :password_confirmation, class: "form_input" %></td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td><%= f.submit "join", class: "btn_blue" %></td>
+      </tr>
+    </tbody>
+  </table>
 <% end %>
