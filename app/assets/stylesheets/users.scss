@@ -2,27 +2,29 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.user_info_header {
-  text-decoration: underline;
-}
-
-.user_info_panel {
-  float: left;
-  width: 22%;
-  padding: 3px 10px 3px 3px;
-}
-
-ul {
-  padding-left: 0px;
-}
-
-.user_stats {
-  div {
-    margin: 20px 0;
+#users_controller {
+  .user_info_header {
+    text-decoration: underline;
   }
-}
 
-.avatar {
-  border-radius: 50%;
-  border: 1px solid #777;
+  .user_info_panel {
+    float: left;
+    width: 22%;
+    padding: 3px 10px 3px 3px;
+  }
+
+  ul {
+    padding-left: 0px;
+  }
+
+  .user_stats {
+    div {
+      margin: 20px 0;
+    }
+  }
+
+  .avatar {
+    border-radius: 50%;
+    border: 1px solid #777;
+  }  
 }

@@ -17,41 +17,7 @@
 body {
   font-family: "proxima-nova-1","proxima-nova-2",arial,helvetica,sans-serif;
   font-size: 14px;
-  color: #222;
 }
-
-#main_nav {
-  border-bottom: 1px solid #777;
-  padding: 10px;
-  height: 20px;
-  color: #3e6d8e;
-  a {
-    color: #3e6d8e;
-  }
-
-  #left_nav {
-    float: left;
-  }
-
-  #right_nav {
-    float: right;
-
-    a {
-      margin: 0 10px;
-    }
-  }
-}
-
-#flash {
-  padding: 10px;
-}
-
-#main {
-  margin-left: 10%;
-  margin-right: 10%;
-  margin-top: 50px;
-}
-
 
 a {
   color: #222;
@@ -70,49 +36,8 @@ a {
   }
 }
 
-input[type="submit"], .btn_blue {
-  border: none;
-  background: #e4edf4;
-  padding:5px;
-  color: #3e6d8e !important;
-
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-.btn_yellow {
-  color: #CC6600 !important;
-  background: #FFFFB2;
-  border: none;
-  padding:5px;
-
-  &:hover {
-    cursor: pointer;
-  }
-}
-
 ul {
   list-style: none;
-  li {
-
-    &.post {
-      padding-left: 0px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid #e3e3e3;
-    }
-
-    &.nested_comment {
-      padding-left: 30px;
-      /* border-left: 1px dashed #3e6d8e; */
-    }
-  }
-
-
-}
-
-.following {
-  color: #3e6d8e !important;
 }
 
 hr {
@@ -121,6 +46,60 @@ hr {
   border: none;
   color: #e3e3e3;
   background-color: #e3e3e3;
+}
+
+#main_nav {
+  border-bottom: 1px solid #777;
+  padding: 10px;
+  height: 20px;
+  color: #3e6d8e;
+
+  a {
+    color: #3e6d8e;
+  }
+
+  #left_nav {
+    float: left;
+  }
+
+  #right_nav {
+    float: right;
+    a { margin: 0 10px; }
+  }
+}
+
+#flash {
+  padding: 10px;
+}
+
+#main {
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 50px;
+}
+
+
+.btn_yellow, .btn_blue {
+  border: none;
+  padding:5px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.btn_blue {
+  background: #e4edf4;
+  color: #3e6d8e !important;
+}
+
+.btn_yellow {
+  background: #FFFFB2;
+  color: #CC6600 !important;
+}
+
+.following {
+  color: #3e6d8e;
 }
 
 .post_details, .comment_details, .comment_links {
@@ -132,4 +111,8 @@ hr {
       color: #777;
     }
   }
+}
+
+.comment_details {
+  position: relative;
 }

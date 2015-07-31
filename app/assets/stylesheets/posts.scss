@@ -4,15 +4,6 @@
 
 #posts_controller {
 
-  .comment_toggler {
-    position: absolute;
-    left: -20px;
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
   #sub_nav {
     float: right;
     border-bottom: 1px solid #e3e3e3;
@@ -23,35 +14,46 @@
     }
   }
 
-  .post_details, .comment_details, .comment_links {
-    font-size: 12px;
-    color: #777;
+  li {
+    &.post {
+      padding-left: 0px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e3e3e3;
+    }
 
-    a {
-      &:link, &:visited {
-        color: #777;
-      }
+    &.nested_comment {
+      padding-left: 30px;
+      /* border-left: 1px dashed #3e6d8e; */
     }
   }
 
-  .comment_details {
-    position: relative;
+  .comment_toggler {
+    position: absolute;
+    left: -20px;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   .comments_count {
     display: none;
   }
 
+  .comment_text {
+    font-weight: 500;
+  }
+
   .post_text {
     padding: 20px 20px 60px 0px;
   }
 
-  .post_options {
-    padding-bottom: 10px;
+  .hide {
+    font-size: 11px;
   }
 
-  .comment_text {
-    font-weight: 500;
+  .post_options {
+    padding-bottom: 10px;
   }
 
   .edited {
