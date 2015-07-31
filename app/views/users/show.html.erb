@@ -22,14 +22,14 @@
 <div class="user_info_panel">
   <h5 class="user_info_header">posts</h5>
   <ul>
-    <%= render @recent_posts %>
+    <%= render @recent_posts, is_blurb: true %>
   </ul>
 </div>
 
 <div class="user_info_panel">
   <h5 class="user_info_header">shares</h5>
   <ul>
-    <%= render @recent_shared_posts %>
+    <%= render @recent_shared_posts, is_blurb: true %>
   </ul>
 </div>
 

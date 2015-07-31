@@ -31,6 +31,18 @@
     }
   }
 
+  .post_details {
+    padding-bottom: 30px;
+    .main_post_details {
+      float: left;
+    }
+
+    .more_info {
+      display: none;
+      float: right;
+    }
+  }
+
   .comment_toggler {
     position: absolute;
     left: -20px;

@@ -6,8 +6,11 @@
 <% end %>
 
 <ul class="posts">
-  <%= render @posts %>
+  <%= render @posts, is_blurb: false %>
 </ul>
 
 
 <%= will_paginate @posts, :page_links => false %>
+
+
+<%= javascript_include_tag "posts" %>
