@@ -5,15 +5,18 @@
         <td><%= f.label :title, "title", class: "form_label" %></td>
         <td><%= f.text_field :title, class: "form_input_wide" %></td>
       </tr>
+
       <tr>
         <td><%= f.label :url, "url", class: "form_label" %></td>
         <td><%= f.url_field :url, class: "form_input_wide" %></td>
         <td class="subdued">(leave blank for text only)</td>
       </tr>
+
       <tr>
         <td><%= f.label :text, "text", class: "form_label" %></td>
         <td><%= f.text_area :text, class: "form_textarea", rows: 10, cols: 60 %></td>
       </tr>
+      
       <tr>
         <td><%= f.label :tag1_name, "tag", class: "form_label" %></td>
         <td><%= f.text_field :tag1_name, class: "form_input_wide" %></td>

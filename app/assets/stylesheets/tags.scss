@@ -3,7 +3,11 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #tags_controller {
-  .tags_group_header {
+  .tag_group_header {
     text-decoration: underline;
+  }
+
+  ul {
+    padding-left: 0;
   }
 }

@@ -1,14 +1,10 @@
 class CommentsController < ApplicationController
+  before_filter :authenticate_user!
 
   def new
     @commentable = find_commentable
     respond_to do |format|
-      format.js {
-        unless user_logged_in?
-          # flash[:notice] = "You must be logged in to do that."
-          render :js => "window.location = '#{login_path}'", alert: "You must be logged in to do that."
-        end
-      }
+      format.js
     end
   end
 
@@ -20,19 +16,14 @@ class CommentsController < ApplicationController
   end
 
   def create
+    @commentable = find_commentable
+    @comment = @commentable.top_level_comments.new(comment_params)
+    current_user.comments << @comment
+    @comment.save
     respond_to do |format|
-      format.js do
-        unless user_logged_in?
-          flash[:alert] = "You must be logged in to do that."
-          render :js => "window.location = '#{login_path}'"
-        else
-          @commentable = find_commentable
-          @comment = @commentable.top_level_comments.new(comment_params)
-          current_user.comments << @comment
-          @comment.save
-          render "create_#{@comment.commentable_type.downcase}_comment"
-        end
-      end
+      format.js {
+        render "create_#{@comment.commentable_type.downcase}_comment"
+      }
     end
   end
 

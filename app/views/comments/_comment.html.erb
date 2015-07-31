@@ -27,7 +27,7 @@
 
     <p class="comment_form"></p>
 
-    <% if comment.top_level_comments.any? %>
+    <% if comment.comments_count %>
       <ul class="comments">
         <%= render comment.top_level_comments %>
       </ul>

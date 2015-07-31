@@ -18,7 +18,11 @@ class ApplicationController < ActionController::Base
   private
   def authenticate_user!
     unless user_logged_in?
-      redirect_to login_path, alert: "You must be logged in to do that."
+      flash[:alert] = "You must be logged in to do that."
+      respond_to do |format|
+        format.html { redirect_to login_path }
+        format.js { render :js => "window.location = '#{login_path}'" }
+      end
     end
   end
 
