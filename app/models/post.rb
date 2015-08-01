@@ -57,6 +57,7 @@ class Post < ActiveRecord::Base
                 "posts.user_id",
                 "posts.comments_count",
                 "posts.shares_count",
+                "posts.created_at",
                 "count(shares.id) AS followee_shares_count")
         .where("shares.user_id IN (:followee_ids) OR posts.user_id IN (:followee_ids)",
                 followee_ids: user_followee_ids)
