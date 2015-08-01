@@ -1,30 +1,34 @@
 <div id="post_main">
-  <h2>
-    <%= @post.title %>
-  </h2>
+  <% present @post do |post_presenter| %>
+    <h2>
+      <%= post_presenter.title %>
+    </h2>
 
-  <h5 class="post_details">
-    <%= link_to @post.username, user_path(@post.user) %>
-    <%= time_since(@post.created_at) %> |
-    <% if @post.edited? %>
-      edited <%= time_since(@post.updated_at) %> |
-    <% end %>
-    <%= shares(@post) %>
-    <%= share_link(@post) %>
-  </h5>
+    <h5 class="post_details">
+      <%= post_presenter.linked_username %>
+      <%= post_presenter.time_since_created %> |
+      <%= post_presenter.time_since_edited %>
+      <%= post_presenter.shares %>
 
-  <article class="post_text">
-    <%= @post.text %>
-  </article>
+      <% if policy(@post).share? %>
+        <%= post_presenter.share_link %>
+      <% end %>
+    </h5>
 
-  <footer class="post_options">
-    <% if policy(@post).update? %>
-      <%= link_to "edit", edit_post_path(@post), class: "btn_blue" %>
-    <% end %>
-    <% if policy(@post).destroy? %>
-      <%= link_to "delete", post_path(@post), class: "btn_yellow", method: :delete %>
-    <% end %>
-  </footer>
+    <article class="post_text">
+      <%= post_presenter.text %>
+    </article>
+
+    <footer class="post_options">
+      <% if policy(@post).update? %>
+        <%= post_presenter.edit_link %>
+      <% end %>
+
+      <% if policy(@post).destroy? %>
+        <%= post_presenter.delete_link %>
+      <% end %>
+    </footer>
+  <% end %>
 
   <%= render "comments/new_comment_form", commentable: @post, top_level: true %>
 </div>

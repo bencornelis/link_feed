@@ -2,9 +2,9 @@
   <h5 class="comment_details">
     <span class="comment_toggler">[-]</span>
     <%= user_link(comment.user) %>
-    <%= time_since(comment.created_at) %>
+    <%= time_ago_in_words(comment.created_at) %> ago
     <% if comment.edited? %>
-      | edited <%= time_since(comment.updated_at) %>
+      | edited <%= time_ago_in_words(comment.updated_at) %> ago
     <% end %>
     <span class="comments_count">(<%= comments_count(comment) %>)</span>
   </h5>

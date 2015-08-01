@@ -4,17 +4,17 @@
     <div class="post_details">
       <div class="main_post_details">
         <div class="poster">
-          <%= user_link(post.user) %>
+          <%= post_presenter.linked_username %>
         </div>
 
         <div class="comments_and_tags">
-          <%= comments_link(post) %> / <%= post_tag_links(post) %>
-          <%= followee_shares(post) %>
+          <%= post_presenter.linked_comments %> / <%= post_presenter.linked_tags %>
+          <%= post_presenter.followee_shares %>
         </div>
       </div>
 
       <% unless is_blurb %>
-        <%= render "more_info", post: post %>
+        <%= render "more_info", presenter: post_presenter%>
       <% end %>
     </div>
   <% end %>

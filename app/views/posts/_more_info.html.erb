@@ -1,9 +1,9 @@
 <div class="more_info">
   <div class="post_type">
-    <%= post_type(post) %>
+    <%= presenter.type %>
   </div>
 
   <div class="post_time">
-    posted <%= time_since(post.created_at) %>
+    <%= presenter.time_since_created %>
   </div>
 </div>

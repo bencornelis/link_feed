@@ -1,8 +1,7 @@
 class BasePresenter
-  def initialize(object, template, current_user)
+  def initialize(object, template)
     @object = object
     @template = template
-    @current_user = current_user
   end
 
   def self.presents(name)
@@ -11,11 +10,11 @@ class BasePresenter
     end
   end
 
-  def user_logged_in?
-    current_user != nil
-  end
-
   def h
     @template
+  end
+
+  def method_missing(name, *args, &block)
+    @template.send(name, *args, &block)
   end
 end

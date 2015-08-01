@@ -16,48 +16,4 @@ module PostsHelper
   def post_type(post)
     post.text_only? ? "text" : "external link"
   end
-
-  def comments_count(commentable)
-    "#{commentable.comments_count} #{commentable.comments_count == 1 ? 'comment' : 'comments'}"
-  end
-
-  def comments_link(post)
-    link_to comments_count(post), post_path(post)
-  end
-
-  def post_tag_links(post)
-    capture do
-      concat tag_link(post.first_tag)
-      concat " / "
-      concat tag_link(post.second_tag)
-    end
-  end
-
-  def followee_shares(post)
-    count = post.try(:followee_shares_count)
-    if count
-      text = "#{count} followee #{count == 1 ? 'share' : 'shares'}"
-      capture do
-        concat " / "
-        concat content_tag :span, text, class: "followee_shares"
-      end
-    end
-  end
-
-  def shares(post)
-    share_count = post.shares_count
-    share_text = "#{share_count} #{share_count == 1 ? 'share' : 'shares'}"
-    content_tag :span, share_text, class: "shares"
-  end
-
-  def share_link(post)
-    if policy(post).share?
-      content_tag :span, class: "share_link" do
-        concat "| "
-        concat link_to "+ share", post_shares_path(post),
-                                  remote: true, method: :post,
-                                  class: "btn_yellow"
-      end
-    end
-  end
 end
