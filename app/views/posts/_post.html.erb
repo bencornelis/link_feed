@@ -1,20 +1,21 @@
 <%= content_tag_for :li, post do %>
-  <h4 class="post_title"><%= post_link(post) %></h4>
-  <div class="post_details">
-    <div class="main_post_details">
-      <div class="poster">
-        <%= user_link(post.user) %>
+  <% present post do |post_presenter| %>
+    <h4 class="post_title"><%= post_presenter.linked_title %></h4>
+    <div class="post_details">
+      <div class="main_post_details">
+        <div class="poster">
+          <%= user_link(post.user) %>
+        </div>
+
+        <div class="comments_and_tags">
+          <%= comments_link(post) %> / <%= post_tag_links(post) %>
+          <%= followee_shares(post) %>
+        </div>
       </div>
 
-      <div class="comments_and_tags">
-        <%= comments_link(post) %> / <%= post_tag_links(post) %>
-        <%= followee_shares(post) %>
-      </div>
+      <% unless is_blurb %>
+        <%= render "more_info", post: post %>
+      <% end %>
     </div>
-
-    <% unless is_blurb %>
-      <%= render "more_info", post: post %>
-    <% end %>
-  </div>
-
+  <% end %>
 <% end %>

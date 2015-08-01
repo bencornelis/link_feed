@@ -20,6 +20,13 @@ module ApplicationHelper
     "#{time_elapsed} #{time_unit} ago"
   end
 
+  def present(object, klass = nil)
+    klass ||= "#{object.class}Presenter".constantize
+    presenter = klass.new(object, self)
+    yield presenter if block_given?
+    presenter
+  end
+
   def tag_link(tag)
     link_to tag.with_hash, root_path(
       params.merge({ tag: tag.name }).permit(:sort, :tag, :page)
