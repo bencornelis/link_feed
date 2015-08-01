@@ -64,11 +64,11 @@ class PostPresenter < BasePresenter
   end
 
   def edit_link
-    link_to "edit", edit_post_path(@post), class: "btn_blue"
+    link_to "edit", edit_post_path(post), class: "btn_blue"
   end
 
   def delete_link
-    link_to "delete", post_path(@post), class: "btn_yellow", method: :delete
+    link_to "delete", post_path(post), class: "btn_yellow", method: :delete
   end
 
   def type
