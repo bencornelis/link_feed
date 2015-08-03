@@ -1,8 +1,9 @@
+<% present comment do |comment_presenter| %>
 <%= comment_li(comment) do %>
   <h5 class="comment_details">
     <span class="comment_toggler">[-]</span>
-    <%= user_link(comment.user) %>
-    <%= time_ago_in_words(comment.created_at) %> ago
+    <%= comment.linked_username %>
+    <%= comment.time_since_created %> ago
     <% if comment.edited? %>
       | edited <%= time_ago_in_words(comment.updated_at) %> ago
     <% end %>
@@ -33,4 +34,5 @@
       </ul>
     <% end %>
   </div>
+<% end %>
 <% end %>
