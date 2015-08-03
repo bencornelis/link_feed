@@ -1,13 +1,14 @@
-<%= comment_li(comment, false) do %>
+<%= content_tag_for :li, comment do %>
+  <% present comment do |comment_presenter| %>
+    <h5 class="comment_details">
+      <%= comment_presenter.linked_username %> /
+      <%= comment_presenter.distant_parent_link %> /
+      <%= comment_presenter.post_link("link") %> /
+      post: <%= comment_presenter.post_link(comment.post_title) %>
+    </h5>
 
-  <h5 class="comment_details">
-    <%= user_link(comment.user) %> /
-    <%= link_to "parent", post_path(comment.post) + "#comment_#{comment.commentable_id}" %> /
-    <%= link_to "link", post_path(comment.post) %> /
-    post: <%= link_to comment.post.title, post_path(comment.post) %>
-  </h5>
-
-  <p class="comment_text">
-    <%= comment.text %>
-  </p>
+    <p class="comment_text">
+      <%= comment_presenter.text %>
+    </p>
+  <% end %>
 <% end %>

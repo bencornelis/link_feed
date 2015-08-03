@@ -29,6 +29,10 @@
         /* border-left: 1px dashed #3e6d8e; */
       }
     }
+
+    &.nested {
+      padding-left: 30px !important;
+    }
   }
 
   .post_details {

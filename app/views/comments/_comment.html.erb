@@ -1,38 +1,38 @@
-<% present comment do |comment_presenter| %>
-<%= comment_li(comment) do %>
-  <h5 class="comment_details">
-    <span class="comment_toggler">[-]</span>
-    <%= comment.linked_username %>
-    <%= comment.time_since_created %> ago
-    <% if comment.edited? %>
-      | edited <%= time_ago_in_words(comment.updated_at) %> ago
-    <% end %>
-    <span class="comments_count">(<%= comments_count(comment) %>)</span>
-  </h5>
+<%= content_tag_for :li, comment do %>
+  <% present comment do |comment_presenter| %>
+    <h5 class="comment_details">
+      <span class="comment_toggler">[-]</span>
+      <%= comment_presenter.linked_username %>
+      <%= comment_presenter.time_since_created %>
+      <%= comment_presenter.time_since_edited %>
+      <span class="comments_count">(<%= comment_presenter.comments_count %>)</span>
+    </h5>
 
-  <div class="comment_main">
-    <p class="comment_text">
-      <%= comment.text %>
-    </p>
+    <div class="comment_main">
+      <p class="comment_text">
+        <%= comment_presenter.text %>
+      </p>
 
-    <footer class="comment_links">
-      <%= link_to "reply", new_comment_comment_path(comment), remote: true %>
-      <%= link_to_parent(comment) %>
-      <% if policy(comment).update? %>
-        | <%= link_to "edit", edit_comment_path(comment), class: "btn_blue", remote: true %>
-      <% end %>
-      <% if policy(comment).destroy? %>
-        | <%= link_to "delete", comment_path(comment), class: "btn_yellow", method: :delete %>
-      <% end %>
-    </footer>
+      <footer class="comment_links">
+        <%= comment_presenter.reply_link %>
+        <%= comment_presenter.parent_link %>
 
-    <p class="comment_form"></p>
+        <% if policy(comment).update? %>
+          <%= comment_presenter.edit_link %>
+        <% end %>
 
-    <% if comment.comments_count %>
-      <ul class="comments">
-        <%= render comment.top_level_comments %>
-      </ul>
-    <% end %>
-  </div>
-<% end %>
+        <% if policy(comment).destroy? %>
+          <%= comment_presenter.delete_link %>
+        <% end %>
+      </footer>
+
+      <p class="comment_form"></p>
+    </div>
+  <% end %>
+
+  <% if comment.comments_count %>
+    <ul class="comments nested">
+      <%= render comment.top_level_comments %>
+    </ul>
+  <% end %>
 <% end %>

@@ -1,6 +1,6 @@
-class PostPresenter < BasePresenter
+class PostPresenter < ContentPresenter
   presents :post
-  delegate :user, :title, :text, to: :post
+  delegate :title, :text, to: :post
 
   def linked_title
     if post.text_only?
@@ -8,12 +8,6 @@ class PostPresenter < BasePresenter
     else
       link_to post.title, post.url
     end
-  end
-
-  def linked_username
-    user_is_followee = user_logged_in? && current_user.is_following?(user)
-    link_to user.username, user_path(user),
-      class: ("following" if user_is_followee)
   end
 
   def linked_comments
@@ -32,20 +26,6 @@ class PostPresenter < BasePresenter
         concat " / "
         concat content_tag :span, text, class: "followee_shares"
       end
-    end
-  end
-
-  def comments_count
-    "#{post.comments_count} #{post.comments_count == 1 ? 'comment' : 'comments'}"
-  end
-
-  def time_since_created
-    "#{time_ago_in_words(post.created_at)} ago"
-  end
-
-  def time_since_edited
-    if post.edited?
-      "edited #{time_ago_in_words(post.updated_at)} ago |"
     end
   end
 

@@ -14,9 +14,17 @@ class Comment < ActiveRecord::Base
     created_at != updated_at
   end
 
+  def nested?
+    commentable_type == "Comment"
+  end
+
+  def post_title
+    post.title
+  end
+
   private
   def attach_to_post
-    if commentable_type == "Comment"
+    if nested?
       self.post_id = commentable.post_id
     else
       self.post_id = commentable_id
