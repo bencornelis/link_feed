@@ -6,6 +6,6 @@ class Share < ActiveRecord::Base
 
   private
   def check_if_already_shared_by_user
-    false if Share.exists?(user_id: user_id)
+    false if Share.exists?(user_id: user_id, post_id: post_id)
   end
 end

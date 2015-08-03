@@ -1,6 +1,6 @@
 class CommentPresenter < ContentPresenter
   presents :comment
-  delegate :text, :post, to: :comment
+  delegate :text, :post, :nested?, to: :comment
 
   def linked_username
     link_to user.username, user_path(user),
@@ -12,7 +12,7 @@ class CommentPresenter < ContentPresenter
   end
 
   def parent_link
-    if comment.nested?
+    if nested?
       link_to "parent", "#comment_#{comment.commentable_id}"
     end
   end

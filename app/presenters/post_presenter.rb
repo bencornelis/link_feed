@@ -1,13 +1,9 @@
 class PostPresenter < ContentPresenter
   presents :post
-  delegate :title, :text, to: :post
+  delegate :title, :text, :url, to: :post
 
   def linked_title
-    if post.text_only?
-      link_to post.title, post_path(post)
-    else
-      link_to post.title, post.url
-    end
+    link_to post.title, post.text_only? ? post_path(post) : post.url
   end
 
   def linked_comments

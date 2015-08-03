@@ -11,14 +11,11 @@ class ContentPresenter < BasePresenter
   end
 
   def time_since_edited
-    if content.edited?
-      "edited #{time_ago_in_words(content.updated_at)} ago |"
-    end
+    " | edited #{time_ago_in_words(content.updated_at)} ago" if content.edited?
   end
 
   def linked_username
     link_to user.username, user_path(user),
       class: ("following" if policy(user).detect_followee?)
   end
-
 end
