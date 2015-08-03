@@ -30,23 +30,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  # Statistics
-  def follower_count
-    followers.size
-  end
-
-  def followee_count
-    followees.size
-  end
-
-  def post_count
-    posts.size
-  end
-
-  def share_count
-    shares.size
-  end
-
   # instance methods
   def is_following?(other_user)
     followees.include?(other_user)

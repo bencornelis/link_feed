@@ -1,24 +1,27 @@
-<div class="user_info_panel">
-  <%= image_tag @user.avatar.url(:thumb), class: "avatar" %>
-  <h4><%= @user.username %></h4>
-  <div class="user_stats">
-    <h5 class="user_info_header">stats</h5>
-    <div class="followees">
-      <%= followees(@user) %>
-    </div>
+<% present @user do |user_presenter| %>
+  <div class="user_info_panel">
+    <%= user_presenter.avatar %>
+    <h4><%= user_presenter.username %></h4>
+    <div class="user_stats">
+      <h5 class="user_info_header">stats</h5>
+      <div class="followees">
+        <%= user_presenter.followee_list %>
+      </div>
 
-    <div class="followers">
-      <%= followers(@user) %>
-    </div>
+      <div class="followers">
+        <%= user_presenter.follower_list %>
+      </div>
 
-    <div class="follow_link">
-      <%= follow_link(@user) %>
-    </div>
+      <% if policy(@user).follow? %>
+        <div class="follow_link">
+          <%= user_presenter.follow_link %>
+        </div>
+      <% end %>
 
-    <h5>Shares: <%= @user.share_count %></h5>
+      <h5><%= user_presenter.shares %></h5>
+    </div>
   </div>
-</div>
-
+<% end %>
 <div class="user_info_panel">
   <h5 class="user_info_header">posts</h5>
   <ul>

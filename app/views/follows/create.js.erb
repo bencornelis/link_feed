@@ -1,2 +1,2 @@
-$(".followers").html("<%= j followers(@followee) %>")
+$(".followers").html("<%= j present(@followee).follower_list %>")
 $(".follow_link").empty();

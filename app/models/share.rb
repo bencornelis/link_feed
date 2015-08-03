@@ -1,6 +1,6 @@
 class Share < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :post, :counter_cache => true
+  belongs_to :user, counter_cache: true
+  belongs_to :post, counter_cache: true
 
   before_create :check_if_already_shared_by_user
 
