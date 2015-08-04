@@ -27,12 +27,12 @@
       </footer>
 
       <p class="comment_form"></p>
-    </div>
-  <% end %>
 
-  <% if comment.comments_count %>
-    <ul class="comments nested">
-      <%= render comment.top_level_comments %>
-    </ul>
+      <% if comment.has_comments? %>
+        <ul class="comments nested">
+          <%= render comment.top_level_comments %>
+        </ul>
+      <% end %>
+    </div>
   <% end %>
 <% end %>
