@@ -28,11 +28,11 @@
 
       <p class="comment_form"></p>
 
-      <% if comment.has_comments? %>
-        <ul class="comments nested">
+      <ul class="comments nested">
+        <% if comment.has_comments? %>
           <%= render comment.top_level_comments %>
-        </ul>
-      <% end %>
+        <% end %>
+      </ul>
     </div>
   <% end %>
 <% end %>
