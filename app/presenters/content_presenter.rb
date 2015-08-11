@@ -11,7 +11,7 @@ class ContentPresenter < BasePresenter
   end
 
   def time_since_edited
-    " | edited #{time_ago_in_words(content.updated_at)} ago" if content.edited?
+    " edited #{time_ago_in_words(content.updated_at)} ago" if content.edited?
   end
 
   def linked_username

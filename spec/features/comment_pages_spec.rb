@@ -2,10 +2,10 @@ require "rails_helper"
 
 describe "adding a top level comment to a post", js: true do
   it "puts the new comment at the top" do
-    poster = FactoryGirl.create(:poster)
+    poster = FactoryGirl.create(:user)
     post = FactoryGirl.create(:post)
     poster.posts << post
-    commenter = FactoryGirl.create(:commenter)
+    commenter = FactoryGirl.create(:user)
     login_as(commenter)
     visit root_path
     click_on post.title
@@ -16,10 +16,10 @@ describe "adding a top level comment to a post", js: true do
   end
 
   it "requires the user to be logged in", js: true do
-    poster = FactoryGirl.create(:poster)
+    poster = FactoryGirl.create(:user)
     post = FactoryGirl.create(:post)
     poster.posts << post
-    commenter = FactoryGirl.create(:commenter)
+    commenter = FactoryGirl.create(:user)
     visit root_path
     click_on post.title
     fill_in "comment_text_post_#{post.id}", with: "eh?"
