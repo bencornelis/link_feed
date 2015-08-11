@@ -27,3 +27,23 @@ describe "adding a top level comment to a post", js: true do
     expect(page).to have_content "You must be logged in to do that."
   end
 end
+
+describe "editing a comment", js: true do
+  it "lets a user edit their comment" do
+    post = create_post
+    commenter = FactoryGirl.create(:user)
+    comment = FactoryGirl.create(:comment)
+    commenter.comments << comment
+    post.top_level_comments << comment
+    login_as(commenter)
+    visit post_path(post)
+
+    old_comment_text = comment.text
+    click_on "edit"
+    fill_in "edit_comment_text_#{comment.id}", with: "some new text"
+    click_on "submit edit"
+    expect(page).to have_no_content old_comment_text
+    expect(page).to have_no_content "submit edit"
+    expect(page).to have_content "some new text"
+  end
+end

@@ -13,6 +13,6 @@ FactoryGirl.define do
   end
 
   factory :comment do
-    text "Hmm, very interesting..."
+    sequence(:text) { |n| "the number #{n} is my favorite! "}
   end
 end
