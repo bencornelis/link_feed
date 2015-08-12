@@ -156,6 +156,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
+    rolify (4.1.1)
     rspec-core (3.3.2)
       rspec-support (~> 3.3.0)
     rspec-expectations (3.3.1)
@@ -239,6 +240,7 @@ DEPENDENCIES
   pundit
   quiet_assets
   rails
+  rolify
   rspec-rails
   sass-rails (>= 3.2)
   shoulda-matchers

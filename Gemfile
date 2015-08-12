@@ -14,6 +14,7 @@ gem 'bcrypt-ruby', '~> 3.1.5', require: "bcrypt"
 gem 'faker'
 gem 'will_paginate', '~> 3.0.6'
 gem "paperclip", "~> 4.3"
+gem "rolify"
 
 group :development do
   gem 'byebug'
