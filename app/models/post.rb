@@ -47,25 +47,6 @@ class Post < ActiveRecord::Base
     includes(:tags, :user).filter(options)
   end
 
-  def self.filter_feed(user, options)
-    user_followee_ids = user.followees.pluck(:id).to_a
-    includes(:tags, :user)
-        .joins(:shares)
-        .select("posts.id",
-                "posts.url",
-                "posts.title",
-                "posts.user_id",
-                "posts.comments_count",
-                "posts.shares_count",
-                "posts.created_at",
-                "count(shares.id) AS followee_shares_count")
-        .where("shares.user_id IN (:followee_ids) OR posts.user_id IN (:followee_ids)",
-                followee_ids: user_followee_ids)
-        .group("posts.id")
-        .order("followee_shares_count desc")
-        .filter(options)
-  end
-
   def text_only?
     url.empty?
   end

@@ -22,7 +22,6 @@ class User < ActiveRecord::Base
   has_many :follower_follows, class_name: "Follow", foreign_key: :follower_id
   has_many :followees, through: :follower_follows
 
-  # class Methods
   def self.authenticate(username, password)
     user = User.find_by(username: username)
     if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
@@ -30,7 +29,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  # instance methods
   def is_following?(other_user)
     followees.include?(other_user)
   end
