@@ -18,7 +18,7 @@ class ApplicationPolicy
 
   ##
   # overwrite any of the specified actions with a method
-  # that first checks whether the current user is not nil
+  # which first checks that the current user is not nil
 
   def self.require_present_user(*actions)
     actions.each do |action|
@@ -43,8 +43,6 @@ class ApplicationPolicy
   # def admin?
   #   user.has_role? :admin
   # end
-  #
-  # then create a permission generator for each role
 
   Role.pluck(:name).each do |role_name|
     define_method("#{role_name}?") do
