@@ -18,4 +18,14 @@ module ApplicationHelper
     link_to user.username, user_path(user),
       class: ("following" if user_is_followee)
   end
+
+  def user_link_class(user)
+    if user.has_role? :admin
+      "admin"
+    elsif user.has_role? :moderator
+      "moderator"
+    elsif policy(user).detect_followee?
+      "following"
+    end
+  end
 end

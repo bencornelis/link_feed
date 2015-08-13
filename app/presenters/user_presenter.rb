@@ -9,7 +9,7 @@ class UserPresenter < BasePresenter
 
   def linked_username(other_user)
     link_to other_user.username, user_path(other_user),
-      class: ("following" if policy(other_user).detect_followee?)
+      class: user_link_class(other_user)
   end
 
   def followee_list

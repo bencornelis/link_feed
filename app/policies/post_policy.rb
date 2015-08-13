@@ -2,14 +2,14 @@ class PostPolicy < ApplicationPolicy
   policy_for :post
 
   def update?
-    user and user == post.user
+    user.present? && (admin? || user == post.user)
   end
 
   def destroy?
-    user and user == post.user
+    user.present? && admin?
   end
 
   def share?
-    user and user != post.user and not user.has_shared?(post)
+    user.present? && user != post.user and not user.has_shared?(post)
   end
 end

@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   include Pundit
   protect_from_forgery with: :exception
 
+  # rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
@@ -24,6 +26,11 @@ class ApplicationController < ActionController::Base
         format.js { render :js => "window.location = '#{login_path}'" }
       end
     end
+  end
+
+  def user_not_authorized
+    flash[:alert] = "You are not authorized to perform this action."
+    redirect_to(request.referrer || root_path)
   end
 
   def reload_user_followees!

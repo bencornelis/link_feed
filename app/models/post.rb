@@ -1,5 +1,6 @@
 class Post < ActiveRecord::Base
   attr_accessor :tag1_name, :tag2_name
+  resourcify
 
   validates_presence_of :title
   before_save :add_tags

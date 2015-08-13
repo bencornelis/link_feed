@@ -16,6 +16,6 @@ class ContentPresenter < BasePresenter
 
   def linked_username
     link_to user.username, user_path(user),
-      class: ("following" if policy(user).detect_followee?)
+      class: user_link_class(user)
   end
 end
