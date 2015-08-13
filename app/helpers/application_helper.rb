@@ -13,12 +13,6 @@ module ApplicationHelper
     )
   end
 
-  def user_link(user)
-    user_is_followee = user_logged_in? && current_user.is_following?(user)
-    link_to user.username, user_path(user),
-      class: ("following" if user_is_followee)
-  end
-
   def user_link_class(user)
     if user.has_role? :admin
       "admin"
@@ -26,6 +20,8 @@ module ApplicationHelper
       "moderator"
     elsif policy(user).detect_followee?
       "following"
+    else
+      "regular"
     end
   end
 end

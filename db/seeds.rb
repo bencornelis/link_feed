@@ -13,8 +13,8 @@ test_admin = User.create(username: "admin",
 test_admin.add_role :admin
 
 test_moderator = User.create(username: "moderator",
-                             password: "5768",
-                             email:    "mod@gmail.com")                           
+                             password: "5678",
+                             email:    "mod@gmail.com")
 test_moderator.add_role :moderator
 
 generate_user_activity(

@@ -2,11 +2,6 @@ class CommentPresenter < ContentPresenter
   presents :comment
   delegate :text, :post, :nested?, to: :comment
 
-  def linked_username
-    link_to user.username, user_path(user),
-      class: ("following" if policy(user).detect_followee?)
-  end
-
   def reply_link
     link_to "reply", new_comment_comment_path(comment), remote: true
   end

@@ -1,18 +1,17 @@
 class PostPolicy < ApplicationPolicy
   policy_for :post
-  permit_admin_to
 
   def update?
-    user.present? && (admin? || user == post.user)
+    admin? || owner?
   end
 
   def destroy?
-    user.present? && admin?
+    admin?
   end
 
   def share?
-    user.present? && user != post.user and not user.has_shared?(post)
+    not owner? and not user.has_shared?(post)
   end
 
-  require_check_for_user :update, :destroy, :share
+  require_present_user :update, :destroy, :share
 end

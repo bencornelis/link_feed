@@ -1,10 +1,13 @@
 class CommentPolicy < ApplicationPolicy
   policy_for :comment
-  permit_admin_to :update, :destroy
-  permit_moderator_to :update, :destroy
-  permit_owner_to :update, :destroy
 
-  def create?
-    user.present?
+  def update?
+    admin? || moderator? || owner?
   end
+
+  def destroy?
+    admin? || moderator? || owner?
+  end
+
+  require_present_user :create, :update, :destroy
 end

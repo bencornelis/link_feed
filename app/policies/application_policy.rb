@@ -6,61 +6,53 @@ class ApplicationPolicy
     @record = record
   end
 
+  ##
+  # use to refer to record with more descriptive variable name
+  # e.g. write policy_for :post in PostPolicy
+
   def self.policy_for(record_type)
     define_method(record_type) do
       record
     end
   end
 
-  def self.create_permission_generator_for(user_type)
-    define_singleton_method("permit_#{user_type}_to") do |*actions|
-      actions.each do |action|
-        action_method = "#{action}?".to_sym
+  ##
+  # overwrite any of the specified actions with a method
+  # that first checks whether the current user is not nil
 
-        unless method_defined? action_method
-          define_method(action_method) do
-            user.present?
-          end
-        end
-
-        alias_method :other_permissions?, action_method
-        define_method(action_method) do
-          other_permissions? && send(user_type.to_sym)
-        end
-      end
-    end
-  end
-
-  def self.require_check_for_user(*actions)
+  def self.require_present_user(*actions)
     actions.each do |action|
       action_method = "#{action}?".to_sym
-      alias_method :other_permissions?, action_method
-
-      define_method(action_method) do
-        user.present? && :other_permissions?
+      unless method_defined?(action_method)
+          define_method(action_method) do
+          user.present?
+        end
+      else
+        other_permissions = "other_#{action}_permissions?".to_sym
+        alias_method other_permissions, action_method
+        define_method(action_method) do
+          user.present? && send(other_permissions)
+        end
       end
     end
   end
 
   ##
-  #  create methods to check roles, using rolify gem methods
-  #  e.g. if "admin" is a role, create the method:
-  #  def admin?
-  #    user.has_role? :admin
-  #  end
+  # create methods to check roles, using rolify gem methods
+  # e.g. if "admin" is a role, create the method:
+  # def admin?
+  #   user.has_role? :admin
+  # end
   #
   # then create a permission generator for each role
+
   Role.pluck(:name).each do |role_name|
     define_method("#{role_name}?") do
       user.has_role? role_name
     end
-    create_permission_generator_for(role_name)
   end
 
   def owner?
     user == record.user
   end
-  create_permission_generator_for("owner")
-
-
 end

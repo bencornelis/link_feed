@@ -8,4 +8,6 @@ class UserPolicy < ApplicationPolicy
   def detect_followee?
     user.is_following?(other_user)
   end
+
+  require_present_user :follow, :detect_followee
 end
