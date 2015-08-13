@@ -31,6 +31,17 @@ class ApplicationPolicy
     end
   end
 
+  def self.require_check_for_user(*actions)
+    actions.each do |action|
+      action_method = "#{action}?".to_sym
+      alias_method :other_permissions?, action_method
+
+      define_method(action_method) do
+        user.present? && :other_permissions?
+      end
+    end
+  end
+
   ##
   #  create methods to check roles, using rolify gem methods
   #  e.g. if "admin" is a role, create the method:

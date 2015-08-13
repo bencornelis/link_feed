@@ -7,12 +7,4 @@ class CommentPolicy < ApplicationPolicy
   def create?
     user.present?
   end
-
-  def update?
-    user.present? && can_moderate?
-  end
-
-  def destroy?
-    user.present? && can_moderate?
-  end
 end
