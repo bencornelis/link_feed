@@ -21,33 +21,6 @@ class Post < ActiveRecord::Base
   scope :with_shares,        -> { where("posts.shares_count > 0")}
   scope :find_with_comments, -> (id) { includes(:comments).find(id) }
 
-  def self.sorted_by(sort_option)
-    case sort_option
-    when "time"
-      recent
-    when "comments"
-      most_comments
-    when "shares"
-      most_shares
-    else
-      all
-    end
-  end
-
-  def self.tagged_with(name)
-    name ? Tag.find_by_name(name).posts : all
-  end
-
-  def self.filter(options)
-    tagged_with(options[:tag])
-      .sorted_by(options[:sort])
-      .paginate(page: options[:page], per_page: 7)
-  end
-
-  def self.filter_global(options)
-    includes(:tags, :user).filter(options)
-  end
-
   def text_only?
     url.empty?
   end

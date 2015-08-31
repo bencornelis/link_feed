@@ -4,7 +4,8 @@ class PostsController < ApplicationController
   before_filter :reload_user_followees!, only: [:index, :show, :feed]
 
   def index
-    @posts = Post.filter_global(filter_params)
+    @filter = Post::Filter.new(filter_params)
+    @posts = @filter.posts
   end
 
   def show
@@ -40,7 +41,9 @@ class PostsController < ApplicationController
   end
 
   def feed
-    @posts = FeedQuery.new(current_user, filter_params).filter_feed
+    # @posts = FeedQuery.new(current_user, filter_params).filter_feed
+    @feed = Post::Feed.new(feed_params)
+    @posts = @feed.posts
     render :index
   end
 
@@ -52,7 +55,11 @@ class PostsController < ApplicationController
   end
 
   def filter_params
-    params.permit(:sort, :tag, :page)
+    params.permit(:sort_by, :tag, :page)
+  end
+
+  def feed_params
+    filter_params.merge(user: current_user)
   end
 
   def find_post
