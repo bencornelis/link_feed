@@ -41,7 +41,6 @@ class PostsController < ApplicationController
   end
 
   def feed
-    # @posts = FeedQuery.new(current_user, filter_params).filter_feed
     @feed = Post::Feed.new(feed_params)
     @posts = @feed.posts
     render :index
