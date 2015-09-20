@@ -16,6 +16,10 @@ gem 'will_paginate', '~> 3.0.6'
 gem "paperclip", "~> 4.3"
 gem "rolify"
 
+group :production do
+  gem 'rails_12factor'
+end
+
 group :development do
   gem 'byebug'
   gem 'web-console'
