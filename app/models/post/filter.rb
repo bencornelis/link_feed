@@ -1,28 +1,30 @@
 class Post < ActiveRecord::Base
   class Filter < Struct.new(:sort_by, :tag, :page)
+
     def initialize(attributes = {})
       members.each do |key|
         send "#{key}=", attributes[key]
       end
     end
 
-    def posts
-      @posts ||= base.filter.scope
+    def for(scope)
+      @scope = scope
+      self
+    end
+
+    def select_posts
+      raise "Scope required" unless scope.present?
+      @posts ||= filter.scope
     end
 
     protected
-
-    def filter
-      sort.filter_by_page.filter_by_tag
-    end
 
     def scope
       @scope
     end
 
-    def base
-      @scope = Post.includes(:tags, :user)
-      self
+    def filter
+      sort.filter_by_page.filter_by_tag
     end
 
     def sort

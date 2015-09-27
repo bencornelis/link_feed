@@ -1,20 +1,18 @@
 class Post < ActiveRecord::Base
-  class Feed < Post::Filter
-    attr_reader :user
-
-    def initialize(attributes = {})
-      super(attributes)
-      @user = attributes[:user]
-    end
+  class Feed < Struct.new(:filter, :user)
 
     def posts
-      @posts ||= base.feed.filter.scope
+      @posts ||= filter.for(base.feed.scope).select_posts
     end
 
     protected
 
+    def scope
+      @scope
+    end
+
     def base
-      @scope = super.scope.joins(:shares)
+      @scope = Post.includes(:tags, :user).joins(:shares)
       self
     end
 
