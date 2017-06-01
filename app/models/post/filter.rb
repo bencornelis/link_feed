@@ -13,7 +13,6 @@ class Post < ActiveRecord::Base
     end
 
     def select_posts
-      raise "Scope required" unless scope.present?
       @posts ||= filter.scope
     end
 

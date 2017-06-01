@@ -10,8 +10,8 @@ gem 'turbolinks'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'sass-rails', '>= 3.2'
 gem 'pundit'
-gem 'bcrypt-ruby', '~> 3.1.5', require: "bcrypt"
-gem 'faker'
+gem 'bcrypt', '~> 3.1.5', require: "bcrypt"
+gem 'faker', '~> 1.6.1'
 gem 'will_paginate', '~> 3.0.6'
 gem "paperclip", "~> 4.3"
 gem "rolify"

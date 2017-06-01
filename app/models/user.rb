@@ -57,6 +57,9 @@ class User < ActiveRecord::Base
   end
 
   def assign_robot_avatar
-    self.avatar = Faker::Avatar.image
+    # Currently a problem with Robohash OpenSSL
+    # self.avatar = Faker::Avatar.image
+
+    self.avatar = Faker::Placeholdit.image
   end
 end

@@ -76,7 +76,7 @@ def generate_user_activity(options)
                     followee_id: random(user_count))
     end
 
-    #generate shares
+    # generate shares
     rand(options[:max_shares_per_user]).times do
       Share.create(user_id: user_id,
                    post_id: random(post_count))

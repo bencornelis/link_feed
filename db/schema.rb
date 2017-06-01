@@ -47,13 +47,6 @@ ActiveRecord::Schema.define(version: 20150812204231) do
     t.integer  "shares_count",   default: 0
   end
 
-  create_table "posts_tags", force: :cascade do |t|
-    t.integer  "post_id"
-    t.integer  "tag_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "roles", force: :cascade do |t|
     t.string   "name"
     t.integer  "resource_id"
