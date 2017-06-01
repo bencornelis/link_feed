@@ -6,13 +6,13 @@ FactoryGirl.define do
   end
 
   factory :post do
-    title "What do you think?"
+    title "Test Title"
     url ""
-    tag1_name "questions"
-    tag2_name "thinking"
+    tag1_name "Tag1"
+    tag2_name "Tag2"
   end
 
   factory :comment do
-    sequence(:text) { |n| "the number #{n} is my favorite! "}
+    text { |n| "the number #{n} is my favorite! "}
   end
 end

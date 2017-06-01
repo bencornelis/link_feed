@@ -1,5 +1,31 @@
 require "rails_helper"
 
+describe "clicking on a post title" do
+  it "displays the post view for internal links" do
+    post = create_post
+
+    visit root_path
+    click_on post.title
+    expect(page).to have_content post.title
+    expect(page).to have_content post.user.username
+    expect(page).to have_content "0 shares"
+  end
+
+  # it "opens the external link for external links" do
+  #   post = create_post(url: "https://nytimes.com")
+  # end
+end
+
+describe "navigating to a post" do
+  it "links the title to the external url" do
+    post = create_post(url: "https://nytimes.com")
+
+    visit root_path
+    click_on "0 comments"
+    expect(page).to have_selector(:css, 'a[href="https://nytimes.com"]')
+  end
+end
+
 describe "adding a post" do
   it "displays post information for a post just added" do
     user = FactoryGirl.create(:user)
