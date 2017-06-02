@@ -12,7 +12,7 @@ class Post < ActiveRecord::Base
     end
 
     def base
-      @scope = Post.includes(:tags, :user).joins(:shares)
+      @scope = Post.joins(:shares)
       self
     end
 

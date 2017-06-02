@@ -51,7 +51,7 @@ class Post < ActiveRecord::Base
     private
 
     def with_tag
-      @scope.joins(:tags).where("tags.name = :tag", tag: tag)
+      @scope.joins(:tags).where(tags: {name: tag})
     end
 
     def on_page

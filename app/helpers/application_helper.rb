@@ -7,12 +7,6 @@ module ApplicationHelper
     presenter
   end
 
-  def tag_link(tag)
-    link_to tag.with_hash, root_path(
-      params.merge({ tag: tag.name }).permit(:sort, :tag, :page)
-    )
-  end
-
   def user_link_class(user)
     if user.has_role? :admin
       "admin"
