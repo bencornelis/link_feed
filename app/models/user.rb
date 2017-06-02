@@ -2,15 +2,11 @@ class User < ActiveRecord::Base
   rolify
   attr_accessor :password
 
-  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
-  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
-
   validates_presence_of :username
   validates_presence_of :email
 
   validates_confirmation_of :password
   before_save :encrypt_password
-  before_save :assign_robot_avatar
 
   has_many :posts
   has_many :comments
@@ -54,12 +50,5 @@ class User < ActiveRecord::Base
   def encrypt_password
     self.password_salt = BCrypt::Engine.generate_salt
     self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
-  end
-
-  def assign_robot_avatar
-    # Currently a problem with Robohash OpenSSL
-    # self.avatar = Faker::Avatar.image
-
-    self.avatar = Faker::Placeholdit.image
   end
 end

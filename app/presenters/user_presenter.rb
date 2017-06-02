@@ -4,7 +4,7 @@ class UserPresenter < BasePresenter
   :followers_count, :followees_count, to: :user
 
   def avatar
-    image_tag user.avatar.url(:thumb), class: "avatar"
+    image_tag MonsterId.generate(user.id).to_data_uri, class: "avatar"
   end
 
   def linked_username(other_user)

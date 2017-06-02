@@ -15,6 +15,7 @@ gem 'faker', '~> 1.6.1'
 gem 'will_paginate', '~> 3.0.6'
 gem "paperclip", "~> 4.3"
 gem "rolify"
+gem "monster_id"
 
 group :production do
   gem 'rails_12factor'
