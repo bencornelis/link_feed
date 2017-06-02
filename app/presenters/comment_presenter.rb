@@ -2,6 +2,10 @@ class CommentPresenter < ContentPresenter
   presents :comment
   delegate :text, :post, :nested?, to: :comment
 
+  def formatted_text
+    simple_format(text)
+  end
+
   def reply_link
     link_to "reply", new_comment_comment_path(comment), remote: true
   end
