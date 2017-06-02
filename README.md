@@ -2,6 +2,8 @@
 
 Link aggregator/community forum based loosely on [hubski](https://hubski.com/).
 
+https://blooming-mesa-35436.herokuapp.com/
+
 ### Features
 
 * CRUD operations on posts and comments
