@@ -6,7 +6,7 @@ FactoryGirl.define do
   end
 
   factory :post do
-    title "Test Title"
+    sequence(:title) { |n| "Title #{n}" }
     url ""
     tag1_name "Tag1"
     tag2_name "Tag2"

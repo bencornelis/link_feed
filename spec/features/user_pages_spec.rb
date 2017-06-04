@@ -13,6 +13,6 @@ describe "following a user" do
     expect(page).to have_no_content "follow #{user1.username}"
     expect(page).to have_content "Followers (1): #{user2.username}"
     click_on "Profile"
-    expect(page).to have_content "Followees (1): #{user1.username}"
+    expect(page).to have_content "Following (1): #{user1.username}"
   end
 end

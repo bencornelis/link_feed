@@ -2,7 +2,7 @@ class Post < ActiveRecord::Base
   class Global < Struct.new(:filter)
 
     def posts
-      @posts ||= filter.for(base.scope).select_posts
+      @posts ||= filter.apply_to(base.scope).select_posts
     end
 
     protected

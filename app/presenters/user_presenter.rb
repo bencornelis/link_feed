@@ -14,7 +14,7 @@ class UserPresenter < BasePresenter
 
   def followee_list
     names = followees.map { |followee| linked_username(followee) }.join(", ")
-    "Followees (#{followees_count}): #{names}".html_safe
+    "Following (#{followees_count}): #{names}".html_safe
   end
 
   def follower_list

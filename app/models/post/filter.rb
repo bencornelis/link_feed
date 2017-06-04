@@ -7,7 +7,7 @@ class Post < ActiveRecord::Base
       end
     end
 
-    def for(scope)
+    def apply_to(scope)
       @scope = scope
       self
     end

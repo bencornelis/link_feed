@@ -52,12 +52,12 @@ class PostsController < ApplicationController
     )
   end
 
-  def filter
-    Post::Filter.new(filter_params)
-  end
-
   def filter_params
     params.permit(:sort_by, :tag, :page)
+  end
+
+  def filter
+    Post::Filter.new(filter_params)
   end
 
   def find_post

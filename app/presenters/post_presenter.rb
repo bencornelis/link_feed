@@ -17,7 +17,7 @@ class PostPresenter < ContentPresenter
   def followee_shares
     count = post.try(:followee_shares_count)
     if count
-      text = "#{count} followee #{count == 1 ? 'share' : 'shares'}"
+      text = "#{count} followed #{count == 1 ? 'share' : 'shares'}"
       h.capture do
         concat " / "
         concat content_tag :span, text, class: "followee_shares"
