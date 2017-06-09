@@ -5,7 +5,7 @@ class Post < ActiveRecord::Base
   validates_presence_of :title
   before_save :add_tags
 
-  belongs_to :user
+  belongs_to :user, counter_cache: true
   has_many :top_level_comments, class_name: "Comment", :as => :commentable
   has_many :comments
   has_many :shares
