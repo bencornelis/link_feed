@@ -22,4 +22,5 @@ Rails.application.routes.draw do
   post "/login" => "sessions#create"
   get "/logout" => "sessions#destroy"
   get "/join"   => "users#new"
+  get "/profile" => "users#show"
 end
