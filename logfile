@@ -1,0 +1,32 @@
+LOG:  database system was shut down at 2017-06-09 13:39:54 CDT
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  autovacuum launcher started
+LOG:  database system is ready to accept connections
+FATAL:  database "bencornelis" does not exist
+ERROR:  relation "sys.tables" does not exist at character 15
+STATEMENT:  select * from sys.tables;
+ERROR:  syntax error at or near "ORDER" at character 53
+STATEMENT:  SELECT posts.user_id, posts.text FROM posts LIMIT 5 ORDER BY posts.text;
+ERROR:  database "hubski_clone_development" is being accessed by other users
+DETAIL:  There is 1 other session using the database.
+STATEMENT:  DROP DATABASE IF EXISTS "hubski_clone_development"
+ERROR:  database "hubski_clone_development" already exists
+STATEMENT:  CREATE DATABASE "hubski_clone_development" ENCODING = 'unicode'
+ERROR:  database "active-record-practice_development" already exists
+STATEMENT:  CREATE DATABASE "active-record-practice_development" ENCODING = 'unicode'
+ERROR:  database "active-record-practice_test" already exists
+STATEMENT:  CREATE DATABASE "active-record-practice_test" ENCODING = 'unicode'
+ERROR:  insert or update on table "books" violates foreign key constraint "fk_rails_53d51ce16a"
+DETAIL:  Key (author_id)=(4) is not present in table "authors".
+STATEMENT:  INSERT INTO "books" ("title", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"
+ERROR:  update or delete on table "authors" violates foreign key constraint "fk_rails_53d51ce16a" on table "books"
+DETAIL:  Key (id)=(1) is still referenced from table "books".
+STATEMENT:  DELETE FROM "authors" WHERE "authors"."id" = $1
+ERROR:  update or delete on table "authors" violates foreign key constraint "fk_rails_53d51ce16a" on table "books"
+DETAIL:  Key (id)=(1) is still referenced from table "books".
+STATEMENT:  DELETE FROM "authors" WHERE "authors"."id" = $1
+FATAL:  database "friends1_development" does not exist
+FATAL:  database "blog_development" does not exist
+ERROR:  update or delete on table "articles" violates foreign key constraint "fk_rails_3bf61a60d3" on table "comments"
+DETAIL:  Key (id)=(2) is still referenced from table "comments".
+STATEMENT:  DELETE FROM "articles" WHERE "articles"."id" = $1

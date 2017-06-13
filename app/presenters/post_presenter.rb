@@ -11,7 +11,13 @@ class PostPresenter < ContentPresenter
   end
 
   def linked_tags
-    tag_link(post.first_tag) + " / " + tag_link(post.second_tag)
+    tags = post.tags
+    case tags.size
+    when 1
+      tag_link(tags.first)
+    when 2
+      tag_link(tags.first) + " / " + tag_link(tags.last)
+    end
   end
 
   def followee_shares

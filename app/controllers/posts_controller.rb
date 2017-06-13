@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show]
-  before_filter :find_post, only: [:edit, :update, :destroy]
   before_filter :reload_user_followees!, only: [:index, :show, :feed]
 
   def index
@@ -13,9 +12,11 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    2.times { @post.taggings.build.build_tag }
   end
 
   def edit
+    @post = Post.find(params[:id])
   end
 
   def create
@@ -28,12 +29,14 @@ class PostsController < ApplicationController
   end
 
   def update
+    @post = Post.find(params[:id])
     authorize @post
     @post.update(post_params)
     redirect_to post_path(@post)
   end
 
   def destroy
+    @post = Post.find(params[:id])
     authorize @post
     @post.destroy
     redirect_to root_path
@@ -48,7 +51,7 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(
-      :title, :url, :text, :tag1_name, :tag2_name
+      :title, :url, :text, taggings_attributes: [:id, tag_attributes: [:id, :name]]
     )
   end
 
@@ -58,9 +61,5 @@ class PostsController < ApplicationController
 
   def filter
     Post::Filter.new(filter_params)
-  end
-
-  def find_post
-    @post = Post.find(params[:id])
   end
 end

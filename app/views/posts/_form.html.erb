@@ -16,20 +16,19 @@
         <td><%= f.label :text, "text", class: "form_label" %></td>
         <td><%= f.text_area :text, class: "form_textarea", rows: 10, cols: 60 %></td>
       </tr>
-      
-      <tr>
-        <td><%= f.label :tag1_name, "tag", class: "form_label" %></td>
-        <td><%= f.text_field :tag1_name, class: "form_input_wide" %></td>
-      </tr>
 
-      <tr>
-        <td><%= f.label :tag2_name, "tag", class: "form_label" %></td>
-        <td><%= f.text_field :tag2_name, class: "form_input_wide" %></td>
-      </tr>
+      <%= f.fields_for :taggings do |taggings_form| %>
+        <%= taggings_form.fields_for :tag do |tag_form| %>
+          <tr>
+            <td><%= tag_form.label :name, "tag", class: "form_label" %></td>
+            <td><%= tag_form.text_field :name, class: "form_input_wide" %></td>
+          </tr>
+        <% end %>
+      <% end %>
 
       <tr>
         <td></td>
-        <td><%= f.submit "submit", class: "btn_blue" %></td>
+        <td><%= f.submit (@post.new_record? ? "submit" : "submit edit"), class: "btn_blue" %></td>
       </tr>
     </tbody>
   </table>

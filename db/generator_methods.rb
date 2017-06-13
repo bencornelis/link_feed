@@ -27,18 +27,22 @@ def generate_user_activity(options)
           title:        Faker::Company.catch_phrase,
           url:          Faker::Internet.url,
           text:         Faker::Hacker.say_something_smart,
-          tag1_name:    Faker::Hacker.adjective,
-          tag2_name:    Faker::Hacker.abbreviation,
-          user_id:      user_id
+          user_id:      user_id,
+          taggings_attributes: [
+            { tag_attributes: { name: Faker::Hacker.adjective } },
+            { tag_attributes: { name: Faker::Hacker.abbreviation } }
+          ]
         )
       else
         Post.create(
           title:        Faker::Hacker.say_something_smart,
           url:          "",
           text:         Faker::Hacker.say_something_smart,
-          tag1_name:    Faker::Hacker.adjective,
-          tag2_name:    Faker::Hacker.abbreviation,
-          user_id:      user_id
+          user_id:      user_id,
+          taggings_attributes: [
+            { tag_attributes: { name: Faker::Hacker.adjective } },
+            { tag_attributes: { name: Faker::Hacker.abbreviation } }
+          ]
         )
       end
 

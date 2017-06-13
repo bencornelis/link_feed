@@ -1,9 +1,6 @@
 class Post < ActiveRecord::Base
-  attr_accessor :tag1_name, :tag2_name
   resourcify
-
   validates_presence_of :title
-  before_save :add_tags
 
   belongs_to :user, counter_cache: true
   has_many :top_level_comments, class_name: "Comment", :as => :commentable
@@ -12,6 +9,8 @@ class Post < ActiveRecord::Base
   has_many :users_shared_by, through: :shares, source: :user
   has_many :taggings
   has_many :tags, through: :taggings
+
+  accepts_nested_attributes_for :taggings
 
   delegate :username, to: :user
 
@@ -27,22 +26,5 @@ class Post < ActiveRecord::Base
 
   def edited?
     created_at != updated_at
-  end
-
-  def first_tag
-    tags.first
-  end
-
-  def second_tag
-    tags.last
-  end
-
-  private
-  def add_tags
-    [tag1_name, tag2_name].each do |tag_name|
-      next unless tag_name
-      tag = Tag.find_or_create_by_name(tag_name)
-      tags << tag
-    end
   end
 end

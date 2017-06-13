@@ -24,7 +24,7 @@ class ApplicationPolicy
     actions.each do |action|
       action_method = "#{action}?".to_sym
       unless method_defined?(action_method)
-          define_method(action_method) do
+        define_method(action_method) do
           user.present?
         end
       else
