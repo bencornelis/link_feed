@@ -2,6 +2,9 @@ class Post < ActiveRecord::Base
   resourcify
   validates_presence_of :title
 
+  attr_writer :tag_names
+  after_save :assign_tags
+
   belongs_to :user, counter_cache: true
   has_many :top_level_comments, class_name: "Comment", :as => :commentable
   has_many :comments
@@ -9,8 +12,6 @@ class Post < ActiveRecord::Base
   has_many :users_shared_by, through: :shares, source: :user
   has_many :taggings
   has_many :tags, through: :taggings
-
-  accepts_nested_attributes_for :taggings
 
   delegate :username, to: :user
 
@@ -26,5 +27,18 @@ class Post < ActiveRecord::Base
 
   def edited?
     created_at != updated_at
+  end
+
+  def tag_names
+    @tag_names ||= tags.map(&:name).join(" ")
+  end
+
+  private
+  def assign_tags
+    if @tag_names
+      self.tags = @tag_names.split(/\s+/).map do |name|
+        Tag.find_or_create_by(name: name)
+      end
+    end
   end
 end

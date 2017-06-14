@@ -10,13 +10,12 @@ class PostPresenter < ContentPresenter
     link_to comments_count, post_path(post)
   end
 
-  def linked_tags
-    tags = post.tags
-    case tags.size
-    when 1
-      tag_link(tags.first)
-    when 2
-      tag_link(tags.first) + " / " + tag_link(tags.last)
+  def linked_tags(divider = "")
+    content_tag(:span, class: "tags") do
+      post.tags.each do |tag|
+        concat " #{divider} "
+        concat tag_link(tag)
+      end
     end
   end
 

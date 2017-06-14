@@ -8,10 +8,7 @@ FactoryGirl.define do
   factory :post do
     sequence(:title) { |n| "Title #{n}" }
     url ""
-
-    after(:create) do |post|
-      2.times { post.tags << FactoryGirl.create(:tag) }
-    end
+    tag_names "Tag1 Tag2"
   end
 
   factory :tag do

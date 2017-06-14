@@ -34,12 +34,25 @@ describe "adding a post" do
     click_on "new_post_link"
     fill_in "post_title", with: "What is the best games soundtrack?"
     fill_in "post_text", with: "I really want to know!"
-    fill_in "post_taggings_attributes_0_tag_attributes_name", with: "games"
-    fill_in "post_taggings_attributes_1_tag_attributes_name", with: "soundtracks"
+    fill_in "post_tag_names", with: "games soundtracks"
     click_on "submit"
     expect(page).to have_content "What is the best games soundtrack?"
     expect(page).to have_content "I really want to know!"
     expect(page).to have_content "edit"
+  end
+
+  it "correctly adds the tags" do
+    user = FactoryGirl.create(:user)
+    login_as(user)
+    visit root_path
+    click_on "new_post_link"
+    fill_in "post_title", with: "What is the best games soundtrack?"
+    fill_in "post_text", with: "I really want to know!"
+    fill_in "post_tag_names", with: "games soundtracks"
+    click_on "submit"
+    click_on "Profile"
+    expect(page).to have_content "#games"
+    expect(page).to have_content "#soundtracks"
   end
 
   it "requires a user to be logged in" do

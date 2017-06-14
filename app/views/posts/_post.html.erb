@@ -8,7 +8,13 @@
         </div>
 
         <div class="comments_and_tags">
-          <%= post_presenter.linked_comments %> / <%= post_presenter.linked_tags %>
+          <%= post_presenter.linked_comments %>
+          <% if is_blurb %>
+            <br>
+            <%= post_presenter.linked_tags %>
+          <% else %>
+            <%= post_presenter.linked_tags("/") %>
+          <% end %>
           <%= post_presenter.followee_shares %>
         </div>
       </div>

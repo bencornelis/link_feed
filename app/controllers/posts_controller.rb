@@ -12,7 +12,6 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    2.times { @post.taggings.build.build_tag }
   end
 
   def edit
@@ -51,7 +50,7 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(
-      :title, :url, :text, taggings_attributes: [:id, tag_attributes: [:id, :name]]
+      :title, :url, :text, :tag_names
     )
   end
 

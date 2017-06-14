@@ -28,10 +28,7 @@ def generate_user_activity(options)
           url:          Faker::Internet.url,
           text:         Faker::Hacker.say_something_smart,
           user_id:      user_id,
-          taggings_attributes: [
-            { tag_attributes: { name: Faker::Hacker.adjective } },
-            { tag_attributes: { name: Faker::Hacker.abbreviation } }
-          ]
+          tag_names:    "#{Faker::Hacker.adjective} #{Faker::Hacker.abbreviation}"
         )
       else
         Post.create(
@@ -39,10 +36,7 @@ def generate_user_activity(options)
           url:          "",
           text:         Faker::Hacker.say_something_smart,
           user_id:      user_id,
-          taggings_attributes: [
-            { tag_attributes: { name: Faker::Hacker.adjective } },
-            { tag_attributes: { name: Faker::Hacker.abbreviation } }
-          ]
+          tag_names:    "#{Faker::Hacker.adjective} #{Faker::Hacker.abbreviation}"
         )
       end
 
