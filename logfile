@@ -30,3 +30,5 @@ FATAL:  database "blog_development" does not exist
 ERROR:  update or delete on table "articles" violates foreign key constraint "fk_rails_3bf61a60d3" on table "comments"
 DETAIL:  Key (id)=(2) is still referenced from table "comments".
 STATEMENT:  DELETE FROM "articles" WHERE "articles"."id" = $1
+WARNING:  worker took too long to start; canceled
+WARNING:  autovacuum worker started without a worker entry

@@ -38,9 +38,8 @@ describe "adding a post" do
     fill_in "post_taggings_attributes_1_tag_attributes_name", with: "soundtracks"
     click_on "submit"
     expect(page).to have_content "What is the best games soundtrack?"
-    expect(page).to have_content "#games"
-    expect(page).to have_content "#soundtracks"
-    expect(page).to have_no_content "I really want to know!"
+    expect(page).to have_content "I really want to know!"
+    expect(page).to have_content "edit"
   end
 
   it "requires a user to be logged in" do
