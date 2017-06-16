@@ -1,61 +1,45 @@
 class Post < ActiveRecord::Base
-  class Filter < Struct.new(:sort_by, :tag, :page)
-
+  class Filter < Struct.new(:sort_by, :tag, :page, :user)
     def initialize(attributes = {})
       members.each do |key|
         send "#{key}=", attributes[key]
       end
     end
 
-    def apply_to(scope)
-      @scope = scope
-      self
-    end
-
-    def select_posts
-      @posts ||= filter.scope
+    def posts
+      @posts ||= filter_by_tag.sort.filter_by_page.scope
     end
 
     protected
 
     def scope
-      @scope
+      @scope ||= base
     end
 
-    def filter
-      sort.filter_by_page.filter_by_tag
+    def base
+      Post.all
     end
 
     def sort
       case sort_by
       when "time"
-        @scope = @scope.recent
+        @scope = scope.recent
       when "comments"
-        @scope = @scope.most_comments
+        @scope = scope.most_comments
       when "shares"
-        @scope = @scope.most_shares
+        @scope = scope.most_shares
       end
       self
     end
 
     def filter_by_page
-      @scope = on_page
+      @scope = scope.paginate(page: page, per_page: 10)
       self
     end
 
     def filter_by_tag
-      @scope = with_tag if tag
+      @scope = scope.joins(:tags).where(tags: {name: tag}) if tag
       self
-    end
-
-    private
-
-    def with_tag
-      @scope.joins(:tags).where(tags: {name: tag})
-    end
-
-    def on_page
-      @scope.paginate(page: page, per_page: 7)
     end
   end
 end

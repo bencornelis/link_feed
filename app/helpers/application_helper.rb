@@ -8,9 +8,9 @@ module ApplicationHelper
   end
 
   def user_link_class(user)
-    if user.has_role? :admin
+    if user.has_cached_role? :admin
       "admin"
-    elsif user.has_role? :moderator
+    elsif user.has_cached_role? :moderator
       "moderator"
     elsif policy(user).detect_followee?
       "following"

@@ -14,7 +14,7 @@ gem 'bcrypt', '~> 3.1.5', require: "bcrypt"
 gem 'faker', '~> 1.6.1'
 gem 'will_paginate', '~> 3.0.6'
 gem "paperclip", "~> 4.3"
-gem "rolify"
+gem "rolify", '~> 5.1.0'
 gem "monster_id"
 
 group :production do

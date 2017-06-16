@@ -5,7 +5,7 @@ module TagsHelper
 
   def tag_link(tag)
     link_to tag.with_hash, root_path(
-      params.merge({ tag: tag.name }).permit(:sort, :tag, :page)
+      params.merge({ tag: tag.name }).permit(:tag, :sort_by)
     )
   end
 
