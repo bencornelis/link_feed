@@ -11,7 +11,8 @@ $(function() {
     } else {
       $toggler.text("[+]");
     }
-    $toggler.closest(".comment").children(".comment_main").toggle();
-    $toggler.parent().find(".comments_count").toggle();
+    $comment = $toggler.closest(".comment");
+    $comment.children(".comment_main").toggle();
+    $comment.next("ul.comments").toggle();
   });
 })

@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
   end
 
   def recent_comments(number = 5)
-    comments.includes(:commentable, :post).limit(number)
+    comments.includes(:post).limit(number)
   end
 
   private

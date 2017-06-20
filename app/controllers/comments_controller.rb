@@ -2,28 +2,35 @@ class CommentsController < ApplicationController
   before_filter :authenticate_user!
 
   def new
-    @commentable = find_commentable
+    @parent_id = params.delete(:parent_id)
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.new(parent_id: @parent_id)
     respond_to do |format|
       format.js
     end
   end
 
   def edit
-    @comment = Comment.find(params[:id])
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.find(params[:id])
     respond_to do |format|
       format.js
     end
   end
 
   def create
-    @commentable = find_commentable
-    @comment = @commentable.top_level_comments.new(comment_params)
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.build(comment_params)
     current_user.comments << @comment
     @comment.save
     respond_to do |format|
-      format.js {
-        render "create_#{@comment.commentable_type.downcase}_comment"
-      }
+      format.js do
+        if @comment.root?
+          render :create_post_comment
+        else
+          render :create_comment_comment
+        end
+      end
     end
   end
 
@@ -44,14 +51,6 @@ class CommentsController < ApplicationController
 
   private
   def comment_params
-    params.require(:comment).permit(:text)
-  end
-
-  def find_commentable
-    params.each do |name, value|
-      if name =~ /(.+)_id$/
-        return $1.classify.constantize.find(value)
-      end
-    end
+    params.require(:comment).permit(:text, :parent_id)
   end
 end

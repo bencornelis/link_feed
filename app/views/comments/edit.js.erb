@@ -1,5 +1,5 @@
 $formDiv = $("#comment_<%= @comment.id %> .comment_form").first();
-$formDiv.html("<%= j render 'edit_comment_form', comment: @comment, top_level: false %>")
+$formDiv.html("<%= j render 'form', top_level: false %>")
         .find("form .hide")
         .click(function() {
           $(this).parent().empty();

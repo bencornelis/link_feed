@@ -2,6 +2,10 @@ class PostPresenter < ContentPresenter
   presents :post
   delegate :title, :text, :url, to: :post
 
+  def comments_count
+    "#{content.comments_count} #{content.comments_count == 1 ? 'comment' : 'comments'}"
+  end
+
   def linked_title
     link_to post.title, post.text_only? ? post_path(post) : post.url
   end

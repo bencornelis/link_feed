@@ -30,13 +30,13 @@
     </footer>
   <% end %>
 
-  <%= render "comments/new_comment_form", commentable: @post, top_level: true %>
+  <%= render "comments/form", top_level: true %>
 </div>
 
 <hr>
 
 <ul class="comments">
-  <%= render @post.top_level_comments %>
+  <%= nested_comments @comments %>
 </ul>
 
 <%= javascript_include_tag "posts" %>

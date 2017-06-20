@@ -8,11 +8,7 @@ Rails.application.routes.draw do
     resources :shares
     resources :comments
   end
-
-  resources :comments do
-    resources :comments
-  end
-
+  
   resources :tags
 
   get "/global" => "posts#index"

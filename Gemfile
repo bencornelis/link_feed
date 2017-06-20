@@ -16,6 +16,7 @@ gem 'will_paginate', '~> 3.0.6'
 gem "paperclip", "~> 4.3"
 gem "rolify", '~> 5.1.0'
 gem "monster_id"
+gem "ancestry"
 
 group :production do
   gem 'rails_12factor'

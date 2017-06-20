@@ -5,7 +5,6 @@
       <%= comment_presenter.linked_username %>
       <%= comment_presenter.time_since_created %>
       <%= comment_presenter.time_since_edited %>
-      <span class="comments_count">(<%= comment_presenter.comments_count %>)</span>
     </h5>
 
     <div class="comment_main">
@@ -27,12 +26,6 @@
       </footer>
 
       <p class="comment_form"></p>
-
-      <ul class="comments nested">
-        <% if comment.has_comments? %>
-          <%= render comment.top_level_comments %>
-        <% end %>
-      </ul>
     </div>
   <% end %>
 <% end %>

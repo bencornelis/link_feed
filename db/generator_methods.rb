@@ -52,16 +52,18 @@ def generate_user_activity(options)
         Comment.create(
           user_id:          user_id,
           text:             text,
-          commentable_id:   random(post_count),
-          commentable_type: "Post"
+          post_id:          random(post_count),
+          parent_id:        nil
         )
       else
         # create a comment on a comment
+        parent_id = random(comment_count)
+        post_id = Comment.find(parent_id).post_id
         Comment.create(
           user_id:          user_id,
           text:             text,
-          commentable_id:   random(comment_count),
-          commentable_type: "Comment"
+          post_id:          post_id,
+          parent_id:        parent_id
         )
       end
 

@@ -41,12 +41,14 @@ class ApplicationPolicy
   # create methods to check roles, using rolify gem methods
   # e.g. if "admin" is a role, create the method:
   # def admin?
-  #   user.has_role? :admin
+  #   user.has_cached_role? :admin
   # end
+  #
+  # user has_cached_role? instead of has_role? to use eager loading
 
   Role.pluck(:name).each do |role_name|
     define_method("#{role_name}?") do
-      user.has_role? role_name
+      user.has_cached_role? role_name
     end
   end
 

@@ -1,3 +1,2 @@
-$("#post_main").children("#new_comment")
-               .replaceWith("<%= j render 'new_comment_form', commentable: @commentable, top_level: true %>");
+$("#post_main").children("#new_comment").find("#comment_text").val("");
 $(".comments").first().prepend("<%= j render 'comment', comment: @comment %>");

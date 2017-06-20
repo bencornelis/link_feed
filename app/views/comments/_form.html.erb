@@ -1,0 +1,9 @@
+<%= form_for [@post, @comment], remote: true do |f| %>
+  <%= f.hidden_field :parent_id %>
+  <%= f.text_area :text,class: "comment_textarea", rows: 5, cols: 40 %>
+  <%= f.submit (@comment.new_record? ? "comment" : "submit edit"), class: "btn_blue" %>
+
+  <% unless top_level %>
+    <%= content_tag 'a', 'hide', class: 'hide btn_yellow' %>
+  <% end %>
+<% end %>

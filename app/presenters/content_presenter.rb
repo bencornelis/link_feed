@@ -2,10 +2,6 @@ class ContentPresenter < BasePresenter
   presents :content
   delegate :user, to: :content
 
-  def comments_count
-    "#{content.comments_count} #{content.comments_count == 1 ? 'comment' : 'comments'}"
-  end
-
   def time_since_created
     "#{time_ago_in_words(content.created_at)} ago"
   end

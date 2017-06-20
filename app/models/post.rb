@@ -6,7 +6,6 @@ class Post < ActiveRecord::Base
   after_save :assign_tags
 
   belongs_to :user, counter_cache: true
-  has_many :top_level_comments, class_name: "Comment", :as => :commentable
   has_many :comments
   has_many :shares
   has_many :users_shared_by, through: :shares, source: :user

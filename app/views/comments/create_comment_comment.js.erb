@@ -1,5 +1,5 @@
-$commentable = $("#comment_<%= @commentable.id %>");
-$commentable.find(".comment_form").first().empty();
-$commentable.find("ul.comments")
-            .first()
-            .prepend("<%= j render 'comment', comment: @comment %>");
+$parent = $("#comment_<%= @comment.parent_id %>");
+$parent.find(".comment_form").first().empty();
+$parent.next("ul.comments")
+       .first()
+       .prepend("<%= j render 'comment', comment: @comment %>");
