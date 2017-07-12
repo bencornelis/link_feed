@@ -2,10 +2,10 @@ require "rails_helper"
 
 describe "following a user" do
   it "lets a logged in user follow another user", js: true do
-    user1 = FactoryGirl.create(:user)
-    post = FactoryGirl.create(:post)
+    user1 = create(:user)
+    post = create(:post)
     user1.posts << post
-    user2 = FactoryGirl.create(:user)
+    user2 = create(:user)
     login_as(user2)
     visit post_path(post)
     click_on user1.username

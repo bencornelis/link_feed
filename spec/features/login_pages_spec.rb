@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe 'logging in' do
   it 'redirects to the home page on successful login' do
-    user = FactoryGirl.create(:user)
+    user = create(:user)
     visit root_path
     click_on 'Login'
     fill_in 'username', with: user.username
@@ -12,7 +12,7 @@ describe 'logging in' do
   end
 
   it 'redirects to the login on failed login attempt' do
-    user = FactoryGirl.create(:user)
+    user = create(:user)
     visit root_path
     click_on 'Login'
     fill_in 'username', with: "foo"

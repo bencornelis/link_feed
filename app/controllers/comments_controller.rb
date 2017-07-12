@@ -1,5 +1,10 @@
 class CommentsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:index]
+  before_filter :reload_user_followees!, only: [:index]
+
+  def index
+    @comments = Comment::Global.new(global_params).recent
+  end
 
   def new
     @parent_id = params.delete(:parent_id)
@@ -50,6 +55,10 @@ class CommentsController < ApplicationController
   end
 
   private
+  def global_params
+    params.permit(:tag, :page)
+  end
+
   def comment_params
     params.require(:comment).permit(:text, :parent_id)
   end

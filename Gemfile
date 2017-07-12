@@ -33,6 +33,7 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'launchy'
   gem 'database_cleaner'
+  gem 'timecop'
 end
 
 group :test do

@@ -1,9 +1,14 @@
 class PostsController < ApplicationController
-  before_filter :authenticate_user!, except: [:index, :show]
-  before_filter :reload_user_followees!, only: [:index, :show, :feed]
+  before_filter :authenticate_user!, except: [:index, :recent, :show]
+  before_filter :reload_user_followees!, only: [:index, :recent, :show, :feed]
 
   def index
-    @posts = Post::Global.new(filter_params).posts
+    @posts = Post::Global.new(global_params).by_score
+  end
+
+  def recent
+    @posts = Post::Global.new(global_params).recent
+    render :index
   end
 
   def show
@@ -23,6 +28,7 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.new(post_params)
     if @post.save
+      current_user.shared_posts << @post
       redirect_to post_path(@post)
     else
       redirect_to :back
@@ -43,11 +49,6 @@ class PostsController < ApplicationController
     redirect_to root_path
   end
 
-  def feed
-    @posts = Post::Feed.new(filter_params).posts
-    render :index
-  end
-
   private
 
   def post_params
@@ -56,7 +57,7 @@ class PostsController < ApplicationController
     )
   end
 
-  def filter_params
-    params.permit(:sort_by, :tag, :page).merge({user: current_user})
+  def global_params
+    params.permit(:tag, :page)
   end
 end

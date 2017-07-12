@@ -22,24 +22,25 @@ def generate_user_activity(options)
 
     # generate posts
     rand(options[:max_posts_per_user]).times do |i|
-      if i % 2 == 0
-        Post.create(
-          title:        Faker::Company.catch_phrase,
-          url:          Faker::Internet.url,
-          text:         Faker::Hacker.say_something_smart,
-          user_id:      user_id,
-          tag_names:    "#{Faker::Hacker.adjective} #{Faker::Hacker.abbreviation}"
-        )
-      else
-        Post.create(
-          title:        Faker::Hacker.say_something_smart,
-          url:          "",
-          text:         Faker::Hacker.say_something_smart,
-          user_id:      user_id,
-          tag_names:    "#{Faker::Hacker.adjective} #{Faker::Hacker.abbreviation}"
-        )
+      Timecop.freeze(rand(100).days.ago) do
+        if i % 2 == 0
+          Post.create(
+            title:        Faker::Company.catch_phrase,
+            url:          Faker::Internet.url,
+            text:         Faker::Hacker.say_something_smart,
+            user_id:      user_id,
+            tag_names:    "#{Faker::Hacker.adjective} #{Faker::Hacker.abbreviation}",
+          )
+        else
+          Post.create(
+            title:        Faker::Hacker.say_something_smart,
+            url:          "",
+            text:         Faker::Hacker.say_something_smart,
+            user_id:      user_id,
+            tag_names:    "#{Faker::Hacker.adjective} #{Faker::Hacker.abbreviation}",
+          )
+        end
       end
-
       post_count += 1
     end
 

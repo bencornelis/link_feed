@@ -4,7 +4,9 @@
       <span class="comment_toggler">[-]</span>
       <%= comment_presenter.linked_username %>
       <%= comment_presenter.time_since_created %>
-      <%= comment_presenter.time_since_edited %>
+      <% if comment_presenter.edited? %>
+        | <%= comment_presenter.time_since_edited %>
+      <% end %>
     </h5>
 
     <div class="comment_main">

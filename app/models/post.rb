@@ -14,11 +14,11 @@ class Post < ActiveRecord::Base
 
   delegate :username, to: :user
 
-  scope :recent,             -> { order("posts.created_at desc") }
-  scope :most_comments,      -> { order("posts.comments_count desc") }
-  scope :most_shares,        -> { order("posts.shares_count desc") }
-  scope :with_shares,        -> { where("posts.shares_count > 0")}
-  scope :find_with_comments, -> (id)  { includes(:comments).find(id) }
+  scope :by_time,             -> { order("posts.created_at desc") }
+  scope :with_shares,         -> { where("posts.shares_count > 0")}
+  scope :find_with_comments,  -> (id)  { includes(:comments).find(id) }
+  scope :with_tag,            -> (tag_name) { joins(:tags).where(tags: {name: tag_name}) if tag_name }
+  scope :filter_tag_and_page, -> (tag, page, per_page) { with_tag(tag).paginate(page: page, per_page: per_page) }
 
   def text_only?
     url.empty?

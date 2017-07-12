@@ -1,13 +1,13 @@
 class ContentPresenter < BasePresenter
   presents :content
-  delegate :user, to: :content
+  delegate :user, :edited?, to: :content
 
   def time_since_created
     "#{time_ago_in_words(content.created_at)} ago"
   end
 
   def time_since_edited
-    " | edited #{time_ago_in_words(content.updated_at)} ago" if content.edited?
+    "edited #{time_ago_in_words(content.updated_at)} ago"
   end
 
   def linked_username

@@ -1,16 +1,17 @@
 class Comment < ActiveRecord::Base
   validates_presence_of :text
+  delegate :username, to: :user
 
   has_ancestry
   belongs_to :user
   belongs_to :post, counter_cache: true
 
-  delegate :username, to: :user
+  scope :recent, -> { order("created_at desc") }
 
   def edited?
     created_at != updated_at
   end
-  
+
   def post_title
     post.title
   end

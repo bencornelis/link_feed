@@ -3,7 +3,7 @@ require "rails_helper"
 describe "adding a top level comment to a post", js: true do
   it "puts the new comment at the top" do
     post = create_post
-    commenter = FactoryGirl.create(:user)
+    commenter = create(:user)
 
     login_as(commenter)
     visit post_path(post)
@@ -16,7 +16,7 @@ describe "adding a top level comment to a post", js: true do
 
   it "requires the user to be logged in", js: true do
     post = create_post
-    commenter = FactoryGirl.create(:user)
+    commenter = create(:user)
 
     visit post_path(post)
 
@@ -29,11 +29,11 @@ end
 describe "commenting on a comment", js: true do
   it "puts the new comment at the top" do
     post = create_post
-    first_commenter = FactoryGirl.create(:user)
-    comment = FactoryGirl.create(:comment)
+    first_commenter = create(:user)
+    comment = create(:comment)
     first_commenter.comments << comment
     post.comments << comment
-    second_commenter = FactoryGirl.create(:user)
+    second_commenter = create(:user)
 
     login_as(second_commenter)
     visit post_path(post)
@@ -55,8 +55,8 @@ end
 describe "editing a comment", js: true do
   it "lets a user edit their comment" do
     post = create_post
-    commenter = FactoryGirl.create(:user)
-    comment = FactoryGirl.create(:comment)
+    commenter = create(:user)
+    comment = create(:comment)
     commenter.comments << comment
     post.comments << comment
 
@@ -76,8 +76,8 @@ end
 describe "deleting a comment", js: true do
   it "lets a user delete their comment" do
     post = create_post
-    commenter = FactoryGirl.create(:user)
-    comment = FactoryGirl.create(:comment)
+    commenter = create(:user)
+    comment = create(:comment)
     commenter.comments << comment
     post.comments << comment
 
@@ -90,5 +90,19 @@ describe "deleting a comment", js: true do
     click_on "delete"
     expect(page).to have_no_content commenter.username
     expect(page).to have_no_content comment.text
+  end
+end
+
+describe "viewing all comments" do
+  it "displays all comments by most recent" do
+    new_comment =
+      create(:comment, text: "Great post!") do |comment|
+        create_post.comments << comment
+        create(:user).comments << comment
+      end
+
+    visit root_path
+    click_on "comments"
+    expect(page).to have_content "Great post!"
   end
 end
