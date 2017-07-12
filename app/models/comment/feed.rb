@@ -1,8 +1,8 @@
 class Comment < ActiveRecord::Base
   class Feed
     def initialize(params = {})
-      @page     = params[:page]
       @user     = params[:user]
+      @page     = params[:page]
       @per_page = params.fetch(:per_page, 10)
     end
 
@@ -12,7 +12,7 @@ class Comment < ActiveRecord::Base
 
     private
 
-    attr_reader :tag, :page, :user, :per_page
+    attr_reader :user, :page, :per_page
 
     def base_scope
       Comment.preload(:post, {:user => :roles})

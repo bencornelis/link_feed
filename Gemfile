@@ -17,6 +17,7 @@ gem "paperclip", "~> 4.3"
 gem "rolify", '~> 5.1.0'
 gem "monster_id"
 gem "ancestry"
+gem 'timecop'
 
 group :production do
   gem 'rails_12factor'
@@ -33,7 +34,6 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'launchy'
   gem 'database_cleaner'
-  gem 'timecop'
 end
 
 group :test do

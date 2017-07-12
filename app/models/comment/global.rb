@@ -11,7 +11,7 @@ class Comment < ActiveRecord::Base
 
     private
 
-    attr_reader :tag, :page, :per_page
+    attr_reader :page, :per_page
 
     def base_scope
       Comment.preload(:post, {:user => :roles})
