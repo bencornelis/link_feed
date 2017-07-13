@@ -6,7 +6,7 @@ class PostPolicy < ApplicationPolicy
   end
 
   def destroy?
-    admin?
+    admin? || owner?
   end
 
   def share?
