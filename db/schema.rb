@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170617005936) do
+ActiveRecord::Schema.define(version: 20170713215848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,9 @@ ActiveRecord::Schema.define(version: 20170617005936) do
   end
 
   add_index "comments", ["ancestry"], name: "index_comments_on_ancestry", using: :btree
+  add_index "comments", ["created_at"], name: "index_comments_on_created_at", using: :btree
+  add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "follows", force: :cascade do |t|
     t.integer  "follower_id"
@@ -34,6 +37,9 @@ ActiveRecord::Schema.define(version: 20170617005936) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "follows", ["followee_id"], name: "index_follows_on_followee_id", using: :btree
+  add_index "follows", ["follower_id"], name: "index_follows_on_follower_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
     t.string   "title"
@@ -45,6 +51,9 @@ ActiveRecord::Schema.define(version: 20170617005936) do
     t.integer  "comments_count", default: 0
     t.integer  "shares_count",   default: 0
   end
+
+  add_index "posts", ["created_at"], name: "index_posts_on_created_at", using: :btree
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
@@ -64,12 +73,18 @@ ActiveRecord::Schema.define(version: 20170617005936) do
     t.integer  "post_id"
   end
 
+  add_index "shares", ["post_id"], name: "index_shares_on_post_id", using: :btree
+  add_index "shares", ["user_id"], name: "index_shares_on_user_id", using: :btree
+
   create_table "taggings", force: :cascade do |t|
     t.integer  "post_id"
     t.integer  "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "taggings", ["post_id"], name: "index_taggings_on_post_id", using: :btree
+  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
 
   create_table "tags", force: :cascade do |t|
     t.string   "name"
@@ -78,7 +93,9 @@ ActiveRecord::Schema.define(version: 20170617005936) do
     t.integer  "posts_count", default: 0
   end
 
+  add_index "tags", ["created_at"], name: "index_tags_on_created_at", using: :btree
   add_index "tags", ["name"], name: "index_tags_on_name", using: :btree
+  add_index "tags", ["posts_count"], name: "index_tags_on_posts_count", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
@@ -93,6 +110,8 @@ ActiveRecord::Schema.define(version: 20170617005936) do
     t.integer  "followees_count", default: 0
     t.integer  "follows_count",   default: 0
   end
+
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   create_table "users_roles", id: false, force: :cascade do |t|
     t.integer "user_id"
