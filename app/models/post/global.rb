@@ -28,7 +28,7 @@ class Post < ActiveRecord::Base
     end
 
     def base_scope
-      Post.preload(:tags, {:user => :roles})
+      Post.all
     end
   end
 end

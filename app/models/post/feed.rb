@@ -32,8 +32,7 @@ class Post < ActiveRecord::Base
     end
 
     def base_scope
-      Post.preload(:tags, {:user => :roles})
-          .joins(:shares)
+      Post.joins(:shares)
           .where("shares.user_id IN (:followee_ids)", followee_ids: user_followee_ids)
     end
 

@@ -15,8 +15,7 @@ class Comment < ActiveRecord::Base
     attr_reader :user, :page, :per_page
 
     def base_scope
-      Comment.preload(:post, {:user => :roles})
-             .where("user_id IN (:followee_ids)", followee_ids: user_followee_ids)
+      Comment.where("user_id IN (:followee_ids)", followee_ids: user_followee_ids)
     end
 
     def user_followee_ids
