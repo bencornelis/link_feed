@@ -35,15 +35,15 @@ class User < ActiveRecord::Base
   end
 
   def recent_posts(number = 5)
-    posts.includes(:tags).limit(number)
+    posts.limit(number)
   end
 
   def recent_shared_posts(number = 5)
-    shared_posts.includes(:tags).limit(number)
+    shared_posts.limit(number)
   end
 
   def recent_comments(number = 5)
-    comments.includes(:post).limit(number)
+    comments.limit(number)
   end
 
   private

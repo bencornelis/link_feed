@@ -3,14 +3,14 @@ class UsersController < ApplicationController
 
   def show
     if params[:id]
-      @user = User.includes(:followees, :followers).find(params[:id])
+      @user = User.includes({:followers => :roles}, {:followees => :roles}).find(params[:id])
     else
       @user = current_user
     end
 
-    @recent_posts        = @user.recent_posts
-    @recent_shared_posts = @user.recent_shared_posts
-    @recent_comments     = @user.recent_comments
+    @recent_posts        = @user.recent_posts.includes(:tags)
+    @recent_shared_posts = @user.recent_shared_posts.includes(:tags, {:user => :roles})
+    @recent_comments     = @user.recent_comments.includes({:post => {:user => :roles}})
   end
 
   def new

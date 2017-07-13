@@ -34,6 +34,6 @@ class ApplicationController < ActionController::Base
   end
 
   def reload_user_followees!
-    @current_user = User.includes(:followees).find(session[:user_id]) if session[:user_id]
+    @current_user = User.includes({:followees => :roles}).find(session[:user_id]) if session[:user_id]
   end
 end
