@@ -13,7 +13,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @comments = @post.comments.includes({user: :roles}).arrange(order: "created_at asc")
+    @comments = @post.comments.arrange(order: "created_at asc")
     @comment = Comment.new
   end
 

@@ -1,13 +1,5 @@
 <% content_for :sub_nav do %>
-  <nav id="sub_nav">
-    <%= nav_link "recent", recent_path %> | <%= nav_link "comments", comments_path %>
-  </nav>
+  <%= render "navs/global" %>
 <% end %>
 
-<ul class="comments">
-  <% @comments.each do |comment| %>
-    <%= render "comment_blurb", comment: comment %>
-  <% end %>
-</ul>
-
-<%= will_paginate @comments, :page_links => false %>
+<%= render "comments_list" %>

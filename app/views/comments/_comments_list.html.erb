@@ -1,0 +1,7 @@
+<ul class="comments">
+  <% @comments.each do |comment| %>
+    <%= render "comments/comment_blurb", comment: comment %>
+  <% end %>
+</ul>
+
+<%= will_paginate @comments, :page_links => false %>

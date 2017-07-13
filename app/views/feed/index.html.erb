@@ -1,13 +1,5 @@
 <% content_for :sub_nav do %>
-  <nav id="sub_nav">
-    <%= nav_link "recent", feed_recent_path %> | <%= nav_link "comments", feed_comments_path %>
-  </nav>
+  <%= render "navs/feed" %>
 <% end %>
 
-<ul class="posts">
-  <%= render @posts, is_blurb: false %>
-</ul>
-
-<%= will_paginate @posts, :page_links => false %>
-
-<%= javascript_include_tag "posts" %>
+<%= render "posts/posts_list" %>
