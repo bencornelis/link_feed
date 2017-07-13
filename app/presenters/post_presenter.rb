@@ -14,11 +14,13 @@ class PostPresenter < ContentPresenter
     link_to comments_count, post_path(post)
   end
 
-  def linked_tags(divider = "")
-    content_tag(:span, class: "tags") do
+  def linked_tags(is_blurb)
+    divider = is_blurb ? "" : "/"
+    container = is_blurb ? :div : :span
+    content_tag(container, class: "tags") do
       post.tags.each do |tag|
         concat " #{divider} "
-        concat tag_link(tag)
+        concat (is_blurb ? ext_tag_link(tag) : tag_link(tag))
       end
     end
   end
