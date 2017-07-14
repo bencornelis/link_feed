@@ -11,6 +11,16 @@ require 'support/authentication_helpers'
 require 'support/post_helpers'
 require 'support/factory_girl'
 require 'capybara/poltergeist'
+require 'pundit/matchers'
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :active_record
+    with.library :active_model
+  end
+end
+
 Capybara.javascript_driver = :poltergeist
 # Add additional requires below this line. Rails is not loaded until this point!
 

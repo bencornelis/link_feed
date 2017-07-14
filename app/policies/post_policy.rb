@@ -1,17 +1,32 @@
 class PostPolicy < ApplicationPolicy
-  policy_for :post
+  def edit?
+    user.present? && admin_or_owner?
+  end
 
   def update?
-    admin? || owner?
+    edit?
   end
 
   def destroy?
-    admin? || owner?
+    edit?
   end
 
   def share?
-    not owner? and not user.has_shared?(post)
+    user.present? &&
+    !owner?      &&
+    !user.has_shared?(record)
   end
 
-  require_present_user :update, :destroy, :share
+  private
+  def admin_or_owner?
+    admin? || owner?
+  end
+
+  def owner?
+    user == record.user
+  end
+
+  def admin?
+    user.has_cached_role? :admin
+  end
 end

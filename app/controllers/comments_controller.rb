@@ -18,6 +18,7 @@ class CommentsController < ApplicationController
   def edit
     @post = Post.find(params[:post_id])
     @comment = @post.comments.find(params[:id])
+    authorize @comment
     respond_to do |format|
       format.js
     end
@@ -42,6 +43,7 @@ class CommentsController < ApplicationController
   def update
     @comment = Comment.find(params[:id])
     @comment.update(comment_params)
+    authorize @comment
     respond_to do |format|
       format.js
     end

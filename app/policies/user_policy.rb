@@ -1,13 +1,12 @@
 class UserPolicy < ApplicationPolicy
-  policy_for :other_user
-
   def follow?
-    user != other_user and not user.is_following?(other_user)
+    user.present? &&
+    other_user?   &&
+    !user.is_following?(record)
   end
 
-  def detect_followee?
-    user.is_following?(other_user)
+  private
+  def other_user?
+    user != record
   end
-
-  require_present_user :follow, :detect_followee
 end

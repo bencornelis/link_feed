@@ -12,7 +12,7 @@ module ApplicationHelper
       "admin"
     elsif user.has_cached_role? :moderator
       "moderator"
-    elsif policy(user).detect_followee?
+    elsif current_user.present? && current_user.is_following?(user)
       "following"
     else
       "regular"

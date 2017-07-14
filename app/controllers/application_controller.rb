@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   def user_logged_in?
-    current_user != nil
+    current_user.present?
   end
 
   helper_method :current_user
