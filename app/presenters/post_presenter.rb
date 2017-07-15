@@ -20,7 +20,7 @@ class PostPresenter < ContentPresenter
     content_tag(container, class: "tags") do
       post.tags.each do |tag|
         concat " #{divider} "
-        concat (is_blurb ? ext_tag_link(tag) : tag_link(tag))
+        concat (is_blurb ? abs_tag_link(tag) : rel_tag_link(tag))
       end
     end
   end
