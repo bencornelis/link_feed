@@ -1,16 +1,17 @@
-## LinkFeed
+## Monsters
 
-Link aggregator/community forum based loosely on [hubski](https://hubski.com/).
+Link aggregator site based loosely on [Hacker News](https://news.ycombinator.com/) and [hubski](https://hubski.com/).
 
 https://blooming-mesa-35436.herokuapp.com/
 
 ### Features
 
 * CRUD operations on posts and comments
-* posts can be filtered by time, shares, or tags
+* posts can be ranked by score or time
+* posts are tagged with multiple tags and can be filtered by tag
 * users can follow other users
 * users can share posts with followers
-* user feed consisting of posts that have been shared or posted by their followees.
+* user feed consisting of posts that have been shared by a user's followees
 
 ### About
 
@@ -19,7 +20,12 @@ My goal with this project was to learn more about active record associations and
 * user authentication with bcrypt
 * user authorization with pundit
 * user roles with rolify
+* ancestry for nested comments
+* goldiloader for automatic eager loading
+* pagination with will_paginate
 * presenter design pattern for views
+* Hacker News formula for post ranking
+* faker data for database seeding
 
 ### Setup
 
