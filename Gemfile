@@ -19,6 +19,7 @@ gem "monster_id"
 gem "ancestry"
 gem 'timecop'
 gem 'goldiloader'
+gem 'newrelic_rpm'
 
 group :production do
   gem 'rails_12factor'
