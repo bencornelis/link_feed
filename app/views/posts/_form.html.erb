@@ -8,13 +8,16 @@
 
       <tr>
         <td><%= f.label :url, "url", class: "form_label" %></td>
-        <td><%= f.url_field :url, class: "form_input_wide" %></td>
-        <td class="subdued">(leave blank for text only)</td>
+        <td>
+          <%= f.url_field :url, class: "form_input_wide" %>
+          <span class="subdued">(leave blank for text only)</span>
+        </td>
       </tr>
 
       <tr>
         <td><%= f.label :text, "text", class: "form_label" %></td>
-        <td><%= f.text_area :text, class: "form_textarea", rows: 10, cols: 60 %></td>
+        <td><%= f.text_area :text, class: "form_textarea tinymce", rows: 10, cols: 120 %></td>
+        <%= tinymce %>
       </tr>
 
       <tr>

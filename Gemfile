@@ -20,6 +20,7 @@ gem "ancestry"
 gem 'timecop'
 gem 'goldiloader'
 gem 'newrelic_rpm'
+gem 'tinymce-rails'
 
 group :production do
   gem 'rails_12factor'

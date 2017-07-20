@@ -14,6 +14,13 @@
     }
   }
 
+  #new_post {
+    width: 1000px;
+    &.form_table {
+      width: 100%;
+    }
+  }
+
   ul {
     padding-left: 0px;
 
