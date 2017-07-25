@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe Comment::Feed do
-  describe "#recent" do
+  describe "#comments" do
     let!(:followee)     { create(:user) }
     let!(:non_followee) { create(:user) }
 
@@ -49,18 +49,18 @@ describe Comment::Feed do
     subject(:feed) { Comment::Feed.new(user: user) }
 
     it "only includes comments by followees" do
-      expect(feed.recent).to include new_comment, day_old_comment, two_day_old_comment
-      expect(feed.recent).not_to include non_feed_comment
+      expect(feed.comments).to include new_comment, day_old_comment, two_day_old_comment
+      expect(feed.comments).not_to include non_feed_comment
     end
 
     it "orders followee comments by date" do
-      expect(feed.recent).to eq [new_comment, day_old_comment, two_day_old_comment]
+      expect(feed.comments).to eq [new_comment, day_old_comment, two_day_old_comment]
     end
 
     context "when filtering by page" do
       subject(:feed) { Comment::Feed.new(user: user, page: 3, per_page: 1) }
-      it "keeps the order" do
-        expect(feed.recent).to eq [two_day_old_comment]
+      it "only shows that page" do
+        expect(feed.comments).to eq [two_day_old_comment]
       end
     end
   end

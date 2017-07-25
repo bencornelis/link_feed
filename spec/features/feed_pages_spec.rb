@@ -1,13 +1,10 @@
 require "rails_helper"
 
-describe "viewing the feed" do
+describe "viewing the post feed" do
   it "only displays posts shared by user followees" do
     followee = create(:user)
     non_followee = create(:user)
-
-    current_user =
-      create(:user) { |user|
-        user.followees << followee }
+    current_user = create(:user) { |user| user.followees << followee }
 
     feed_post = create_post(title: "Title 1")
     non_feed_post = create_post(title: "Title 2")
@@ -23,12 +20,10 @@ describe "viewing the feed" do
   end
 end
 
-describe "sorting by recent" do
+describe "sorting posts by recent" do
   it "displays feed posts ordered by time" do
     followee = create(:user)
-    current_user =
-      create(:user) { |user|
-        user.followees << followee }
+    current_user = create(:user) { |user| user.followees << followee }
 
     # default is 10 posts per page
     (1..11).each do |n|
@@ -45,7 +40,7 @@ describe "sorting by recent" do
     end
 
     login_as(current_user)
-    visit feed_path
+    visit posts_feed_path
     click_on "recent"
     expect(page).to have_content "Title 1"
     expect(page).to have_no_content "Title 11"
@@ -57,11 +52,7 @@ describe "viewing comments" do
   it "displays all comments by the user's followees" do
     followee = create(:user)
     non_followee = create(:user)
-
-    current_user =
-      create(:user) { |user|
-        user.followees << followee }
-
+    current_user = create(:user) { |user| user.followees << followee }
     post = create_post
 
     feed_comment =
@@ -77,7 +68,7 @@ describe "viewing comments" do
       end
 
     login_as(current_user)
-    visit feed_path
+    visit posts_feed_path
     click_on "comments"
     expect(page).to have_content "Great post!"
     expect(page).to have_no_content "Terrible post!"

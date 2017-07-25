@@ -3,12 +3,7 @@ class PostsController < ApplicationController
   before_filter :reload_user_followees!, only: [:index, :recent, :show, :feed]
 
   def index
-    @posts = Post::Global.new(global_params).by_score
-  end
-
-  def recent
-    @posts = Post::Global.new(global_params).recent
-    render :index
+    @posts = Post::Global.new(global_params).posts
   end
 
   def show
@@ -59,6 +54,6 @@ class PostsController < ApplicationController
   end
 
   def global_params
-    params.permit(:tag, :page)
+    params.permit(:tag, :page, :sort)
   end
 end

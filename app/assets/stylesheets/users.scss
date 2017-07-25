@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#users_controller {
+#users_controller, #profiles_controller {
   .user_info_header {
     text-decoration: underline;
   }
@@ -26,5 +26,5 @@
   .avatar {
     border-radius: 50%;
     border: 1px solid #777;
-  }  
+  }
 }

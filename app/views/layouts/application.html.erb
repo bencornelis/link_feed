@@ -20,9 +20,9 @@
 
   <div id="right_nav">
     <% if user_logged_in? %>
-      <%= link_to "feed", feed_path %>
+      <%= link_to "feed", posts_feed_path %>
     <% end %>
-    <%= link_to "global", root_path %>
+    <%= link_to "global", global_path %>
     <%= link_to "tags", tags_path %>
     <%= link_to "+ post", new_post_path, id: "new_post_link",
        class: (user_logged_in? ? "btn_yellow" : "btn_blue") %>

@@ -1,6 +1,6 @@
 module TagsHelper
   def rel_tag_link(tag)
-    link_to tag.with_hash, { tag: tag.name }
+    link_to tag.with_hash, params.permit(:sort).merge({ tag: tag.name })
   end
 
   def abs_tag_link(tag)

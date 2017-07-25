@@ -2,12 +2,7 @@ class UsersController < ApplicationController
   before_filter :reload_user_followees!, only: [:show]
 
   def show
-    if params[:id]
-      @user = User.find(params[:id])
-    else
-      @user = current_user
-    end
-
+    @user                = User.find(params[:id])
     @recent_posts        = @user.recent_posts
     @recent_shared_posts = @user.recent_shared_posts
     @recent_comments     = @user.recent_comments

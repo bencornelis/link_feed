@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   before_filter :reload_user_followees!, only: [:index]
 
   def index
-    @comments = Comment::Global.new(global_params).recent
+    @comments = Comment::Global.new(global_params).comments
   end
 
   def new

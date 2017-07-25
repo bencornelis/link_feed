@@ -2,4 +2,10 @@
   <%= render "navs/global" %>
 <% end %>
 
-<%= render "comments_list" %>
+<ul class="comments">
+  <% @comments.each do |comment| %>
+    <%= render "comment_blurb", comment: comment %>
+  <% end %>
+</ul>
+
+<%= will_paginate @comments, page_links: false, class: "digg_pagination" %>

@@ -1,9 +1,9 @@
 <% content_for :sub_nav do %>
-  <%= render "navs/global" %>
+  <%= render "navs/feed" %>
 <% end %>
 
 <ul class="posts">
-  <%= render @posts, is_blurb: false %>
+  <%= render partial: "posts/post", collection: @posts, locals: { is_blurb: false } %>
 </ul>
 
 <%= will_paginate @posts, page_links: false, class: "digg_pagination" %>

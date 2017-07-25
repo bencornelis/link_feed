@@ -3,25 +3,26 @@ class Post < ActiveRecord::Base
     def initialize(params = {})
       @tag      = params[:tag]
       @page     = params[:page]
-      @user     = params[:user]
       @per_page = params.fetch(:per_page, 10)
+      @sort     = params[:sort]
+      @user     = params[:user]
     end
+
+    def posts
+      sort == "time" ? by_time : by_score
+    end
+
+    private
+
+    attr_reader :tag, :page, :per_page, :sort, :user
 
     def by_score
       score_scope.filter_tag_and_page(tag, page, per_page)
     end
 
-    def recent
+    def by_time
       base_scope.by_time.filter_tag_and_page(tag, page, per_page)
     end
-
-    def all
-      base_scope
-    end
-
-    private
-
-    attr_reader :tag, :page, :user, :per_page
 
     def score_scope
       base_scope.group("posts.id").order("#{score_sql} desc")
