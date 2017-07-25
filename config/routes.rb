@@ -19,14 +19,11 @@ Rails.application.routes.draw do
   namespace :comments do
     resource :feed, only: [:show]
   end
-  
-  resources :comments, only: [:index]
 
+  resources :comments, only: [:index]
   resources :tags, only: [:index]
 
-  get "/global" => "posts#index"
-  get "/recent" => "posts#recent"
-
+  get "/global"  => "posts#index"
   get "/login"   => "sessions#new"
   post "/login"  => "sessions#create"
   get "/logout"  => "sessions#destroy"
