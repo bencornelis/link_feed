@@ -10,4 +10,12 @@
   ul {
     padding-left: 0;
   }
+
+  .tag_group {
+    a {
+      &:link, &:visited {
+        color: #777;
+      }
+    }
+  }
 }

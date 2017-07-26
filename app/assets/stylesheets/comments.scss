@@ -1,3 +1,19 @@
 // Place all the styles related to the comments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#comments_controller, #comments-feeds_controller {
+  #sub_nav {
+    float: right;
+    border-bottom: 1px solid #e3e3e3;
+    padding: 15px 20px 10px 7px;
+
+    a {
+      color: #3e6d8e;
+    }
+  }
+
+  ul {
+    padding-left: 0px;
+  }
+}
