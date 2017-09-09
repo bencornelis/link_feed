@@ -9,8 +9,10 @@ RSpec.describe Post, type: :model do
   it { should have_many :tags }
 
   it "should assign tags after being saved" do
-    post = build(:post, title: "test post", tag_names: "world news")
-    post.save
-    expect(post.tags.map(&:name)).to eq %w(world news)
+    post = build :post, title: "test post", tag_names: "world news"
+    post.save!
+
+    tag_names = post.tags.pluck(:name)
+    expect(tag_names).to match_array %w(world news)
   end
 end
