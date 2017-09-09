@@ -4,6 +4,12 @@ FactoryGirl.define do
     sequence(:password) { |n| "person#{n}pwd" }
     sequence(:email)    { |n| "person#{n}@gmail.com" }
 
+    trait :admin do
+      after(:create) do |user|
+        user.add_role :admin
+      end
+    end
+    
     factory :user_with_followees do
       transient do
         followees_count 2
