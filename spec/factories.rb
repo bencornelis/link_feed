@@ -9,6 +9,7 @@ FactoryGirl.define do
     sequence(:title) { |n| "Title #{n}" }
     url ""
     tag_names "Tag1 Tag2"
+    user
   end
 
   factory :tag do
@@ -17,5 +18,7 @@ FactoryGirl.define do
 
   factory :comment do
     sequence(:text) { |n| "the number #{n} is my favorite! "}
+    user
+    post
   end
 end
