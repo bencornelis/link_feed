@@ -9,7 +9,7 @@ FactoryGirl.define do
         user.add_role :admin
       end
     end
-    
+
     factory :user_with_followees do
       transient do
         followees_count 2
@@ -24,7 +24,6 @@ FactoryGirl.define do
   factory :post do
     sequence(:title) { |n| "Title #{n}" }
     url ""
-    tag_names "Tag1 Tag2"
     user
 
     factory :post_with_shares do
