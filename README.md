@@ -17,6 +17,7 @@ https://blooming-mesa-35436.herokuapp.com/
 
 My goal with this project was to learn more about active record associations and experiment with some rails design patterns. It uses:
 
+* RSpec, Capybara, and Factory Girl for testing
 * user authentication with bcrypt
 * user authorization with pundit
 * user roles with rolify
