@@ -4,10 +4,5 @@ class Follow < ActiveRecord::Base
   belongs_to :followee, class_name: "User",
     foreign_key: :followee_id, counter_cache: :followers_count
 
-  before_create :check_if_already_followed
-
-  private
-  def check_if_already_followed
-    false if Follow.exists?(follower_id: follower_id, followee_id: followee_id)
-  end
+  validates :follower_id, uniqueness: { scope: :followee_id }
 end
