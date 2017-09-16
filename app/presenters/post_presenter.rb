@@ -3,7 +3,7 @@ class PostPresenter < ContentPresenter
   delegate :title, :text, :url, to: :post
 
   def comments_count
-    "#{content.comments_count} #{content.comments_count == 1 ? 'comment' : 'comments'}"
+    pluralize content.comments_count, 'comment'
   end
 
   def linked_title
@@ -15,11 +15,10 @@ class PostPresenter < ContentPresenter
   end
 
   def linked_tags(is_blurb)
-    divider = is_blurb ? "" : "/"
-    container = is_blurb ? :div : :span
+    divider, container = is_blurb ? [' ', :div] : [' / ', :span]
     content_tag(container, class: "tags") do
       post.tags.each do |tag|
-        concat " #{divider} "
+        concat divider
         concat (is_blurb ? abs_tag_link(tag) : rel_tag_link(tag))
       end
     end
@@ -27,26 +26,27 @@ class PostPresenter < ContentPresenter
 
   def followee_shares
     count = post.try(:followee_shares_count)
-    if count
-      text = "#{count} followed #{count == 1 ? 'share' : 'shares'}"
-      h.capture do
-        concat " / "
-        concat content_tag :span, text, class: "followee_shares"
-      end
+    return unless count
+    h.capture do
+      concat " / "
+      concat content_tag :span,
+             pluralize(count, 'followed share'),
+             class: "followee_shares"
     end
   end
 
   def shares
-    text = "#{post.shares_count} #{post.shares_count == 1 ? 'share' : 'shares'}"
-    content_tag :span, text, class: "shares"
+    content_tag :span, pluralize(post.shares_count, 'share'), class: 'shares'
   end
 
   def share_link
     content_tag :span, class: "share_link" do
       concat "| "
-      concat link_to "+ share", post_shares_path(post),
-                                remote: true, method: :post,
-                                class: "btn_yellow"
+      concat link_to "+ share",
+                     post_shares_path(post),
+                     remote: true,
+                     method: :post,
+                     class: "btn_yellow"
     end
   end
 

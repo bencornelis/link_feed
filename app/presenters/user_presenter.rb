@@ -8,8 +8,9 @@ class UserPresenter < BasePresenter
   end
 
   def linked_username(other_user)
-    link_to other_user.username, user_path(other_user),
-      class: user_link_class(other_user)
+    link_to other_user.username,
+            user_path(other_user),
+            class: user_link_class(other_user)
   end
 
   def followee_list
@@ -23,13 +24,14 @@ class UserPresenter < BasePresenter
   end
 
   def follow_link
-    link_to "follow #{username}", user_follows_path(user),
-                                  remote: true, method: :post,
-                                  class: "btn_yellow"
+    link_to "follow #{username}",
+            user_follows_path(user),
+            remote: true,
+            method: :post,
+            class: "btn_yellow"
   end
 
   def shares
-    "#{shares_count} #{shares_count == 1 ? 'share' : 'shares'}"
+    pluralize shares_count, 'share'
   end
-
 end

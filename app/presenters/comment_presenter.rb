@@ -7,13 +7,14 @@ class CommentPresenter < ContentPresenter
   end
 
   def reply_link
-    link_to "reply", new_post_comment_path(post, parent_id: comment), remote: true
+    link_to "reply",
+            new_post_comment_path(post, parent_id: comment),
+            remote: true
   end
 
   def parent_link
-    if parent_id
-      link_to "parent", "#comment_#{parent_id}"
-    end
+    return unless parent_id
+    link_to "parent", "#comment_#{parent_id}"
   end
 
   def distant_parent_link
@@ -21,11 +22,17 @@ class CommentPresenter < ContentPresenter
   end
 
   def edit_link
-    link_to "edit", edit_post_comment_path(post, comment), class: "btn_blue", remote: true
+    link_to "edit",
+            edit_post_comment_path(post, comment),
+            class: "btn_blue",
+            remote: true
   end
 
   def delete_link
-    link_to "delete", post_comment_path(post, comment), class: "btn_yellow", method: :delete
+    link_to "delete",
+            post_comment_path(post, comment),
+            class: "btn_yellow",
+            method: :delete
   end
 
   def post_link(link_name)

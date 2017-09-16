@@ -11,7 +11,8 @@ class ContentPresenter < BasePresenter
   end
 
   def linked_username
-    link_to user.username, user_path(user),
-      class: user_link_class(user)
+    link_to user.username,
+            user_path(user),
+            class: user_link_class(user)
   end
 end
