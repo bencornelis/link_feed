@@ -14,7 +14,7 @@ class CommentPresenter < ContentPresenter
 
   def parent_link
     return unless parent_id
-    link_to "parent", "#comment_#{parent_id}"
+    link_to "parent", "#comment_#{parent_id}", data: { turbolinks: 'false' }
   end
 
   def distant_parent_link
