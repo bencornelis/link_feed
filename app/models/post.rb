@@ -1,5 +1,8 @@
 class Post < ActiveRecord::Base
   resourcify
+
+  DEFAULT_PER_PAGE = 10
+
   validates_presence_of :title
 
   attr_writer :tag_names
@@ -14,11 +17,16 @@ class Post < ActiveRecord::Base
 
   delegate :username, to: :user
 
-  scope :by_time,             -> { order("posts.created_at desc") }
-  scope :with_shares,         -> { where("posts.shares_count > 0")}
-  scope :find_with_comments,  -> (id)  { includes(:comments).find(id) }
-  scope :with_tag,            -> (tag_name) { joins(:tags).where(tags: {name: tag_name}) if tag_name }
-  scope :filter_tag_and_page, -> (tag, page, per_page) { with_tag(tag).paginate(page: page, per_page: per_page) }
+  scope :by_time, -> { order("posts.created_at desc") }
+  scope :with_shares, -> { where("posts.shares_count > 0") }
+  scope :find_with_comments,  -> (id) { includes(:comments).find(id) }
+  scope :with_tag, -> (tag_name) { joins(:tags).where(tags: {name: tag_name}) }
+
+  def self.filter(options)
+    scope = options[:tag] ? with_tag(options[:tag]) : all
+    scope.paginate(page: options[:page],
+                   per_page: options.fetch(:per_page, DEFAULT_PER_PAGE))
+  end
 
   def text_only?
     url.empty?

@@ -1,11 +1,9 @@
 class Post < ActiveRecord::Base
   class Feed
     def initialize(params = {})
-      @tag      = params[:tag]
-      @page     = params[:page]
-      @per_page = params.fetch(:per_page, 10)
-      @sort     = params[:sort]
-      @user     = params[:user]
+      @sort = params[:sort]
+      @user = params[:user]
+      @filter_options = params.slice(:tag, :page, :per_page)
     end
 
     def posts
@@ -14,14 +12,14 @@ class Post < ActiveRecord::Base
 
     private
 
-    attr_reader :tag, :page, :per_page, :sort, :user
+    attr_reader :sort, :user, :filter_options
 
     def by_score
-      score_scope.filter_tag_and_page(tag, page, per_page)
+      score_scope.filter(filter_options)
     end
 
     def by_time
-      base_scope.by_time.filter_tag_and_page(tag, page, per_page)
+      base_scope.by_time.filter(filter_options)
     end
 
     def score_scope
@@ -33,8 +31,10 @@ class Post < ActiveRecord::Base
     end
 
     def base_scope
-      Post.joins(:shares)
-          .where("shares.user_id IN (:followee_ids)", followee_ids: user_followee_ids)
+      Post
+        .joins(:shares)
+        .where("shares.user_id IN (:followee_ids)",
+               followee_ids: user_followee_ids)
     end
 
     def user_followee_ids

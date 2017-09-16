@@ -1,10 +1,8 @@
 class Post < ActiveRecord::Base
   class Global
     def initialize(params = {})
-      @tag      = params[:tag]
-      @page     = params[:page]
-      @per_page = params.fetch(:per_page, 10)
-      @sort     = params[:sort]
+      @sort = params[:sort]
+      @filter_options = params.slice(:tag, :page, :per_page)
     end
 
     def posts
@@ -13,14 +11,14 @@ class Post < ActiveRecord::Base
 
     private
 
-    attr_reader :tag, :page, :per_page, :sort
+    attr_reader :sort, :filter_options
 
     def by_score
-      score_scope.filter_tag_and_page(tag, page, per_page)
+      score_scope.filter(filter_options)
     end
 
     def by_time
-      base_scope.by_time.filter_tag_and_page(tag, page, per_page)
+      base_scope.by_time.filter(filter_options)
     end
 
     def score_scope

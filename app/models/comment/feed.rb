@@ -19,7 +19,8 @@ class Comment < ActiveRecord::Base
     end
 
     def base_scope
-      Comment.where("user_id IN (:followee_ids)", followee_ids: user_followee_ids)
+      Comment.where("user_id IN (:followee_ids)",
+                    followee_ids: user_followee_ids)
     end
 
     def user_followee_ids
