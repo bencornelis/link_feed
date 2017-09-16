@@ -2,20 +2,21 @@ require "rails_helper"
 
 describe "following a user" do
   it "lets a logged in user follow another user", js: true do
-    post = create :post
-    user = create :user
+    follower = create :user
+    followee = create :user
 
-    login_as(user)
-    visit post_path(post)
+    login_as(follower)
+    visit user_path(followee)
 
-    click_on post.username
-    click_on "follow #{post.username}"
+    expect(page).to have_content "follow #{followee.username}"
+    expect(page).to have_content "Followers (0)"
 
-    expect(page).to have_no_content "follow #{post.username}"
-    expect(page).to have_content    "Followers (1): #{user.username}"
+    click_on "follow #{followee.username}"
+
+    expect(page).to have_no_content "follow #{followee.username}"
+    expect(page).to have_content    "Followers (1): #{follower.username}"
 
     visit profile_path
-
-    expect(page).to have_content "Following (1): #{post.username}"
+    expect(page).to have_content "Following (1): #{followee.username}"
   end
 end
