@@ -103,9 +103,13 @@ describe "sharing a post" do
     login_as(user)
     visit post_path(post)
 
+    expect(page).to have_content "0 shares"
+
     click_on "+ share"
     expect(page).to have_no_content "+ share"
-    click_on "Profile"
+    expect(page).to have_content "1 share"
+
+    visit profile_path
     expect(page).to have_content post.title
   end
 end
@@ -160,7 +164,7 @@ describe "filtering by tag" do
 
     visit root_path
     click_on "#Tag1"
-    
+
     expect(page).to have_content "Title 1"
     expect(page).to have_no_content "Title 2"
   end
