@@ -19,7 +19,7 @@ class Post < ActiveRecord::Base
 
   scope :by_time, -> { order("posts.created_at desc") }
   scope :with_shares, -> { where("posts.shares_count > 0") }
-  scope :find_with_comments,  -> (id) { includes(:comments).find(id) }
+  scope :find_with_comments, -> (id) { includes(:comments).find(id) }
   scope :with_tag, -> (tag_name) { joins(:tags).where(tags: {name: tag_name}) }
 
   def self.filter(options)
@@ -42,10 +42,9 @@ class Post < ActiveRecord::Base
 
   private
   def assign_tags
-    if @tag_names
-      self.tags = @tag_names.split(/\s+/).map do |name|
-        Tag.find_or_create_by(name: name)
-      end
+    return unless @tag_names
+    self.tags = @tag_names.split(/\s+/).map do |name|
+      Tag.find_or_create_by(name: name)
     end
   end
 end
