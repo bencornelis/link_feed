@@ -12,7 +12,7 @@ module ApplicationHelper
       "admin"
     elsif user.has_cached_role? :moderator
       "moderator"
-    elsif current_user.present? && current_user.is_following?(user)
+    elsif current_user.present? && current_user.following?(user)
       "following"
     else
       "regular"

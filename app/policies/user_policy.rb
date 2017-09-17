@@ -2,7 +2,7 @@ class UserPolicy < ApplicationPolicy
   def follow?
     user.present? &&
     other_user?   &&
-    !user.is_following?(record)
+    !user.following?(record)
   end
 
   private

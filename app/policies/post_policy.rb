@@ -13,8 +13,8 @@ class PostPolicy < ApplicationPolicy
 
   def share?
     user.present? &&
-    !owner?      &&
-    !user.has_shared?(record)
+    !owner?       &&
+    !user.shared?(record)
   end
 
   private

@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   validates :username, presence: true
   validates :email, presence: true
   validates :password, confirmation: true
-  
+
   before_save :encrypt_password
 
   has_many :posts
@@ -26,11 +26,11 @@ class User < ActiveRecord::Base
     end
   end
 
-  def is_following?(other_user)
-    followees.include?(other_user)
+  def following?(other_user)
+    followees.exists?(other_user.id)
   end
 
-  def has_shared?(post)
+  def shared?(post)
     shared_posts.exists?(post.id)
   end
 
