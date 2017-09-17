@@ -4,9 +4,7 @@
       <span class="comment_toggler">[-]</span>
       <%= comment_presenter.linked_username %>
       <%= comment_presenter.time_since_created %>
-      <% if comment_presenter.edited? %>
-        | <%= comment_presenter.time_since_edited %>
-      <% end %>
+      <%= comment_presenter.time_since_edited if comment_presenter.edited? %>
     </h5>
 
     <div class="comment_main">
@@ -17,14 +15,8 @@
       <footer class="comment_links">
         <%= comment_presenter.reply_link %>
         <%= comment_presenter.parent_link %>
-
-        <% if policy(comment).update? %>
-          <%= comment_presenter.edit_link %>
-        <% end %>
-
-        <% if policy(comment).destroy? %>
-          <%= comment_presenter.delete_link %>
-        <% end %>
+        <%= comment_presenter.edit_link if policy(comment).update? %>
+        <%= comment_presenter.delete_link if policy(comment).destroy? %>
       </footer>
 
       <p class="comment_form"></p>

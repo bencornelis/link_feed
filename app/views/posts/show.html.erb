@@ -6,15 +6,10 @@
 
     <h5 class="post_details">
       <%= post_presenter.linked_username %>
-      <%= post_presenter.time_since_created %> |
-      <% if post_presenter.edited? %>
-        <%= post_presenter.time_since_edited %> |
-      <% end %>
+      <%= post_presenter.time_since_created %>
+      <%= post_presenter.time_since_edited if post_presenter.edited? %> |
       <%= post_presenter.shares %>
-
-      <% if policy(@post).share? %>
-        <%= post_presenter.share_link %>
-      <% end %>
+      <%= post_presenter.share_link if policy(@post).share? %>
     </h5>
 
     <article class="post_text">
@@ -22,13 +17,8 @@
     </article>
 
     <footer class="post_options">
-      <% if policy(@post).update? %>
-        <%= post_presenter.edit_link %>
-      <% end %>
-
-      <% if policy(@post).destroy? %>
-        <%= post_presenter.delete_link %>
-      <% end %>
+      <%= post_presenter.edit_link if policy(@post).update? %>
+      <%= post_presenter.delete_link if policy(@post).destroy? %>
     </footer>
   <% end %>
 
