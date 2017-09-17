@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
 
   DEFAULT_PER_PAGE = 10
 
-  validates_presence_of :title
+  validates :title, presence: true
 
   attr_writer :tag_names
   after_save :assign_tags

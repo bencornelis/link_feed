@@ -1,5 +1,5 @@
 class Comment < ActiveRecord::Base
-  validates_presence_of :text
+  validates :text, presence: true
   delegate :username, to: :user
 
   has_ancestry
