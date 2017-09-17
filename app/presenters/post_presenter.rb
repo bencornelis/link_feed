@@ -24,17 +24,6 @@ class PostPresenter < ContentPresenter
     end
   end
 
-  def followee_shares
-    count = post.try(:followee_shares_count)
-    return unless count
-    h.capture do
-      concat " / "
-      concat content_tag :span,
-             pluralize(count, 'followed share'),
-             class: "followee_shares"
-    end
-  end
-
   def shares
     content_tag :span, pluralize(post.shares_count, 'share'), class: 'shares'
   end

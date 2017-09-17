@@ -9,14 +9,12 @@
 
         <div class="comments_and_tags">
           <%= post_presenter.linked_comments %>
-          
           <%= post_presenter.linked_tags(is_blurb) %>
-          <%= post_presenter.followee_shares %>
         </div>
       </div>
 
       <% unless is_blurb %>
-        <%= render "posts/more_info", presenter: post_presenter%>
+        <%= render "posts/more_info", presenter: post_presenter %>
       <% end %>
     </div>
   <% end %>
