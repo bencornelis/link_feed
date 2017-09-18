@@ -46,6 +46,10 @@ class User < ActiveRecord::Base
     comments.limit(number)
   end
 
+  def followee_follow(other_user)
+    followee_follows.find_by(follower_id: other_user.id)
+  end
+
   private
   def encrypt_password
     self.password_salt = BCrypt::Engine.generate_salt

@@ -12,11 +12,10 @@
         <%= user_presenter.follower_list %>
       </div>
 
-      <% if policy(@user).follow? %>
-        <div class="follow_link">
-          <%= user_presenter.follow_link %>
-        </div>
-      <% end %>
+      <div class="follow_link">
+        <%= user_presenter.follow_link if policy(@user).follow? %>
+        <%= user_presenter.unfollow_link if policy(@user).unfollow? %>
+      </div>
 
       <h5><%= user_presenter.shares %></h5>
     </div>

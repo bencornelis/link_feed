@@ -8,6 +8,7 @@ describe UserPolicy do
     let(:other_user) { create :user }
 
     it { should forbid_action(:follow) }
+    it { should forbid_action(:unfollow) }
   end
 
   context "for the same user" do
@@ -15,6 +16,7 @@ describe UserPolicy do
     let(:other_user) { user }
 
     it { should forbid_action(:follow) }
+    it { should forbid_action(:unfollow) }
   end
 
   context "for another user already followed" do
@@ -22,6 +24,7 @@ describe UserPolicy do
     let(:other_user) { create :user, followers: [user] }
 
     it { should forbid_action(:follow) }
+    it { should permit_action(:unfollow) }
   end
 
   context "for another user not already followed" do
@@ -29,5 +32,6 @@ describe UserPolicy do
     let(:other_user) { create :user }
 
     it { should permit_action(:follow) }
+    it { should forbid_action(:unfollow) }
   end
 end

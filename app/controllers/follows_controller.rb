@@ -11,4 +11,9 @@ class FollowsController < ApplicationController
       format.js
     end
   end
+
+  def destroy
+    Follow.destroy(params[:id])
+    redirect_to :back
+  end
 end

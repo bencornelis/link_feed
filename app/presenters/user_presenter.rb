@@ -31,6 +31,13 @@ class UserPresenter < BasePresenter
             class: "btn_yellow"
   end
 
+  def unfollow_link
+    link_to "unfollow #{username}",
+            user_follow_path(user, user.followee_follow(current_user)),
+            method: :delete,
+            class: "btn_yellow"
+  end
+
   def shares
     pluralize shares_count, 'share'
   end

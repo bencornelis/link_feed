@@ -5,6 +5,12 @@ class UserPolicy < ApplicationPolicy
     !user.following?(record)
   end
 
+  def unfollow?
+    user.present? &&
+    other_user?   &&
+    user.following?(record)
+  end
+
   private
   def other_user?
     user != record
