@@ -11,6 +11,44 @@ RSpec.describe User, type: :model do
   it { should have_many :followers }
   it { should have_many :followees }
 
+  describe '#following?' do
+    let(:user)       { create :user }
+    let(:other_user) { create :user }
+
+    context 'when following another user' do
+      it 'is true' do
+        user.followees << other_user
+
+        expect(user.following?(other_user)).to be true
+      end
+    end
+
+    context 'when not following another user' do
+      it 'is false' do
+        expect(user.following?(other_user)).to be false
+      end
+    end
+  end
+
+  describe '#shared?' do
+    let(:user) { create :user }
+    let(:post) { create :post }
+
+    context 'when the user has shared the post' do
+      it 'is true' do
+        user.shared_posts << post
+
+        expect(user.shared?(post)).to be true
+      end
+    end
+
+    context 'when the user has not shared the post' do
+      it 'is false' do
+        expect(user.shared?(post)).to be false
+      end
+    end
+  end
+
   describe '#followee_follow' do
     let(:follow)     { create :follow }
     let(:user)       { follow.followee }
