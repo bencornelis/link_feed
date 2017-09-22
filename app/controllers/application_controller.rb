@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
   helper_method :user_logged_in?
 
   private
+
   def authenticate_user!
     unless user_logged_in?
       flash[:alert] = "You must be logged in to do that."
@@ -34,6 +35,7 @@ class ApplicationController < ActionController::Base
   end
 
   def reload_user_followees!
-    @current_user = User.includes({:followees => :roles}).find(session[:user_id]) if session[:user_id]
+    return unless user_logged_in?
+    @current_user = User.includes(:followees => :roles).find(session[:user_id])
   end
 end

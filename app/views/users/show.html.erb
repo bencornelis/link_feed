@@ -24,21 +24,21 @@
 <div class="user_info_panel">
   <h5 class="user_info_header">posts</h5>
   <ul>
-    <%= render @recent_posts, is_blurb: true %>
+    <%= render @user.recent_posts, is_blurb: true %>
   </ul>
 </div>
 
 <div class="user_info_panel">
   <h5 class="user_info_header">shares</h5>
   <ul>
-    <%= render @recent_shared_posts, is_blurb: true %>
+    <%= render @user.recent_shared_posts, is_blurb: true %>
   </ul>
 </div>
 
 <div class="user_info_panel">
   <h5 class="user_info_header">comments</h5>
   <ul>
-    <% @recent_comments.each do |comment| %>
+    <% @user.recent_comments.each do |comment| %>
       <%= render "comments/comment_blurb", comment: comment %>
     <% end %>
   </ul>

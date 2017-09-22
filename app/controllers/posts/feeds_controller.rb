@@ -7,8 +7,9 @@ module Posts
     end
 
     private
+
     def feed_params
-      params.permit(:tag, :page, :sort).merge({ user: current_user })
+      params.permit(:tag, :page, :sort).merge(user: current_user)
     end
   end
 end
