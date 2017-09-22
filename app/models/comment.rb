@@ -15,4 +15,8 @@ class Comment < ActiveRecord::Base
   def post_title
     post.title
   end
+
+  def parent_type
+    root? ? :post : :comment
+  end
 end

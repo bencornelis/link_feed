@@ -30,13 +30,7 @@ class CommentsController < ApplicationController
     current_user.comments << @comment
     @comment.save
     respond_to do |format|
-      format.js do
-        if @comment.root?
-          render :create_post_comment
-        else
-          render :create_comment_comment
-        end
-      end
+      format.js { render "create_#{@comment.parent_type}_comment" }
     end
   end
 
@@ -57,6 +51,7 @@ class CommentsController < ApplicationController
   end
 
   private
+
   def global_params
     params.permit(:tag, :page)
   end
