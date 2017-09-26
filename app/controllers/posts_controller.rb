@@ -8,8 +8,14 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @comments = @post.comments.arrange(order: "created_at asc")
     @comment = Comment.new
+
+    respond_to do |format|
+      format.html
+      format.js do
+        @comments = @post.comments.arrange(order: "created_at asc")
+      end
+    end
   end
 
   def new

@@ -6,7 +6,8 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body id="<%= params[:controller].parameterize %>_controller">
+<body id="<%= params[:controller].parameterize %>_controller"
+      class="<%= controller_name %> <%= action_name %>">
 
 <nav id="main_nav">
   <div id="left_nav">
