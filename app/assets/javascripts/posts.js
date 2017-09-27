@@ -7,6 +7,7 @@ $(document).on('turbolinks:load', function() {
     var post_path = window.location.pathname;
     $.ajax({
       url: post_path,
+      cache: false,
       dataType: 'script',
       beforeSend: function() {
         $('#comments_loader').spin({top: '40%', left: '50%'});;
