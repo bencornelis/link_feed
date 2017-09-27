@@ -3,6 +3,10 @@ class ProfilesController < ApplicationController
 
   def show
     @user = current_user
-    render "users/show"
+
+    respond_to do |format|
+      format.html { render 'users/show' }
+      format.js   { render 'users/show', format: 'js' }
+    end
   end
 end

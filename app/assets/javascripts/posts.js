@@ -9,23 +9,15 @@ $(document).on('turbolinks:load', function() {
       url: post_path,
       dataType: 'script',
       beforeSend: function() {
-        showLoader();
+        $('#comments_loader').spin({top: '40%', left: '25%'});;
       },
       success: function() {
         attachCommentToggler();
-        hideLoader();
+        $('#comments_loader').spin(false);
       }
     });
   });
 });
-
-function showLoader() {
-  $('#loader').spin({top: '40%', left: '25%'});
-}
-
-function hideLoader() {
-  $('#loader').spin(false);
-}
 
 function attachCommentToggler() {
   $(".comment .comment_toggler").click(function() {
