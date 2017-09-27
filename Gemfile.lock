@@ -213,6 +213,8 @@ GEM
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.1)
     slop (3.6.0)
+    spinjs-rails (1.4)
+      rails (>= 3.1)
     spring (2.0.2)
       activesupport (>= 4.2)
     sprockets (3.7.1)
@@ -280,6 +282,7 @@ DEPENDENCIES
   sass-rails (>= 3.2)
   shoulda-matchers
   simplecov
+  spinjs-rails
   spring
   timecop
   tinymce-rails
@@ -289,4 +292,4 @@ DEPENDENCIES
   will_paginate (~> 3.0.6)
 
 BUNDLED WITH
-   1.15.0
+   1.15.4

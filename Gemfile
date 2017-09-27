@@ -22,6 +22,7 @@ gem 'goldiloader'
 gem 'newrelic_rpm'
 gem 'tinymce-rails'
 gem 'font-awesome-rails'
+gem 'spinjs-rails'
 
 group :production do
   gem 'rails_12factor'

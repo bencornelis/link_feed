@@ -60,18 +60,16 @@ describe "adding a post" do
     expect(page).to have_content "1 share"
   end
 
-  it "correctly adds the tags" do
+  it "correctly adds the tags", js: true do
     user = create :user
 
     login_as(user)
-    visit root_path
-
-    click_on "new_post_link"
+    visit new_post_path
     fill_in "post_title", with: "What is the best games soundtrack?"
-    fill_in "post_text", with: "I really want to know!"
     fill_in "post_tag_names", with: "games soundtracks"
     click_on "submit"
-    click_on "Profile"
+
+    visit profile_path
 
     expect(page).to have_content "#games"
     expect(page).to have_content "#soundtracks"
