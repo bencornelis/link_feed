@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails'
-gem 'pg'
 gem 'pry'
 gem 'uglifier'
 gem 'coffee-rails'
@@ -23,6 +22,7 @@ gem 'newrelic_rpm'
 gem 'tinymce-rails'
 gem 'font-awesome-rails'
 gem 'spinjs-rails'
+gem 'pg', '~> 0.20.0'
 
 group :production do
   gem 'rails_12factor'
