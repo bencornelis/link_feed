@@ -9,7 +9,7 @@ $(document).on('turbolinks:load', function() {
       url: post_path,
       dataType: 'script',
       beforeSend: function() {
-        $('#comments_loader').spin({top: '40%', left: '25%'});;
+        $('#comments_loader').spin({top: '40%', left: '50%'});;
       },
       success: function() {
         attachCommentToggler();
