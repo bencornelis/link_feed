@@ -3,8 +3,9 @@ $(document).on('turbolinks:load', function() {
     $(this).find('.post_details .more_info').toggle();
   });
 
-  $('.posts.show').ready(function() {
+  $('.posts.show #comments').ready(function() {
     var post_path = window.location.pathname;
+
     $.ajax({
       url: post_path,
       cache: false,
@@ -19,6 +20,10 @@ $(document).on('turbolinks:load', function() {
     });
   });
 });
+
+$(document).on('turbolinks:before-cache', function() {
+  $('.posts.show #comments').html('');
+})
 
 function attachCommentToggler() {
   $(".comment .comment_toggler").click(function() {
