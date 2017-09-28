@@ -21,9 +21,10 @@ $(document).on('turbolinks:load', function() {
   });
 });
 
+// prevent turbolinks from caching post comments
 $(document).on('turbolinks:before-cache', function() {
   $('.posts.show #comments').html('');
-})
+});
 
 function attachCommentToggler() {
   $(".comment .comment_toggler").click(function() {

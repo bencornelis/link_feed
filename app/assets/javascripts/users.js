@@ -11,3 +11,8 @@ $(document).on('turbolinks:load', function() {
     });
   });
 });
+
+// prevent turbolinks from caching user activity details
+$(document).on('turbolinks:before-cache', function() {
+  $('#recent_posts, #recent_shared_posts, #recent_comments').html('');
+});
