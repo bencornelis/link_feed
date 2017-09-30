@@ -8,12 +8,13 @@ describe "following a user" do
     login_as(follower)
     visit user_path(followee)
 
-    expect(page).to have_content "follow #{followee.username}"
+    expect(page).to have_content "follow"
+    expect(page).not_to have_content "unfollow"
     expect(page).to have_content "Followers (0)"
 
-    click_on "follow #{followee.username}"
+    click_on "follow"
 
-    expect(page).to have_content "unfollow #{followee.username}"
+    expect(page).to have_content "unfollow"
     expect(page).to have_content "Followers (1): #{follower.username}"
 
     visit profile_path
@@ -30,9 +31,10 @@ describe "following a user" do
 
     expect(page).to have_content "Followers (1): #{follower.username}"
 
-    click_on "unfollow #{followee.username}"
+    click_on "unfollow"
 
     expect(page).to have_content "Followers (0)"
-    expect(page).to have_content "follow #{followee.username}"
+    expect(page).to have_content "follow"
+    expect(page).not_to have_content "unfollow"
   end
 end

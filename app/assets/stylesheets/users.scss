@@ -32,4 +32,11 @@
     min-width: 500px;
     min-height: 300px;
   }
+
+  @media (max-width: 675px) {
+    .user_info_panel {
+      clear: both;
+      width: 75%;
+    }
+  }
 }
