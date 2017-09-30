@@ -21,7 +21,7 @@ describe "following a user" do
     expect(page).to have_content "Following (1): #{followee.username}"
   end
 
-  it "lets a user unfollow a user" do
+  it "lets a user unfollow a user", js: true do
     follow   = create :follow
     follower = follow.follower
     followee = follow.followee
