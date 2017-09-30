@@ -33,9 +33,11 @@
   </div>
 </nav>
 
-<%= yield :sub_nav %>
+<div id='below_nav'>
+  <%= render "layouts/flash" %>
+  <%= yield :sub_nav %>
+</div>
 
-<%= render "layouts/flash" %>
 
 <div id="main">
   <%= yield %>
