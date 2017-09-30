@@ -13,7 +13,11 @@ class FollowsController < ApplicationController
   end
 
   def destroy
-    Follow.destroy(params[:id])
-    redirect_to :back
+    follow = Follow.find(params[:id])
+    follow.destroy!
+    @followee = follow.followee.reload
+    respond_to do |format|
+      format.js
+    end
   end
 end

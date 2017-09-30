@@ -34,6 +34,7 @@ class UserPresenter < BasePresenter
   def unfollow_link
     link_to 'unfollow',
             user_follow_path(user, user.followee_follow(current_user)),
+            remote: true,
             method: :delete,
             class: "btn_yellow"
   end
