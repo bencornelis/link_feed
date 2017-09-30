@@ -119,6 +119,14 @@ hr {
   }
 }
 
+@media (max-width: 500px) {
+  #right_nav {
+    a {
+      margin: 2px !important;
+    }
+  }
+}
+
 #main {
   margin-left: 10%;
   margin-right: 10%;
