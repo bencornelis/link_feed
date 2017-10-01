@@ -1,4 +1,4 @@
-<%= form_for @user do |f| %>
+<%= form_for @user, remote: true do |f| %>
   <table class="form_table">
     <tbody>
       <tr>
@@ -28,3 +28,5 @@
     </tbody>
   </table>
 <% end %>
+
+<ul id='user_errors'></ul>

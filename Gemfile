@@ -23,6 +23,7 @@ gem 'tinymce-rails'
 gem 'font-awesome-rails'
 gem 'spinjs-rails'
 gem 'pg', '~> 0.20.0'
+gem 'validates_email_format_of'
 
 group :production do
   gem 'rails_12factor'

@@ -20,7 +20,7 @@
   #main {
     margin-top: 50px !important;
   }
-  
+
   .user_stats {
     div {
       margin: 20px 0;
@@ -35,6 +35,14 @@
   #user_loader {
     min-width: 500px;
     min-height: 300px;
+  }
+
+  #user_errors {
+    color: #CC3300;
+  }
+
+  .error {
+    margin-top: 10px;
   }
 
   @media (max-width: 675px) {

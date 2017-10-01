@@ -2,9 +2,9 @@ class User < ActiveRecord::Base
   rolify
   attr_accessor :password
 
-  validates :username, presence: true
-  validates :email, presence: true
+  validates :username, presence: true, uniqueness: true
   validates :password, confirmation: true
+  validates_email_format_of :email
 
   before_save :encrypt_password
 

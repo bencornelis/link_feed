@@ -16,11 +16,17 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save
-      session[:user_id] = @user.id
-      redirect_to root_path, notice: "Welcome!"
-    else
-      redirect_to :back, alert: "Your account could not be created."
+
+    respond_to do |format|
+      format.js do
+        if @user.save
+          session[:user_id] = @user.id
+          flash[:notice] = 'Welcome!'
+          render :js => "window.location = '#{root_path}'"
+        else
+          flash[:alert] = 'Your account could not be created.'
+        end
+      end
     end
   end
 

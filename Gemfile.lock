@@ -237,6 +237,8 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
+    validates_email_format_of (1.6.3)
+      i18n
     web-console (3.3.0)
       activemodel (>= 4.2)
       debug_inspector
@@ -288,6 +290,7 @@ DEPENDENCIES
   tinymce-rails
   turbolinks
   uglifier
+  validates_email_format_of
   web-console
   will_paginate (~> 3.0.6)
 
