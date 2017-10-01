@@ -138,6 +138,20 @@ describe "editing a post" do
   end
 end
 
+describe "deleting a post" do
+  it "redirects the user to the home page" do
+    post = create :post
+
+    login_as(post.user)
+    visit post_path(post)
+
+    click_on "delete"
+
+    expect(page).to have_content "Post successfully deleted."
+    expect(page).to have_current_path root_path
+  end
+end
+
 describe "sorting by recent" do
   it "displays the posts ordered by time" do
     # default is 10 posts per page
