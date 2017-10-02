@@ -7,8 +7,8 @@ describe "signing up", js: true do
 
       click_on "Join Us"
       fill_in "username", with: "bencorn"
-      fill_in "password", with: 12345678
-      fill_in "password confirmation", with: 12345678
+      fill_in "password", with: 'person1_pwd'
+      fill_in "password confirmation", with: 'person1_pwd'
       fill_in "email", with: 'ben@gmail.com'
       click_on "join"
 
@@ -22,8 +22,8 @@ describe "signing up", js: true do
 
       click_on "Join Us"
       fill_in "username", with: "bencorn"
-      fill_in "password", with: 12345678
-      fill_in "password confirmation", with: 22345678
+      fill_in "password", with: 'person1_pwd'
+      fill_in "password confirmation", with: 'person2_pwd'
       fill_in "email", with: 'ben@gmail.com'
       click_on "join"
 
@@ -37,8 +37,8 @@ describe "signing up", js: true do
 
       click_on "Join Us"
       fill_in "username", with: "bencorn"
-      fill_in "password", with: 12345678
-      fill_in "password confirmation", with: 12345678
+      fill_in "password", with: 'person1_pwd'
+      fill_in "password confirmation", with: 'person1_pwd'
       fill_in "email", with: 'ben@gmail.com'
       click_on "join"
 

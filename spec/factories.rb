@@ -1,8 +1,9 @@
 FactoryGirl.define do
   factory :user, aliases: [:follower, :followee] do
-    sequence(:username) { |n| "person#{n}" }
-    sequence(:password) { |n| "person#{n}pwd" }
-    sequence(:email)    { |n| "person#{n}@gmail.com" }
+    sequence(:username)              { |n| "person#{n}" }
+    sequence(:email)                 { |n| "person#{n}@gmail.com" }
+    sequence(:password)              { |n| "person#{n}_pwd" }
+    sequence(:password_confirmation) { |n| "person#{n}_pwd" }
 
     trait :admin do
       after(:create) do |user|

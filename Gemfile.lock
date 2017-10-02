@@ -122,6 +122,8 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (= 0.3.0)
+    password_strength (1.1.4)
+      activemodel
     pg (0.20.0)
     phantomjs (2.1.1.0)
     poltergeist (1.15.0)
@@ -270,6 +272,7 @@ DEPENDENCIES
   monster_id
   newrelic_rpm
   paperclip (~> 4.3)
+  password_strength
   pg (~> 0.20.0)
   phantomjs
   poltergeist
@@ -295,4 +298,4 @@ DEPENDENCIES
   will_paginate (~> 3.0.6)
 
 BUNDLED WITH
-   1.15.4
+   1.16.0.pre.2

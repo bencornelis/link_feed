@@ -3,8 +3,9 @@ class User < ActiveRecord::Base
   attr_accessor :password
 
   validates :username, presence: true, uniqueness: true
-  validates :password, confirmation: true
-  validates_email_format_of :email
+  validates :email, email_format: true, uniqueness: true
+  validates :password, confirmation: true, on: :create
+  validates_strength_of :password, on: :create
 
   before_save :encrypt_password
 
