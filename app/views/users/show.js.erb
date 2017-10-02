@@ -4,8 +4,7 @@ setTimeout(function() {
   $('#recent_shared_posts')
     .html('<%= j render @user.recent_shared_posts, is_blurb: true %>');
   $('#recent_comments')
-    .html('<%= j render "users/recent_comments", comments: @user.recent_comments %>');
-
+    .html('<%= j render "comments/comment_blurbs", comments: @user.recent_comments %>');
 
   $('#user_loader').spin(false);
 }, 300);
