@@ -44,9 +44,13 @@
 </div>
 
 <footer id="footer_nav">
-  <%= link_to "about", root_path %>
-  <%= link_to "faq", root_path %>
-  <%= link_to "rss", root_path %>
+  <%= link_to "about", about_path %>
+  <%= link_to "faq", faq_path %>
+  <% if user_logged_in? %>
+    <%= link_to "logout", logout_path %>
+  <% else %>
+    <%= link_to "login", login_path %>
+  <% end %>
 </footer>
 </body>
 </html>

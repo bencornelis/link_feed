@@ -7,9 +7,12 @@ describe 'logging in' do
     visit root_path
 
     click_on 'Login'
-    fill_in 'username', with: user.username
-    fill_in 'password', with: user.password
-    click_on 'login'
+
+    within 'form' do
+      fill_in 'username', with: user.username
+      fill_in 'password', with: user.password
+      click_on 'login'
+    end
 
     expect(page).to have_content("You've been logged in.")
   end
@@ -20,10 +23,13 @@ describe 'logging in' do
     visit root_path
 
     click_on 'Login'
-    fill_in 'username', with: "foo"
-    fill_in 'password', with: user.password
-    click_on 'login'
-    
+
+    within 'form' do
+      fill_in 'username', with: "foo"
+      fill_in 'password', with: user.password
+      click_on 'login'
+    end
+
     expect(page).to have_content("There was a problem logging you in.")
   end
 end
