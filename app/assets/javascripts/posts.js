@@ -4,8 +4,14 @@ $(document).on('turbolinks:load', function() {
   });
 
   $('.posts.show #comments').ready(function() {
-    var post_path = window.location.pathname;
+    var commentsCount = parseInt($('#comments_count').text());
+    if (commentsCount < 10) {
+      attachCommentToggler();
+      return;
+    }
 
+    // otherwise, load the comments
+    var post_path = window.location.pathname;
     $.ajax({
       url: post_path,
       cache: false,
