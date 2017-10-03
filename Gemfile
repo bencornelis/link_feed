@@ -25,6 +25,7 @@ gem 'spinjs-rails'
 gem 'pg', '~> 0.20.0'
 gem 'validates_email_format_of'
 gem 'password_strength'
+gem 'puma'
 
 group :production do
   gem 'rails_12factor'
