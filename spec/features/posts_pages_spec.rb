@@ -82,6 +82,16 @@ describe "adding a post" do
 
     expect(page).to have_content "You must be logged in to do that."
   end
+
+  it "redirects back when the post is invalid" do
+    login_as(create(:user))
+    visit new_post_path
+
+    click_on "submit"
+
+    expect(page).to have_content "There was an error submitting your post."
+    expect(page).to have_current_path new_post_path
+  end
 end
 
 describe "sharing a post" do

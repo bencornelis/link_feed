@@ -33,7 +33,7 @@ class PostsController < ApplicationController
       current_user.shared_posts << @post
       redirect_to post_path(@post)
     else
-      redirect_to :back
+      redirect_to :back, alert: 'There was an error submitting your post.'
     end
   end
 

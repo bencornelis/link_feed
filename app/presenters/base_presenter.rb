@@ -1,4 +1,4 @@
-class BasePresenter  
+class BasePresenter
   def initialize(object, template)
     @object   = object
     @template = template
@@ -8,10 +8,6 @@ class BasePresenter
     define_method(name) do
       @object
     end
-  end
-
-  def h
-    @template
   end
 
   def method_missing(name, *args, &block)

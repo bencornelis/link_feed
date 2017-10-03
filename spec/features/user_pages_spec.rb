@@ -38,3 +38,14 @@ describe "following a user" do
     expect(page).not_to have_content "unfollow"
   end
 end
+
+describe "an unauthorized action" do
+  it "redirects the user to the root path and displays a message" do
+    login_as(create(:user))
+
+    visit edit_post_path(create(:post))
+
+    expect(page).to have_current_path root_path
+    expect(page).to have_content "You are not authorized to perform this action."
+  end
+end

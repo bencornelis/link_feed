@@ -11,6 +11,12 @@ FactoryGirl.define do
       end
     end
 
+    trait :moderator do
+      after(:create) do |user|
+        user.add_role :moderator
+      end
+    end
+
     factory :user_with_followees do
       transient do
         followees_count 2
