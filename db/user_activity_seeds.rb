@@ -78,7 +78,7 @@ def generate_user_activity(options)
             parent_id: parent_id,
             text:      text
           )
-        elsif
+        else
           # create a root comment
           post.comments.create(
             user_id: user.id,
