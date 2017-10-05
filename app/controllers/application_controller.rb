@@ -1,6 +1,4 @@
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
   include Pundit
   protect_from_forgery with: :exception
 
@@ -18,7 +16,7 @@ class ApplicationController < ActionController::Base
 
   private
 
-  # override devise method to handle AJAX
+  # override devise helper to handle AJAX
   def authenticate_user!
     unless user_signed_in?
       flash[:alert] = "You must be logged in to do that."
