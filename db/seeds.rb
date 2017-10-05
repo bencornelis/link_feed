@@ -1,8 +1,6 @@
-require Rails.root + "db/generator_methods.rb"
+require Rails.root + "db/user_activity_seeds.rb"
 
-user_count = 20
-generate_users(user_count)
-
+# special users
 test_user = User.new(username: "watiki",
                      email: "ben@gmail.com",
                      password: "password1",
@@ -25,10 +23,11 @@ test_users.each(&:save!)
 test_admin.add_role :admin
 test_moderator.add_role :moderator
 
+# seed data
 generate_user_activity(
-  user_count:            user_count,
-  max_posts_per_user:    10,
-  max_comments_per_user: 50,
+  user_count:            50,
+  max_posts_per_user:    20,
+  max_comments_per_user: 500,
   max_follows_per_user:  20,
-  max_shares_per_user:   20
+  max_shares_per_user:   100
 )
