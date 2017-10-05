@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: { confirmations: 'confirmations' }
   root to: "posts#index"
 
   resources :users do
@@ -23,11 +24,14 @@ Rails.application.routes.draw do
   resources :comments, only: [:index]
   resources :tags, only: [:index]
 
+  devise_scope :user do
+    get '/login',  to: 'devise/sessions#new'
+    post '/login', to: 'devise/sessions#new'
+    get '/logout', to: 'devise/sessions#destroy'
+    get '/join',   to: 'devise/registrations#new'
+  end
+
   get "/global"  => "posts#index"
-  get "/login"   => "sessions#new"
-  post "/login"  => "sessions#create"
-  get "/logout"  => "sessions#destroy"
-  get "/join"    => "users#new"
 
   # static pages
   get "/about"   => "pages#about"

@@ -1,0 +1,23 @@
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+  <%= f.hidden_field :reset_password_token %>
+  <table class="form_table">
+    <tbody>
+      <tr class="field">
+        <td><%= f.label :password, "New password", class: "form_label" %></td>
+        <td><%= f.password_field :password, class: "form_input", autofocus: true, autocomplete: "off" %></td>
+      </div>
+
+      <tr class="field">
+        <td><%= f.label :password_confirmation, "Confirm new password", class: "form_label" %></td>
+        <td><%= f.password_field :password_confirmation, class: "form_input", autocomplete: "off" %></td>
+      </tr>
+
+      <tr class="actions">
+        <td></td>
+        <td><%= f.submit "Change my password", class: "btn_blue" %></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
+
+<%= devise_error_messages! %>

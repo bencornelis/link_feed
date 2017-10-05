@@ -14,7 +14,7 @@
     <%= link_to root_path, id: "monster_icon" do %>
       <%= fa_icon "optin-monster lg" %>
     <% end %>
-    <% if user_logged_in? %>
+    <% if user_signed_in? %>
       <%= link_to "Logout", logout_path %> |
       <%= link_to "Profile", profile_path %>
     <% else %>
@@ -23,13 +23,13 @@
   </div>
 
   <div id="right_nav">
-    <% if user_logged_in? %>
+    <% if user_signed_in? %>
       <%= link_to "feed", posts_feed_path %>
     <% end %>
     <%= link_to "global", global_path %>
     <%= link_to "tags", tags_path %>
     <%= link_to "+ post", new_post_path, id: "new_post_link",
-       class: (user_logged_in? ? "btn_yellow" : "btn_blue") %>
+       class: (user_signed_in? ? "btn_yellow" : "btn_blue") %>
   </div>
 </nav>
 
@@ -46,7 +46,7 @@
 <footer id="footer_nav">
   <%= link_to "about", about_path %>
   <%= link_to "faq", faq_path %>
-  <% if user_logged_in? %>
+  <% if user_signed_in? %>
     <%= link_to "logout", logout_path %>
   <% else %>
     <%= link_to "login", login_path %>

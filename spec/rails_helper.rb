@@ -9,6 +9,8 @@ require 'rspec/rails'
 require 'capybara/rails'
 require 'support/authentication_helpers'
 require 'support/factory_girl'
+require 'support/devise'
+require 'support/warden'
 require 'capybara/poltergeist'
 require 'pundit/matchers'
 

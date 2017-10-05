@@ -26,6 +26,7 @@ gem 'pg', '~> 0.20.0'
 gem 'validates_email_format_of'
 gem 'password_strength'
 gem 'puma'
+gem 'devise'
 
 group :production do
   gem 'rails_12factor'
@@ -36,6 +37,7 @@ group :development do
   gem 'web-console'
   gem 'spring'
   gem 'quiet_assets'
+  gem 'letter_opener'
 end
 
 group :test, :development do

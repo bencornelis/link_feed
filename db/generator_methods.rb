@@ -5,10 +5,12 @@ end
 def generate_users(user_count)
   users = []
   user_count.times do
+    password = Faker::Internet.password(8)
     users << {
-      username: Faker::Internet.user_name,
-      password: Faker::Internet.password(8),
-      email:    Faker::Internet.email
+      username:              Faker::Internet.user_name,
+      email:                 Faker::Internet.email,
+      password:              password,
+      password_confirmation: password
     }
   end
   User.create(users)
