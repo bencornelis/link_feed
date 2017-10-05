@@ -27,6 +27,7 @@ gem 'validates_email_format_of'
 gem 'password_strength'
 gem 'puma'
 gem 'devise'
+gem 'sendgrid-ruby'
 
 group :production do
   gem 'rails_12factor'
