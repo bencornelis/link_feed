@@ -3,18 +3,26 @@ require Rails.root + "db/generator_methods.rb"
 user_count = 20
 generate_users(user_count)
 
-test_user = User.create(username: "watiki",
-                        password: "asdf",
-                        email: "ben@gmail.com")
+test_user = User.new(username: "watiki",
+                     email: "ben@gmail.com",
+                     password: "password1",
+                     password_confirmation: "password1")
 
-test_admin = User.create(username: "admin",
-                         password: "1234",
-                         email: "admin@gmail.com")
+test_admin = User.new(username: "admin",
+                      email: "admin@gmail.com",
+                      password: "password2",
+                      password_confirmation: "password2")
+
+test_moderator = User.new(username: "moderator",
+                          email: "mod@gmail.com",
+                          password: "password3",
+                          password_confirmation: "password3")
+
+test_users = [test_user, test_admin, test_moderator]
+test_users.each(&:skip_confirmation!)
+test_users.each(&:save!)
+
 test_admin.add_role :admin
-
-test_moderator = User.create(username: "moderator",
-                             password: "5678",
-                             email:    "mod@gmail.com")
 test_moderator.add_role :moderator
 
 generate_user_activity(

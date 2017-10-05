@@ -1,7 +1,7 @@
 require "rails_helper"
 
-describe "adding a top level comment to a post", js: true do
-  it "puts the new comment at the top" do
+describe "adding a top level comment to a post" do
+  it "puts the new comment at the top", js: true do
     post = create :post
     user = create :user
 
@@ -15,7 +15,7 @@ describe "adding a top level comment to a post", js: true do
     expect(page).to have_content user.username
   end
 
-  it "requires the user to be logged in", js: true do
+  it "requires the user to be logged in" do
     post = create :post
 
     visit post_path(post)

@@ -4,6 +4,7 @@ FactoryGirl.define do
     sequence(:email)                 { |n| "person#{n}@gmail.com" }
     sequence(:password)              { |n| "person#{n}_pwd" }
     sequence(:password_confirmation) { |n| "person#{n}_pwd" }
+    confirmed_at { Time.zone.now }
 
     trait :admin do
       after(:create) do |user|

@@ -6,25 +6,25 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
-  def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
-  end
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
-  def user_logged_in?
-    current_user.present?
-  end
+  protected
 
-  helper_method :current_user
-  helper_method :user_logged_in?
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up) do |user_params|
+      user_params.permit(:username, :email, :password, :password_confirmation)
+    end
+  end
 
   private
 
+  # override devise method to handle AJAX
   def authenticate_user!
-    unless user_logged_in?
+    unless user_signed_in?
       flash[:alert] = "You must be logged in to do that."
       respond_to do |format|
         format.html { redirect_to login_path }
-        format.js { render :js => "window.location = '#{login_path}'" }
+        format.js   { render :js => "window.location = '#{login_path}'" }
       end
     end
   end
@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
   end
 
   def reload_user_followees!
-    return unless user_logged_in?
-    @current_user = User.includes(:followees => :roles).find(session[:user_id])
+    return unless user_signed_in?
+    @current_user = User.includes(:followees => :roles).find(current_user.id)
   end
 end

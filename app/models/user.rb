@@ -1,13 +1,13 @@
 class User < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable,
+         :confirmable, :lockable
   rolify
-  attr_accessor :password
 
   validates :username, presence: true, uniqueness: true
-  validates :email, email_format: true, uniqueness: true
-  validates :password, confirmation: true, on: :create
-  validates_strength_of :password, on: :create
-
-  before_save :encrypt_password
+  validates :email, email_format: true
 
   has_many :posts
   has_many :comments
@@ -19,13 +19,6 @@ class User < ActiveRecord::Base
 
   has_many :follower_follows, class_name: "Follow", foreign_key: :follower_id
   has_many :followees, through: :follower_follows
-
-  def self.authenticate(username, password)
-    user = User.find_by(username: username)
-    if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
-      user
-    end
-  end
 
   def following?(other_user)
     followees.exists?(other_user.id)
@@ -49,11 +42,5 @@ class User < ActiveRecord::Base
 
   def followee_follow(other_user)
     followee_follows.find_by(follower_id: other_user.id)
-  end
-
-  private
-  def encrypt_password
-    self.password_salt = BCrypt::Engine.generate_salt
-    self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
   end
 end
