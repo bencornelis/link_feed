@@ -9,7 +9,10 @@ describe "clicking on a post title" do
 
     expect(page).to have_content post.title
     expect(page).to have_content post.user.username
-    expect(page).to have_content "0 shares"
+
+    within '#post_shares' do
+      expect(page).to have_content '0'
+    end
   end
 end
 
@@ -54,7 +57,10 @@ describe "adding a post" do
     fill_in "post_tag_names", with: "games soundtracks"
 
     click_on "submit"
-    expect(page).to have_content "1 share"
+
+    within '#post_shares' do
+      expect(page).to have_content '1'
+    end
 
     click_on "Profile"
     expect(page).to have_content "1 share"
@@ -114,11 +120,16 @@ describe "sharing a post" do
     login_as(user)
     visit post_path(post)
 
-    expect(page).to have_content "0 shares"
+    within '#post_shares' do
+      expect(page).to have_content '0'
+    end
 
     find('.share_link').click
     expect(page).not_to have_selector '.share_link'
-    expect(page).to have_content "1 share"
+
+    within '#post_shares' do
+      expect(page).to have_content '1'
+    end
 
     visit profile_path
     expect(page).to have_content post.title

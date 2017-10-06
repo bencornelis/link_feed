@@ -114,7 +114,7 @@ describe "sharing a comment" do
   end
 
   it "only lets the user share a comment once", js: true do
-    comment = create :comment
+    comment = create :comment_with_shares, shares_count: 1
     user = create :user
 
     login_as(user)
@@ -123,6 +123,10 @@ describe "sharing a comment" do
     within "#comment_#{comment.id}" do
       find('.share_comment_link').click
       expect(page).not_to have_selector '.share_comment_link'
+
+      within ".comment_shares" do
+        expect(page).to have_content '2'
+      end
     end
   end
 end

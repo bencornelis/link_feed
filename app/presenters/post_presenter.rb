@@ -25,14 +25,19 @@ class PostPresenter < ContentPresenter
   end
 
   def shares
-    content_tag :span, pluralize(post.shares_count, 'share'), class: 'shares'
+    fa_icon 'paper-plane-o'
+    content_tag :span, id: 'post_shares' do
+      concat fa_icon 'paper-plane-o'
+      concat ' x '
+      concat post.shares_count
+    end
   end
 
   def share_link
     return '' if user_signed_in? && current_user.shared_post?(post)
 
     link_to post_shares_path(post), remote: true, method: :post, class: "share_link" do
-      fa_icon 'bullhorn'
+      fa_icon 'paper-plane-o'
     end
   end
 

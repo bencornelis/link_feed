@@ -6,11 +6,21 @@ class CommentPresenter < ContentPresenter
     simple_format(text)
   end
 
+  def shares
+    return unless comment.shares_count > 0
+    content_tag :span, class: 'comment_shares' do
+      concat '| '
+      concat fa_icon 'paper-plane-o'
+      concat ' x '
+      concat comment.shares_count
+    end
+  end
+
   def share_link
     return '' if user_signed_in? && current_user.shared_comment?(comment)
 
     link_to comment_shares_path(comment), remote: true, method: :post, class: 'share_comment_link' do
-      fa_icon 'bullhorn'
+      fa_icon 'paper-plane-o'
     end
   end
 
