@@ -73,31 +73,45 @@ def generate_user_activity(options)
         if rand < 0.5 && post.comments.exists?
           # create a child comment
           parent_id = post.comments.order('RANDOM()').first.id
-          post.comments.create(
+          comment = post.comments.create(
             user_id:   user.id,
             parent_id: parent_id,
             text:      text
           )
         else
           # create a root comment
-          post.comments.create(
+          comment = post.comments.create(
             user_id: user.id,
             text:    text
           )
         end
+
+        user.shared_comments << comment
       end
     end
   end
 
+  posts_count    = Post.count
+  comments_count = Comment.count
+
   puts 'generating follows and shares...'
-  posts_count = Post.count
   users.each do |user|
     rand(options[:max_follows_per_user]).times do
       user.follower_follows.create(followee_id: random_id(options[:user_count]))
     end
 
     rand(options[:max_shares_per_user]).times do
-      user.shares.create(post_id: random_id(posts_count))
+      if rand < 0.25
+        user
+          .shares
+          .create(shareable_id: random_id(posts_count),
+                  shareable_type: 'Post')
+      else
+        user
+          .shares
+          .create(shareable_id: random_id(comments_count),
+                  shareable_type: 'Comment')
+      end
     end
   end
 end

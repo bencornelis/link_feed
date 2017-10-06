@@ -23,11 +23,10 @@ test_users.each(&:save!)
 test_admin.add_role :admin
 test_moderator.add_role :moderator
 
-# seed data
 generate_user_activity(
   user_count:            50,
   max_posts_per_user:    20,
-  max_comments_per_user: 500,
+  max_comments_per_user: 200,
   max_follows_per_user:  20,
-  max_shares_per_user:   100
+  max_shares_per_user:   150
 )
