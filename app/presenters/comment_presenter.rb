@@ -6,6 +6,14 @@ class CommentPresenter < ContentPresenter
     simple_format(text)
   end
 
+  def share_link
+    return '' if user_signed_in? && current_user.shared_comment?(comment)
+
+    link_to comment_shares_path(comment), remote: true, method: :post, class: 'share_comment_link' do
+      fa_icon 'bullhorn'
+    end
+  end
+
   def reply_link
     link_to "reply",
             new_post_comment_path(post, parent_id: comment),

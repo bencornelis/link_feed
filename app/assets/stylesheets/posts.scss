@@ -59,11 +59,25 @@
   }
 
   .comment_toggler {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .share_link {
+    &:hover {
+      cursor: pointer;
+      color: #FF9900;
+    }
+  }
+
+  .share_comment_link {
     position: absolute;
-    left: -20px;
+    left: -15px;
 
     &:hover {
       cursor: pointer;
+      color: #FF9900;
     }
   }
 

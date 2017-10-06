@@ -28,6 +28,7 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params)
     current_user.comments << @comment
+    current_user.shared_comments << @comment
     @comment.save
     respond_to do |format|
       format.js { render "create_#{@comment.parent_type}_comment" }

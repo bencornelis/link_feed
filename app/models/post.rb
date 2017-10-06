@@ -10,7 +10,7 @@ class Post < ActiveRecord::Base
 
   belongs_to :user, counter_cache: true
   has_many :comments, dependent: :destroy
-  has_many :shares, dependent: :destroy
+  has_many :shares, as: :shareable, dependent: :destroy
   has_many :users_shared_by, through: :shares, source: :user
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings

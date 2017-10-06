@@ -21,7 +21,10 @@ Rails.application.routes.draw do
     resource :feed, only: [:show]
   end
 
-  resources :comments, only: [:index]
+  resources :comments, only: [:index] do
+    resources :shares, only: [:create]
+  end
+
   resources :tags, only: [:index]
 
   devise_scope :user do

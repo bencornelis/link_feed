@@ -95,13 +95,16 @@ describe "adding a post" do
 end
 
 describe "sharing a post" do
-  it "requires the user to be logged in" do
+  it "requires the user to be logged in", js: true do
     post = create :post
 
     visit post_path(post)
 
     expect(page).to have_content post.title
-    expect(page).to have_no_content "+ share"
+
+    find('.share_link').click
+
+    expect(page).to have_content 'You must be logged in to do that.'
   end
 
   it "only lets the user share a post once", js: true do
@@ -113,8 +116,8 @@ describe "sharing a post" do
 
     expect(page).to have_content "0 shares"
 
-    click_on "+ share"
-    expect(page).to have_no_content "+ share"
+    find('.share_link').click
+    expect(page).not_to have_selector '.share_link'
     expect(page).to have_content "1 share"
 
     visit profile_path

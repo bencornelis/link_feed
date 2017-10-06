@@ -1,10 +1,10 @@
 setTimeout(function() {
   $('#recent_posts')
-    .html('<%= j render @user.recent_posts, is_blurb: true %>');
+    .html('<%= j render @user.recent_posts(5), is_blurb: true %>');
   $('#recent_shared_posts')
-    .html('<%= j render @user.recent_shared_posts, is_blurb: true %>');
+    .html('<%= j render "users/shared_items", items: @user.recent_shared_items(5) %>');
   $('#recent_comments')
-    .html('<%= j render "comments/comment_blurbs", comments: @user.recent_comments %>');
+    .html('<%= j render "comments/comment_blurbs", comments: @user.recent_comments(5) %>');
 
   $('#user_loader').spin(false);
 }, 300);

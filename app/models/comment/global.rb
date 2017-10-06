@@ -6,15 +6,15 @@ class Comment < ActiveRecord::Base
     end
 
     def comments
-      by_time
+      by_score
     end
 
     private
 
     attr_reader :page, :per_page
 
-    def by_time
-      base_scope.recent.paginate(page: page, per_page: per_page)
+    def by_score
+      base_scope.by_score.paginate(page: page, per_page: per_page)
     end
 
     def base_scope

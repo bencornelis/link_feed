@@ -10,7 +10,13 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :comments
   has_many :shares
-  has_many :shared_posts, through: :shares, source: :post
+  has_many :shared_posts, through: :shares,
+                          source: :shareable,
+                          source_type: 'Post'
+
+  has_many :shared_comments, through: :shares,
+                             source: :shareable,
+                             source_type: 'Comment'
 
   has_many :followee_follows, class_name: "Follow", foreign_key: :followee_id
   has_many :followers, through: :followee_follows
@@ -22,20 +28,35 @@ class User < ActiveRecord::Base
     followees.exists?(other_user.id)
   end
 
-  def shared?(post)
+  def shared_post?(post)
     shared_posts.exists?(post.id)
   end
 
-  def recent_posts(number = 5)
-    posts.limit(number)
+  def shared_comment?(comment)
+    shared_comments.exists?(comment.id)
   end
 
-  def recent_shared_posts(number = 5)
-    shared_posts.limit(number)
+  def recent_posts(count)
+    posts.limit(count)
   end
 
-  def recent_comments(number = 5)
-    comments.limit(number)
+  def recent_shared_items(count)
+    shares
+      .order('created_at desc')
+      .limit(count)
+      .map(&:shareable)
+  end
+
+  # def recent_shared_posts(count)
+  #   shared_posts.limit(count)
+  # end
+  #
+  # def recent_shared_comments(count)
+  #   shared_comments.limit(count)
+  # end
+
+  def recent_comments(count)
+    comments.limit(count)
   end
 
   def followee_follow(other_user)

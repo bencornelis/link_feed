@@ -7,7 +7,7 @@ describe PostPolicy do
     let(:user) { nil }
     let(:post) { create :post }
 
-    it { should forbid_actions([:edit, :update, :destroy, :share]) }
+    it { should forbid_actions([:edit, :update, :destroy]) }
   end
 
   context "for an admin" do
@@ -22,7 +22,6 @@ describe PostPolicy do
     let(:post) { create :post }
 
     it { should permit_actions([:edit, :update, :destroy]) }
-    it { should forbid_action(:share) }
   end
 
   context "for a user other than the poster" do
@@ -30,13 +29,5 @@ describe PostPolicy do
     let(:post) { create :post }
 
     it { should forbid_actions([:edit, :update, :destroy]) }
-    it { should permit_action(:share) }
-  end
-
-  context "for a user that has already shared the post" do
-    let(:user) { create :user }
-    let(:post) { create :post, users_shared_by: [user] }
-
-    it { should forbid_action(:share) }
   end
 end

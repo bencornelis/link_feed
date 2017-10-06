@@ -1,6 +1,7 @@
 <%= content_tag_for :li, comment do %>
   <% present comment do |comment_presenter| %>
     <h5 class="comment_details">
+      <%= comment_presenter.share_link %>
       <span class="comment_toggler">[-]</span>
       <%= comment_presenter.linked_username %>
       <%= comment_presenter.time_since_created %>

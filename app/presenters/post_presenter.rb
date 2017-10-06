@@ -29,13 +29,10 @@ class PostPresenter < ContentPresenter
   end
 
   def share_link
-    content_tag :span, class: "share_link" do
-      concat "| "
-      concat link_to "+ share",
-                     post_shares_path(post),
-                     remote: true,
-                     method: :post,
-                     class: "btn_yellow"
+    return '' if user_signed_in? && current_user.shared_post?(post)
+
+    link_to post_shares_path(post), remote: true, method: :post, class: "share_link" do
+      fa_icon 'bullhorn'
     end
   end
 

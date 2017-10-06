@@ -9,6 +9,7 @@ RSpec.describe User, type: :model do
   it { should have_many :comments }
   it { should have_many :shares }
   it { should have_many :shared_posts }
+  it { should have_many :shared_comments }
   it { should have_many :followers }
   it { should have_many :followees }
 
@@ -31,7 +32,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe '#shared?' do
+  describe '#shared_post?' do
     let(:user) { create :user }
     let(:post) { create :post }
 
@@ -39,13 +40,32 @@ RSpec.describe User, type: :model do
       it 'is true' do
         user.shared_posts << post
 
-        expect(user.shared?(post)).to be true
+        expect(user.shared_post?(post)).to be true
       end
     end
 
     context 'when the user has not shared the post' do
       it 'is false' do
-        expect(user.shared?(post)).to be false
+        expect(user.shared_post?(post)).to be false
+      end
+    end
+  end
+
+  describe '#shared_comment?' do
+    let(:user)    { create :user }
+    let(:comment) { create :comment }
+
+    context 'when the user has shared the comment' do
+      it 'is true' do
+        user.shared_comments << comment
+
+        expect(user.shared_comment?(comment)).to be true
+      end
+    end
+
+    context 'when the user has not shared the comment' do
+      it 'is false' do
+        expect(user.shared_comment?(comment)).to be false
       end
     end
   end

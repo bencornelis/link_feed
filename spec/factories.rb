@@ -53,6 +53,16 @@ FactoryGirl.define do
     sequence(:text) { |n| "the number #{n} is my favorite! "}
     user
     post
+
+    factory :comment_with_shares do
+      transient do
+        shares_count 2
+      end
+
+      after(:create) do |comment, evaluator|
+        create_list :user, evaluator.shares_count, shared_comments: [comment]
+      end
+    end
   end
 
   factory :follow do

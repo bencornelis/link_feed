@@ -8,7 +8,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @comments = @post.comments.arrange(order: "created_at asc")
+    @comments = @post.comments.arrange_by_score
     @comment = Comment.new
 
     respond_to do |format|

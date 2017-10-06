@@ -97,3 +97,32 @@ describe "viewing all comments" do
     expect(page).to have_content "I agree!"
   end
 end
+
+describe "sharing a comment" do
+  it "requires the user to be logged in", js: true do
+    comment = create :comment
+
+    visit post_path(comment.post)
+
+    expect(page).to have_content comment.text
+
+    within "#comment_#{comment.id}" do
+      find('.share_comment_link').click
+    end
+
+    expect(page).to have_content 'You must be logged in to do that.'
+  end
+
+  it "only lets the user share a comment once", js: true do
+    comment = create :comment
+    user = create :user
+
+    login_as(user)
+    visit post_path(comment.post)
+
+    within "#comment_#{comment.id}" do
+      find('.share_comment_link').click
+      expect(page).not_to have_selector '.share_comment_link'
+    end
+  end
+end

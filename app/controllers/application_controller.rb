@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
 
   # override devise helper to handle AJAX
   def authenticate_user!
+    # binding.pry
     unless user_signed_in?
       flash[:alert] = "You must be logged in to do that."
       respond_to do |format|

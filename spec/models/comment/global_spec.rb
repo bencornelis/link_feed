@@ -2,24 +2,23 @@ require "rails_helper"
 
 describe Comment::Global do
   describe "#comments" do
-    let!(:two_day_old_comment) do
-      Timecop.freeze(2.days.ago) { create :comment }
-    end
-
-    let!(:day_old_comment) do
-      Timecop.freeze(1.day.ago) { create :comment }
-    end
-
-    let!(:new_comment) { create :comment }
+    let!(:day_old_comment1)      { create_comment(days_ago: 1, shares: 1) }
+    let!(:day_old_comment2)      { create_comment(days_ago: 1, shares: 2) }
+    let!(:two_day_old_comment)   { create_comment(days_ago: 2, shares: 1) }
+    let!(:three_day_old_comment) { create_comment(days_ago: 3, shares: 1) }
 
     subject(:comments) { global.comments }
 
     context "by default" do
       let(:global) { Comment::Global.new }
 
-      it "orders the comments by date" do
-        expect(comments.to_a)
-          .to eql [new_comment, day_old_comment, two_day_old_comment]
+      it "orders comments by Hacker News score" do
+        expect(comments).to eq [
+          day_old_comment2,
+          day_old_comment1,
+          two_day_old_comment,
+          three_day_old_comment
+        ]
       end
     end
 

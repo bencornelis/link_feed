@@ -10,6 +10,7 @@ require 'capybara/rails'
 require 'support/factory_girl'
 require 'support/devise'
 require 'support/warden'
+require 'support/comment_helpers'
 require 'capybara/poltergeist'
 require 'pundit/matchers'
 

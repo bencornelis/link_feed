@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171004062918) do
+ActiveRecord::Schema.define(version: 20171006033419) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20171004062918) do
     t.integer  "comments_count", default: 0
     t.integer  "post_id"
     t.string   "ancestry"
+    t.integer  "shares_count",   default: 0
   end
 
   add_index "comments", ["ancestry"], name: "index_comments_on_ancestry", using: :btree
@@ -70,10 +71,11 @@ ActiveRecord::Schema.define(version: 20171004062918) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "post_id"
+    t.integer  "shareable_id"
+    t.string   "shareable_type"
   end
 
-  add_index "shares", ["post_id"], name: "index_shares_on_post_id", using: :btree
+  add_index "shares", ["shareable_type", "shareable_id"], name: "index_shares_on_shareable_type_and_shareable_id", using: :btree
   add_index "shares", ["user_id"], name: "index_shares_on_user_id", using: :btree
 
   create_table "taggings", force: :cascade do |t|
