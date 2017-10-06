@@ -47,14 +47,6 @@ class User < ActiveRecord::Base
       .map(&:shareable)
   end
 
-  # def recent_shared_posts(count)
-  #   shared_posts.limit(count)
-  # end
-  #
-  # def recent_shared_comments(count)
-  #   shared_comments.limit(count)
-  # end
-
   def recent_comments(count)
     comments.limit(count)
   end

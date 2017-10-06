@@ -11,10 +11,6 @@ class CommentPolicy < ApplicationPolicy
     edit?
   end
 
-  # def share?
-  #   !owner? && !user.shared?(record)
-  # end
-
   private
   def admin_mod_or_owner?
     admin? || moderator? || owner?

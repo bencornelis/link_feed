@@ -11,12 +11,6 @@ class PostPolicy < ApplicationPolicy
     edit?
   end
 
-  # def share?
-  #   user.present? &&
-  #   !owner?       &&
-  #   !user.shared_post?(record)
-  # end
-
   private
   def admin_or_owner?
     admin? || owner?
