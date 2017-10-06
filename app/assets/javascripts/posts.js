@@ -45,5 +45,6 @@ function attachCommentToggler() {
     $comment = $toggler.closest(".comment");
     $comment.children(".comment_main").toggle();
     $comment.next("ul.comments").toggle();
+    $comment.find(".share_comment_link").toggle();
   });
 }
