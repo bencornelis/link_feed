@@ -1,22 +1,22 @@
 require Rails.root + "db/user_activity_seeds.rb"
 
 # special users
-test_user = User.new(username: "watiki",
-                     email: "ben@gmail.com",
-                     password: "password1",
-                     password_confirmation: "password1")
-
 test_admin = User.new(username: "admin",
                       email: "admin@gmail.com",
                       password: "password2",
                       password_confirmation: "password2")
+
+test_user = User.new(username: "watiki",
+                     email: "ben@gmail.com",
+                     password: "password1",
+                     password_confirmation: "password1")
 
 test_moderator = User.new(username: "moderator",
                           email: "mod@gmail.com",
                           password: "password3",
                           password_confirmation: "password3")
 
-test_users = [test_user, test_admin, test_moderator]
+test_users = [test_admin, test_user, test_moderator]
 test_users.each(&:skip_confirmation!)
 test_users.each(&:save!)
 

@@ -8,9 +8,10 @@ https://blooming-mesa-35436.herokuapp.com/
 
 * CRUD operations on posts and comments
 * posts can be ranked by score or time
+* comments are ranked by score
 * posts are tagged with multiple tags and can be filtered by tag
-* users can follow other users
-* users can share posts with followers
+* users can follow and unfollow other users
+* users can share posts and comments with followers
 * user feed consisting of posts that have been shared by a user's followees
 
 ### About
@@ -18,14 +19,14 @@ https://blooming-mesa-35436.herokuapp.com/
 My goal with this project was to learn more about active record associations and experiment with some rails design patterns. It uses:
 
 * RSpec, Capybara, and Factory Girl for testing
-* user authentication with bcrypt
+* user authentication with devise
 * user authorization with pundit
 * user roles with rolify
 * ancestry for nested comments
 * goldiloader for automatic eager loading
 * pagination with will_paginate
 * presenter design pattern for views
-* Hacker News formula for post ranking
+* Hacker News formula for post and comment ranking
 * faker data for database seeding
 
 ### Setup
