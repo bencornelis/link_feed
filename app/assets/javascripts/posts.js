@@ -22,6 +22,11 @@ $(document).on('turbolinks:load', function() {
       success: function() {
         attachCommentToggler();
         $('#comments_loader').spin(false);
+
+        // if linking to a comment anchor, scroll to that comment
+        if (location.hash) {
+          location.href = location.hash;
+        }
       }
     });
   });
