@@ -121,4 +121,11 @@
   #comments_count {
     display: none;
   }
+
+  :target::before {
+    content: "";
+    display: block;
+    height: 50px;
+    margin: -50px 0 0;
+  }
 }
