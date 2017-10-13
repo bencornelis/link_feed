@@ -36,7 +36,7 @@ class CommentPresenter < ContentPresenter
   end
 
   def distant_parent_link
-    anchor = parent_id ? "comment_#{parent_id}" : "post_main"
+    anchor = parent_id ? "comment_#{parent_id}" : ""
     link_to "parent", post_path(post, anchor: anchor)
   end
 
