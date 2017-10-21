@@ -199,7 +199,7 @@ table.form_table {
   }
 
   .form_input_wide {
-    width: 400px;;
+    width: 400px;
   }
 
   .form_textarea {
@@ -208,6 +208,29 @@ table.form_table {
 
   .form_label {
     font-weight: 500;
+  }
+
+  /*
+  select2 custom css overrides
+   */
+
+  .select2-selection {
+    border-radius: 0;
+    padding: 5px;
+  }
+
+  /* tag styling */
+  .select2-container--default .select2-selection--multiple li.select2-selection__choice {
+    background-color: #E1ECF4;
+    color: #39739d;
+    border-radius: 0;
+    border: none;
+    padding: 5px;
+    margin: 0 5px 0 0;
+  }
+
+  .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    margin-right: 5px;
   }
 }
 
