@@ -36,11 +36,11 @@ describe Post::Feed do
       let(:feed) { Post::Feed.new(user: user, tag: "tag1") }
 
       let!(:post1) do
-        create :post, tag_names: "tag1", users_shared_by: [followee]
+        create :post, tag_names: ["tag1"], users_shared_by: [followee]
       end
 
       let!(:post2) do
-        create :post, tag_names: "tag2", users_shared_by: [followee]
+        create :post, tag_names: ["tag2"], users_shared_by: [followee]
       end
 
       it "only includes posts with that tag" do

@@ -22,7 +22,11 @@
 
       <tr>
         <td><%= f.label :tag_names, "tags", class: "form_label" %></td>
-        <td><%= f.text_field :tag_names, class: "form_input_wide", placeholder: "e.g. world news" %></td>
+        <td>
+          <%= f.select :tag_names, options_for_select([]),
+                       { multiple: true, include_hidden: false },
+                       { class: "tag_input form_input_wide", multiple: true }%>
+        </td>
       </tr>
 
       <tr>

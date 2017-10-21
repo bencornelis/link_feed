@@ -18,3 +18,4 @@
 //= require tinymce-jquery
 //= require spin
 //= require jquery.spin
+//= require select2

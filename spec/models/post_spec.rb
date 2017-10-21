@@ -9,24 +9,11 @@ RSpec.describe Post, type: :model do
   it { should have_many :tags }
 
   it "should assign tags after being saved" do
-    post = build :post, tag_names: "world news"
+    post = build :post, tag_names: %w(world news)
     post.save!
 
     tags = post.reload.tags
     expect(tags.pluck(:name)).to match_array %w(world news)
-  end
-
-  describe "#tag_names" do
-    let(:tag_names) { %w(world news) }
-    let(:post) do
-      build :post do |post|
-        tag_names.each { |name| post.tags << build(:tag, name: name) }
-      end
-    end
-
-    it "gets the names of the post's tags" do
-      expect(post.tag_names).to eql tag_names.join(" ")
-    end
   end
 
   describe "#text_only?" do

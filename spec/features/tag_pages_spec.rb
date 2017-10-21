@@ -1,8 +1,8 @@
 require "rails_helper"
 
 describe "clicking on a tag" do
-  let!(:post1) { create :post, title: "Title 1", tag_names: "tag1" }
-  let!(:post2) { create :post, title: "Title 2", tag_names: "tag2" }
+  let!(:post1) { create :post, title: "Title 1", tag_names: ["tag1"] }
+  let!(:post2) { create :post, title: "Title 2", tag_names: ["tag2"] }
   let!(:user)  { create :user }
 
   context "when the tag is recent" do

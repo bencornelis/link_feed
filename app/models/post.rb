@@ -5,7 +5,7 @@ class Post < ActiveRecord::Base
 
   validates :title, presence: true
 
-  attr_writer :tag_names
+  attr_accessor :tag_names
   after_save :assign_tags
 
   belongs_to :user, counter_cache: true
@@ -36,15 +36,14 @@ class Post < ActiveRecord::Base
     created_at != updated_at
   end
 
-  def tag_names
-    @tag_names ||= tags.map(&:name).join(" ")
-  end
-
   private
   def assign_tags
     return unless @tag_names
-    self.tags = @tag_names.split(/\s+/).map do |name|
-      Tag.find_or_create_by(name: name)
+
+    # @tag_names actually contains existing tag ids and new tag names
+    # e.g. ['2', 'newtag']
+    self.tags = @tag_names.map do |name|
+      name =~ /^\d+$/ ? Tag.find(name) : Tag.create(name: name)
     end
   end
 end

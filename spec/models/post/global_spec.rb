@@ -33,8 +33,8 @@ describe Post::Global do
 
     context "when filtering by tag" do
       let(:global) { Post::Global.new(tag: "tag1") }
-      let!(:post1) { create :post, tag_names: "tag1"  }
-      let!(:post2) { create :post, tag_names: "tag2"  }
+      let!(:post1) { create :post, tag_names: ["tag1"]  }
+      let!(:post2) { create :post, tag_names: ["tag2"]  }
 
       it "only includes posts with that tag" do
         expect(posts).to contain_exactly post1
@@ -62,7 +62,7 @@ describe Post::Global do
         Timecop.freeze(1.day.ago) { create :post }
       end
 
-      let!(:new_post) { create :post, tag_names: "tag1 tag3" }
+      let!(:new_post) { create :post, tag_names: %w(tag1 tag3) }
 
       it "puts the most recent posts first" do
         expect(posts.to_a).to eql [new_post, day_old_post, two_day_old_post]

@@ -53,7 +53,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :url, :text, :tag_names)
+    params.require(:post).permit(:title, :url, :text, {tag_names: []})
   end
 
   def global_params

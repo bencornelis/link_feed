@@ -3,6 +3,22 @@ $(document).on('turbolinks:load', function() {
     $(this).find('.post_details .more_info').toggle();
   });
 
+  $('form#new_post').ready(function() {
+    $('.tag_input').select2({
+      tags: true,
+      placeholder: 'Select tags',
+      ajax: {
+        url: '/tags',
+        dataType: 'json',
+        processResults: function(data) {
+          return {
+            results: data
+          }
+        }
+      }
+    });
+  });
+
   $('.posts.show #comments').ready(function() {
     var commentsCount = parseInt($('#comments_count').text());
     if (commentsCount < 10) {

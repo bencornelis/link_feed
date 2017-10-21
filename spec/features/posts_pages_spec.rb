@@ -27,17 +27,32 @@ describe "navigating to a post" do
   end
 end
 
-describe "adding a post" do
+describe "adding a post", js: true do
+  def fill_in_post_form(title:, text:, tag_names:)
+    fill_in 'post_title', with: title
+
+    # fill in tinymce textarea with post text
+    execute_script("tinymce.editors[0].setContent('#{text}')")
+
+    tag_names.each do |tag_name|
+      create :tag, name: tag_name
+      find('span.select2').click
+      find('li', text: tag_name).click
+    end
+  end
+
   it "displays post information for a post just added" do
     user = create :user
 
     login_as(user)
     visit root_path
-
     click_on "new_post_link"
-    fill_in "post_title", with: "What is the best games soundtrack?"
-    fill_in "post_text", with: "I really want to know!"
-    fill_in "post_tag_names", with: "games soundtracks"
+
+    fill_in_post_form(
+      title:      "What is the best games soundtrack?",
+      text:       "I really want to know!",
+      tag_names:  ["soundtracks"]
+    )
     click_on "submit"
 
     expect(page).to have_content "What is the best games soundtrack?"
@@ -46,15 +61,18 @@ describe "adding a post" do
   end
 
   it "has the poster share the post" do
+    tag = create :tag
     user = create :user
 
     login_as(user)
-    visit root_path
+    visit new_post_path
 
-    click_on "new_post_link"
-    fill_in "post_title", with: "What is the best games soundtrack?"
-    fill_in "post_text", with: "I really want to know!"
-    fill_in "post_tag_names", with: "games soundtracks"
+    fill_in_post_form(
+      title:      "What is the best games soundtrack?",
+      text:       "I really want to know!",
+      tag_names:  ["soundtracks"]
+    )
+
 
     click_on "submit"
 
@@ -71,8 +89,12 @@ describe "adding a post" do
 
     login_as(user)
     visit new_post_path
-    fill_in "post_title", with: "What is the best games soundtrack?"
-    fill_in "post_tag_names", with: "games soundtracks"
+
+    fill_in_post_form(
+      title:      "What is the best games soundtrack?",
+      text:       "I really want to know!",
+      tag_names:  ["games", "soundtracks"]
+    )
     click_on "submit"
 
     visit profile_path
@@ -195,8 +217,8 @@ end
 
 describe "filtering by tag" do
   it "displays only posts with the tag" do
-    create :post, title: "Title 1", tag_names: "Tag1"
-    create :post, title: "Title 2", tag_names: "Tag2"
+    create :post, title: "Title 1", tag_names: ["Tag1"]
+    create :post, title: "Title 2", tag_names: ["Tag2"]
 
     visit root_path
     click_on "#Tag1"
