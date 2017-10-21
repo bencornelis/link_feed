@@ -15,10 +15,9 @@ class PostPresenter < ContentPresenter
   end
 
   def linked_tags(is_blurb)
-    divider, container = is_blurb ? [' ', :div] : [' / ', :span]
-    content_tag(container, class: "tags") do
+    content_tag(:div, class: "post_tags") do
       post.tags.each do |tag|
-        concat divider
+        concat ' '
         concat (is_blurb ? abs_tag_link(tag) : rel_tag_link(tag))
       end
     end

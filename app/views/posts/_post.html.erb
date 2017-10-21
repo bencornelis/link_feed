@@ -1,16 +1,26 @@
 <%= content_tag_for :li, post do %>
   <% present post do |post_presenter| %>
-    <h4 class="post_title"><%= post_presenter.linked_title %></h4>
+    <div class="post_header">
+      <h4 class="post_title">
+        <%= post_presenter.linked_title %>
+      </h4>
+
+      <div class="post_header_tags">
+        <%= post_presenter.linked_tags(is_blurb) unless is_blurb %>
+      </div>
+    </div>
+
     <div class="post_details">
       <div class="main_post_details">
         <div class="poster">
           <%= post_presenter.linked_username %>
         </div>
 
-        <div class="comments_and_tags">
+        <div class="linked_comments">
           <%= post_presenter.linked_comments %>
-          <%= post_presenter.linked_tags(is_blurb) %>
         </div>
+
+        <%= post_presenter.linked_tags(is_blurb) if is_blurb %>
       </div>
 
       <% unless is_blurb %>

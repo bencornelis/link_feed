@@ -239,6 +239,20 @@ li.error {
   color: #CC3300;
 }
 
+.tag {
+  background-color: #E1ECF4;
+  color: #39739d;
+  border-radius: 0;
+  border: none;
+  padding: 5px;
+  margin: 0 2px 0 0;
+
+  &:hover {
+    background-color: #cee0ed;
+    text-decoration: none;
+  }
+}
+
 /*
 http://mislav.github.io/will_paginate/
  */

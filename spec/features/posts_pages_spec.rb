@@ -99,8 +99,8 @@ describe "adding a post", js: true do
 
     visit profile_path
 
-    expect(page).to have_content "#games"
-    expect(page).to have_content "#soundtracks"
+    expect(page).to have_content "games"
+    expect(page).to have_content "soundtracks"
   end
 
   it "requires a user to be logged in" do
@@ -221,7 +221,7 @@ describe "filtering by tag" do
     create :post, title: "Title 2", tag_names: ["Tag2"]
 
     visit root_path
-    click_on "#Tag1"
+    click_on "Tag1"
 
     expect(page).to have_content "Title 1"
     expect(page).to have_no_content "Title 2"

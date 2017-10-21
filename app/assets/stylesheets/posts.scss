@@ -25,14 +25,24 @@
     margin-top: 50px !important;
   }
 
+  .post_header_tags {
+    float: right;
+    margin-top: 25px;
+  }
+
   ul {
     padding-left: 0px;
 
     li {
       &.post {
+        min-height: 90px;
         padding-left: 0px;
         padding-bottom: 10px;
         border-bottom: 1px solid #e3e3e3;
+      }
+
+      .post_title {
+        float:left;
       }
 
       &.nested_comment {
@@ -47,6 +57,7 @@
   }
 
   .post_details {
+    clear:both;
     padding-bottom: 30px;
     .main_post_details {
       float: left;
@@ -55,6 +66,8 @@
     .more_info {
       display: none;
       float: right;
+      padding-right: 10px;
+      padding-top: 10px;
     }
   }
 
@@ -79,6 +92,10 @@
       cursor: pointer;
       color: #FF9900;
     }
+  }
+
+  .linked_comments {
+    padding-top: 5px;
   }
 
   .comments_count {

@@ -10,11 +10,11 @@ describe "clicking on a tag" do
       visit tags_path
 
       within("#recent_tags") do
-        click_on "#tag1"
+        click_on "tag1"
       end
 
-      expect(page).to have_content    "#tag1"
-      expect(page).to have_no_content "#tag2"
+      expect(page).to have_content    "tag1"
+      expect(page).to have_no_content "tag2"
     end
   end
 
@@ -23,11 +23,11 @@ describe "clicking on a tag" do
       visit tags_path
 
       within("#popular_tags") do
-        click_on "#tag1"
+        click_on "tag1"
       end
 
-      expect(page).to have_content    "#tag1"
-      expect(page).to have_no_content "#tag2"
+      expect(page).to have_content    "tag1"
+      expect(page).to have_no_content "tag2"
     end
   end
 end
