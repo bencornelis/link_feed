@@ -28,6 +28,7 @@
   }
 
   .badges_received {
+    height: 30px;
     margin-bottom: 10px;
   }
 
@@ -43,6 +44,41 @@
 
   .follow_link {
     margin-top: 20px;
+  }
+
+  .badge_icon_container, .follower_icon_container {
+    width: 40px;
+    height: 30px;
+    margin-bottom: 5px;
+  }
+
+  .badge_icon {
+    float: left;
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+  }
+
+  .badge_icon_count, .follower_icon_count {
+    display: table;
+  }
+
+  .badge_icon_count {
+    padding-top: 3px;
+  }
+
+  .follower_icon_count {
+    padding-top: 6px;
+  }
+
+  .follower_icon {
+    float: left;
+    height: 30px;
+    margin-right: 6px;
+  }
+
+  .follow_link {
+    margin-top: 30px;
   }
 
   @media (max-width: 675px) {

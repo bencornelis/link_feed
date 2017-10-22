@@ -62,11 +62,11 @@ class CommentPresenter < ContentPresenter
     badges_count = comment.badges.count
     return unless badges_count > 0
 
-    content_tag 'span', class: 'comment_badges' do
-      concat '| '
-      concat fa_icon 'cogs'
-      concat ' x '
-      concat badges_count
+    content_tag 'span', id: 'comment_badges' do
+      concat ' |'
+      badges_count.times do
+        concat image_tag 'badge.png', class: 'badge_icon'
+      end
     end
   end
 

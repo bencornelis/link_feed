@@ -57,10 +57,10 @@ class PostPresenter < ContentPresenter
     return unless badges_count > 0
 
     content_tag 'span', id: 'post_badges' do
-      concat '| '
-      concat fa_icon 'cogs'
-      concat ' x '
-      concat badges_count
+      concat ' |'
+      badges_count.times do
+        concat image_tag 'badge.png', class: 'badge_icon'
+      end
     end
   end
 

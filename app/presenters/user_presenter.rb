@@ -28,7 +28,7 @@ class UserPresenter < BasePresenter
             user_follows_path(user),
             remote: true,
             method: :post,
-            class: "btn_yellow"
+            class: "btn_blue follow_link"
   end
 
   def unfollow_link
@@ -36,24 +36,31 @@ class UserPresenter < BasePresenter
             user_follow_path(user, user.followee_follow(current_user)),
             remote: true,
             method: :delete,
-            class: "btn_yellow"
+            class: "btn_blue follow_link"
   end
 
   def followers_icon
-    content_tag 'span' do
-      concat fa_icon 'users 2x'
+    follower_icon_count_span = content_tag 'span', class: 'follower_icon_count' do
       concat ' x '
       concat followers_count
+    end
+
+    content_tag 'span', class: 'follower_icon_container' do
+      concat image_tag 'follower.png', class: 'follower_icon'
+      concat follower_icon_count_span
     end
   end
 
   def badges_received_icon
     badges_received_count = user.badgings_received.count
-
-    content_tag 'span' do
-      concat fa_icon 'cogs 2x'
-      concat '  x  '
+    badge_icon_count_span = content_tag 'span', class: 'badge_icon_count' do
+      concat ' x '
       concat badges_received_count
+    end
+
+    content_tag 'span', class: 'badge_icon_container' do
+      concat image_tag 'badge.png', class: 'badge_icon'
+      concat badge_icon_count_span
     end
   end
 
