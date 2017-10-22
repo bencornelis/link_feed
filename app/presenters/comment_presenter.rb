@@ -73,7 +73,7 @@ class CommentPresenter < ContentPresenter
   def badge_link
     return unless user_signed_in? && current_user.badges_to_give.exists?
 
-    link_to comment_badgings_path(comment), method: :post, class: 'comment_badge_link' do
+    link_to comment_badgings_path(comment), method: :post, class: 'badge_link comment_badge_link' do
       fa_icon 'magic'
     end
   end

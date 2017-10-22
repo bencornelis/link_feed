@@ -27,7 +27,7 @@
 
   .post_header_tags {
     float: right;
-    margin-top: 25px;
+    margin-top: 20px;
   }
 
   ul {
@@ -77,7 +77,11 @@
     }
   }
 
+  .post_page_header { position: relative; }
   .share_link {
+    position: absolute;
+    left: -30px;
+
     &:hover {
       cursor: pointer;
       color: #FF9900;
@@ -94,8 +98,19 @@
     }
   }
 
+  .badge_link {
+    &:hover {
+      cursor: pointer;
+      color: #FF9900;
+    }
+  }
+
+  .poster {
+    margin-top: 8px;
+  }
+
   .linked_comments {
-    padding-top: 5px;
+    margin-top: 2px;
   }
 
   .comments_count {

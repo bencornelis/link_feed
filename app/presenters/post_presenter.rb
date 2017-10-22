@@ -67,7 +67,7 @@ class PostPresenter < ContentPresenter
   def badge_link
     return unless user_signed_in? && current_user.badges_to_give.exists?
 
-    link_to post_badgings_path(post), method: :post, id: 'post_badge_link' do
+    link_to post_badgings_path(post), method: :post, id: 'post_badge_link', class: 'badge_link' do
       fa_icon 'magic'
     end
   end

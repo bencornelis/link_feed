@@ -41,7 +41,7 @@ class UserPresenter < BasePresenter
 
   def followers_icon
     content_tag 'span' do
-      concat fa_icon 'users'
+      concat fa_icon 'users 2x'
       concat ' x '
       concat followers_count
     end
@@ -51,8 +51,8 @@ class UserPresenter < BasePresenter
     badges_received_count = user.badgings_received.count
 
     content_tag 'span' do
-      concat fa_icon 'cogs'
-      concat ' x '
+      concat fa_icon 'cogs 2x'
+      concat '  x  '
       concat badges_received_count
     end
   end
