@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "clicking on a post title" do
-  it "displays the post view for internal links" do
+  it "displays the post view for internal links", js: true do
     post = create :post
 
     visit root_path
@@ -9,10 +9,6 @@ describe "clicking on a post title" do
 
     expect(page).to have_content post.title
     expect(page).to have_content post.user.username
-
-    within '#post_shares' do
-      expect(page).to have_content '0'
-    end
   end
 end
 
@@ -76,6 +72,7 @@ describe "adding a post", js: true do
 
     click_on "submit"
 
+    find('#post_main').hover
     within '#post_shares' do
       expect(page).to have_content '1'
     end
@@ -142,16 +139,8 @@ describe "sharing a post" do
     login_as(user)
     visit post_path(post)
 
-    within '#post_shares' do
-      expect(page).to have_content '0'
-    end
-
     find('.share_link').click
     expect(page).not_to have_selector '.share_link'
-
-    within '#post_shares' do
-      expect(page).to have_content '1'
-    end
 
     visit profile_path
     expect(page).to have_content post.title

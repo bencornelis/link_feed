@@ -31,12 +31,13 @@ class PostPresenter < ContentPresenter
   end
 
   def shares
-    fa_icon 'paper-plane-o'
+    return unless post.shares_count > 0
+
     content_tag :span, id: 'post_shares' do
-      concat ' · '
+      concat '· '
       concat fa_icon 'paper-plane-o'
-      concat ' x '
-      concat post.shares_count
+      concat link_to_modal " x #{post.shares_count}",
+                           post_sharers_path(post)
     end
   end
 

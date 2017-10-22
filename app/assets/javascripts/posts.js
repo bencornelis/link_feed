@@ -1,6 +1,12 @@
 $(document).on('turbolinks:load', function() {
   $('.post').hover(function() {
-    $(this).find('.post_details .more_info').toggle();
+    $(this).find('.post_details .more_info').fadeToggle('fast');
+  });
+
+  attachCommentHover();
+
+  $('#post_main').hover(function() {
+    $(this).find('#post_badge_link, #post_shares').fadeToggle('fast');
   });
 
   $('form#new_post').ready(function() {
@@ -36,8 +42,8 @@ $(document).on('turbolinks:load', function() {
         $('#comments_loader').spin({top: '40%', left: '50%'});;
       },
       success: function() {
-        attachCommentToggler();
         $('#comments_loader').spin(false);
+        attachCommentListeners();
 
         // if linking to a comment anchor, scroll to that comment
         if (location.hash) {
@@ -54,6 +60,11 @@ $(document).on('turbolinks:before-cache', function() {
   $('.post_details .more_info').hide();
 });
 
+function attachCommentListeners() {
+  attachCommentToggler();
+  attachCommentHover();
+}
+
 function attachCommentToggler() {
   $(".comment .comment_toggler").click(function() {
     var $toggler = $(this);
@@ -67,5 +78,11 @@ function attachCommentToggler() {
     $comment.children(".comment_main").toggle();
     $comment.next("ul.comments").toggle();
     $comment.find(".share_comment_link").toggle();
+  });
+}
+
+function attachCommentHover() {
+  $('.comment').hover(function() {
+    $(this).find('.comment_shares, .comment_badge_link').fadeToggle('fast');
   });
 }

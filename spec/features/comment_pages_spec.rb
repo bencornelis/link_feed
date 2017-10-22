@@ -123,10 +123,11 @@ describe "sharing a comment" do
     within "#comment_#{comment.id}" do
       find('.share_comment_link').click
       expect(page).not_to have_selector '.share_comment_link'
+    end
 
-      within ".comment_shares" do
-        expect(page).to have_content '2'
-      end
+    find("#comment_#{comment.id}").hover
+    within "#comment_#{comment.id} .comment_shares" do
+      expect(page).to have_content '2'
     end
   end
 end
