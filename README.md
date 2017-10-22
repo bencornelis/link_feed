@@ -13,10 +13,12 @@ https://blooming-mesa-35436.herokuapp.com/
 * users can follow and unfollow other users
 * users can share posts and comments with followers
 * user feed consisting of posts that have been shared by a user's followees
+* users are assigned badges after receiving shares and can badge posts and comments
+* user statistics on user profile
 
 ### About
 
-My goal with this project was to learn more about active record associations and experiment with some rails design patterns. It uses:
+My goal with this project was to learn more about Active Record associations and experiment with some rails design patterns. It uses:
 
 * RSpec, Capybara, and Factory Girl for testing
 * user authentication with devise
@@ -27,7 +29,8 @@ My goal with this project was to learn more about active record associations and
 * pagination with will_paginate
 * presenter design pattern for views
 * Hacker News formula for post and comment ranking
-* faker data for database seeding
+* Faker data for database seeding
+* Select2 jQuery select box for autocompleting tags via AJAX
 
 ### Setup
 
@@ -41,3 +44,7 @@ To run the tests:
 * `rspec`
 
 To seed the database with some users, relationships, posts and comments, run `rake db:seed`.
+
+To explore the app without having to sign up and email confirm, feel free to use the login:
+* username: `testuser`
+* password: `foobar`

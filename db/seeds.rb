@@ -8,8 +8,8 @@ test_admin = User.new(username: "admin",
 
 test_user = User.new(username: "testuser",
                      email: "ben@gmail.com",
-                     password: "password1",
-                     password_confirmation: "password1")
+                     password: "foobar",
+                     password_confirmation: "foobar")
 
 test_moderator = User.new(username: "moderator",
                           email: "mod@gmail.com",
