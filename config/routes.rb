@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :follows, only: [:create, :destroy]
     resources :followers, only: [:index]
+    resources :followees, only: [:index]
   end
 
   resource :profile, only: [:show]
@@ -17,6 +18,11 @@ Rails.application.routes.draw do
     resources :shares, only: [:create]
     resources :comments, except: [:index]
     resources :badgings, only: [:create]
+    resources :sharers, only: [:index]
+
+    member do
+      get 'preview'
+    end
   end
 
   namespace :comments do
@@ -26,6 +32,7 @@ Rails.application.routes.draw do
   resources :comments, only: [:index] do
     resources :shares, only: [:create]
     resources :badgings, only: [:create]
+    resources :sharers, only: [:index]
   end
 
   resources :tags, only: [:index]

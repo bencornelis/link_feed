@@ -5,6 +5,8 @@
 #users_controller, #profiles_controller {
   .user_info_header {
     text-decoration: underline;
+    margin-top: 30px;
+    margin-bottom: 10px;
   }
 
   .user_info_panel {
@@ -14,6 +16,7 @@
   }
 
   ul {
+    margin-top: 0;
     padding-left: 0px;
   }
 

@@ -1,16 +1,2 @@
 <h4 class='modal_header'><%= @user.username %>'s followers</h4>
-<table class='modal_table'>
-  <tbody>
-    <% @followers.each_slice(3) do |row_of_followers| %>
-      <tr class='modal_table_row'>
-        <% row_of_followers.each do |follower| %>
-          <td class='modal_table_cell'>
-            <%= link_to follower.username,
-                        user_path(follower),
-                        class: user_link_class(follower) %>
-          </td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render 'modals/users_table', users: @followers %>

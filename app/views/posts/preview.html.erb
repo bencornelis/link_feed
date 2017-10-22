@@ -1,0 +1,14 @@
+<% present @post do |post_presenter| %>
+  <h2 class="post_page_header">
+    <%= post_presenter.linked_title %>
+  </h2>
+
+  <article class="post_text">
+    <%= simple_format post_presenter.text %>
+  </article>
+
+  <h5 class="post_details">
+    posted by: <%= post_presenter.linked_username %>
+               <%= post_presenter.time_since_created %>
+  </h5>
+<% end %>

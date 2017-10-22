@@ -6,13 +6,14 @@ class CommentPresenter < ContentPresenter
     simple_format(text)
   end
 
-  def shares
+  def linked_shares
     return unless comment.shares_count > 0
+
     content_tag :span, class: 'comment_shares' do
-      concat '| '
+      concat '· '
       concat fa_icon 'paper-plane-o'
-      concat ' x '
-      concat comment.shares_count
+      concat link_to_modal " x #{comment.shares_count}",
+                           comment_sharers_path(comment)
     end
   end
 
@@ -63,7 +64,7 @@ class CommentPresenter < ContentPresenter
     return unless badges_count > 0
 
     content_tag 'span', id: 'comment_badges' do
-      concat ' |'
+      concat ' ·'
       badges_count.times do
         concat image_tag 'badge.png', class: 'badge_icon'
       end

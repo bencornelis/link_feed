@@ -13,16 +13,6 @@ class UserPresenter < BasePresenter
             class: user_link_class(other_user)
   end
 
-  def followee_list
-    names = followees.map { |followee| linked_username(followee) }.join(", ")
-    "Following (#{followees_count}): #{names}".html_safe
-  end
-
-  def follower_list
-    names = followers.map { |follower| linked_username(follower) }.join(", ")
-    "Followers (#{followers_count}): #{names}".html_safe
-  end
-
   def follow_link
     link_to 'follow',
             user_follows_path(user),
@@ -76,5 +66,11 @@ class UserPresenter < BasePresenter
 
   def shares_received
     user.shares_received.count
+  end
+
+  def followees_link
+    link_to_modal followees_count,
+                  user_followees_path(user),
+                  class: 'user_stats_link'
   end
 end

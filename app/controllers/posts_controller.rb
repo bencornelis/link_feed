@@ -50,6 +50,10 @@ class PostsController < ApplicationController
     redirect_to root_path, notice: 'Post successfully deleted.'
   end
 
+  def preview
+    @post = Post.find(params[:id])
+  end
+
   private
 
   def post_params

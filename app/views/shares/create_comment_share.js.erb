@@ -1,3 +1,3 @@
 $comment = $("#comment_<%= @shareable.id %>");
 $comment.find(".share_comment_link").remove();
-$comment.find(".comment_shares").replaceWith("<%= j present(@shareable).shares %>");
+$comment.find(".comment_shares").replaceWith("<%= j present(@shareable).linked_shares %>");

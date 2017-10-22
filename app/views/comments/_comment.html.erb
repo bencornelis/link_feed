@@ -6,9 +6,8 @@
       <%= comment_presenter.linked_username %>
       <%= comment_presenter.time_since_created %>
       <%= comment_presenter.time_since_edited if comment_presenter.edited? %>
-      <%= comment_presenter.shares %>
+      <%= comment_presenter.linked_shares %>
       <%= comment_presenter.badges %>
-      <%= comment_presenter.badge_link %>
     </h5>
 
     <div class="comment_main">
@@ -21,6 +20,7 @@
         <%= comment_presenter.parent_link %>
         <%= comment_presenter.edit_link if policy(comment).update? %>
         <%= comment_presenter.delete_link if policy(comment).destroy? %>
+        <%= comment_presenter.badge_link %>
       </footer>
 
       <p class="comment_form"></p>

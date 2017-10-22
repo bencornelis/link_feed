@@ -3,7 +3,7 @@ class PostPresenter < ContentPresenter
   delegate :title, :text, :url, to: :post
 
   def comments_count
-    pluralize content.comments_count, 'comment'
+    pluralize post.comments_count, 'comment'
   end
 
   def linked_title
@@ -12,6 +12,13 @@ class PostPresenter < ContentPresenter
 
   def linked_comments
     link_to comments_count, post_path(post)
+  end
+
+  def linked_shares
+    content_tag :span do
+      concat ' · '
+      concat link_to_modal "#{post.shares_count} shared", post_sharers_path(post)
+    end
   end
 
   def linked_tags(is_blurb)
@@ -26,6 +33,7 @@ class PostPresenter < ContentPresenter
   def shares
     fa_icon 'paper-plane-o'
     content_tag :span, id: 'post_shares' do
+      concat ' · '
       concat fa_icon 'paper-plane-o'
       concat ' x '
       concat post.shares_count
@@ -57,7 +65,7 @@ class PostPresenter < ContentPresenter
     return unless badges_count > 0
 
     content_tag 'span', id: 'post_badges' do
-      concat ' |'
+      concat ' · '
       badges_count.times do
         concat image_tag 'badge.png', class: 'badge_icon'
       end
@@ -70,5 +78,9 @@ class PostPresenter < ContentPresenter
     link_to post_badgings_path(post), method: :post, id: 'post_badge_link', class: 'badge_link' do
       fa_icon 'magic'
     end
+  end
+
+  def preview_link
+    link_to_modal fa_icon('search'), preview_post_path(post)
   end
 end

@@ -1,0 +1,15 @@
+<table class='modal_table'>
+  <tbody>
+    <% users.each_slice(3) do |row_of_users| %>
+      <tr class='modal_table_row'>
+        <% row_of_users.each do |user| %>
+          <td class='modal_table_cell'>
+            <%= link_to user.username,
+                        user_path(user),
+                        class: user_link_class(user) %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
