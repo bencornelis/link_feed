@@ -42,14 +42,14 @@ def generate_user_activity(options)
             title:     Faker::Company.catch_phrase,
             url:       Faker::Internet.url,
             text:      Faker::Hacker.say_something_smart,
-            tag_names: "#{Faker::Hacker.adjective} #{Faker::Hacker.abbreviation}",
+            tag_names: [Faker::Hacker.adjective, Faker::Hacker.abbreviation]
           )
         else
           post = user.posts.create(
             title:     Faker::Hacker.say_something_smart,
             url:       "",
             text:      Faker::Hacker.say_something_smart,
-            tag_names: "#{Faker::Hacker.adjective} #{Faker::Hacker.abbreviation}",
+            tag_names: [Faker::Hacker.adjective, Faker::Hacker.abbreviation]
           )
         end
 
@@ -58,7 +58,7 @@ def generate_user_activity(options)
     end
   end
 
-  puts 'generating comments... (this might take awhile)'
+  puts 'generating comments...'
   users.each do |user|
     comments_count = rand(options[:max_comments_per_user])
     posts = Post.order('RANDOM()').limit(random_id(comments_count))
@@ -94,7 +94,7 @@ def generate_user_activity(options)
   posts_count    = Post.count
   comments_count = Comment.count
 
-  puts 'generating follows and shares...'
+  puts 'generating follows, shares, and badges...'
   users.each do |user|
     rand(options[:max_follows_per_user]).times do
       user.follower_follows.create(followee_id: random_id(options[:user_count]))
@@ -102,16 +102,50 @@ def generate_user_activity(options)
 
     rand(options[:max_shares_per_user]).times do
       if rand < 0.25
+        shareable_id = random_id(posts_count)
+        share_receiver = Post.find(shareable_id).user
         user
           .shares
-          .create(shareable_id: random_id(posts_count),
-                  shareable_type: 'Post')
+          .create(shareable_id: shareable_id,
+                  shareable_type: 'Post',
+                  share_receiver_id: share_receiver.id)
       else
+        shareable_id = random_id(comments_count)
+        share_receiver = Comment.find(shareable_id).user
         user
           .shares
-          .create(shareable_id: random_id(comments_count),
-                  shareable_type: 'Comment')
+          .create(shareable_id: shareable_id,
+                  shareable_type: 'Comment',
+                  share_receiver_id: share_receiver.id)
       end
+
+      share_receiver.shares_received_since_last_badge += 1
+      if share_receiver.shares_received_since_last_badge == 10
+        share_receiver.badges.create
+        share_receiver.shares_received_since_last_badge = 0
+      end
+      share_receiver.save
+    end
+  end
+
+  puts 'generating badgings...'
+  users.each do |user|
+    badge_count = user.badges.count
+    badges_to_give_count = badge_count/2
+
+    posts_to_badge = Post.order('RANDOM()').limit(badges_to_give_count/4)
+    comments_to_badge = Comment.order('RANDOM()').limit(3 * badges_to_give_count/4)
+
+    (posts_to_badge + comments_to_badge).each do |badgeable|
+      badge = user.badges_to_give.first
+      badge_receiver = badgeable.user
+
+      badgeable.badgings.create(
+        badge_id: badge.id,
+        badge_receiver_id: badge_receiver.id
+      )
+
+      badge.update!(given: true)
     end
   end
 end

@@ -45,7 +45,7 @@ class Post < ActiveRecord::Base
     # @tag_names actually contains existing tag ids and new tag names
     # e.g. ['2', 'newtag']
     self.tags = @tag_names.map do |name|
-      name =~ /^\d+$/ ? Tag.find(name) : Tag.create(name: name)
+      name =~ /^\d+$/ ? Tag.find(name) : Tag.find_or_create_by(name: name)
     end
   end
 end
