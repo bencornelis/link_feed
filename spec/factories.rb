@@ -53,6 +53,18 @@ FactoryGirl.define do
         create_list :user, evaluator.shares_count, shared_posts: [post]
       end
     end
+
+    factory :post_with_shares_and_badgings do
+      transient do
+        badgings_count 2
+        shares_count 2
+      end
+
+      after(:create) do |post, evaluator|
+        create_list :badging, evaluator.badgings_count, badgeable: post
+        create_list :user, evaluator.shares_count, shared_posts: [post]
+      end
+    end
   end
 
   factory :tag do
@@ -73,6 +85,18 @@ FactoryGirl.define do
         create_list :user, evaluator.shares_count, shared_comments: [comment]
       end
     end
+
+    factory :comment_with_shares_and_badgings do
+      transient do
+        badgings_count 2
+        shares_count 2
+      end
+
+      after(:create) do |comment, evaluator|
+        create_list :badging, evaluator.badgings_count, badgeable: comment
+        create_list :user, evaluator.shares_count, shared_comments: [comment]
+      end
+    end
   end
 
   factory :follow do
@@ -82,5 +106,8 @@ FactoryGirl.define do
 
   factory :badge do
     association :badge_giver, factory: :user
+  end
+
+  factory :badging do
   end
 end

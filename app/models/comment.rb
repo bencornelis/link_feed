@@ -10,6 +10,8 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :post, counter_cache: true
 
+  BADGING_FACTOR = 20
+
   scope :recent,   -> { order("created_at desc") }
   scope :by_score, -> { order("#{score_sql} desc") }
 
@@ -32,6 +34,7 @@ class Comment < ActiveRecord::Base
   private
 
   def self.score_sql
-    '(shares_count - 1)/POWER(EXTRACT(EPOCH FROM (NOW() - created_at)) + 2, 1.8)'
+    "(shares_count + #{BADGING_FACTOR} * badgings_count - 1)" +
+    "/POWER(EXTRACT(EPOCH FROM (NOW() - created_at)) + 2, 1.8)"
   end
 end

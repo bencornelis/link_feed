@@ -8,17 +8,33 @@ describe Post::Global do
       let(:global) { Post::Global.new }
 
       it "orders posts by Hacker News Score" do
-        # score - (S - 1)/(T + 2)^1.8
+        # score - (S + F * B - 1)/(T + 2)^1.8
         # S - number of shares
+        # B - number of badges/badgings
+        # F - badging factor: a badge is worth F shares
         # T - number of seconds since creation
 
-        all_posts = []
+        ordered_posts = []
         Timecop.freeze(1.day.ago) do
-          all_posts << create(:post_with_shares, shares_count: 2)
-          all_posts << create(:post_with_shares, shares_count: 1)
+          ordered_posts << create(:post_with_shares, shares_count: 2)
+          ordered_posts << create(:post_with_shares, shares_count: 1)
         end
 
-        expect(posts.to_a).to eql all_posts
+        expect(posts.to_a).to eql ordered_posts
+      end
+
+      it "weights badges/badgings more than shares" do
+        ordered_posts = []
+        Timecop.freeze(1.day.ago) do
+          ordered_posts << create(:post_with_shares_and_badgings,
+                                  badgings_count: 2,
+                                  shares_count: 0)
+
+          ordered_posts << create(:post_with_shares_and_badgings,
+                                  badgings_count: 1,
+                                  shares_count: 1)
+        end
+        expect(posts.to_a).to eql ordered_posts
       end
     end
 

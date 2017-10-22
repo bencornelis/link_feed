@@ -1,5 +1,7 @@
 class Post < ActiveRecord::Base
   class Global
+    BADGING_FACTOR = 20
+
     def initialize(params = {})
       @sort = params[:sort]
       @filter_options = params.slice(:tag, :page, :per_page)
@@ -27,7 +29,8 @@ class Post < ActiveRecord::Base
 
     def score_sql
       # Hacker News Ranking
-      "(posts.shares_count - 1)/POWER(EXTRACT(EPOCH FROM (NOW() - posts.created_at)) + 2, 1.8)"
+      "(posts.shares_count + #{BADGING_FACTOR} * posts.badgings_count - 1)" +
+      "/POWER(EXTRACT(EPOCH FROM (NOW() - posts.created_at)) + 2, 1.8)"
     end
 
     def base_scope
