@@ -51,4 +51,24 @@ class PostPresenter < ContentPresenter
   def type
     post.text_only? ? "text" : "external link"
   end
+
+  def badges
+    badges_count = post.badges.count
+    return unless badges_count > 0
+
+    content_tag 'span', id: 'post_badges' do
+      concat '| '
+      concat fa_icon 'cogs'
+      concat ' x '
+      concat badges_count
+    end
+  end
+
+  def badge_link
+    return unless user_signed_in? && current_user.badges_to_give.exists?
+
+    link_to post_badgings_path(post), method: :post, id: 'post_badge_link' do
+      fa_icon 'magic'
+    end
+  end
 end

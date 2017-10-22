@@ -6,6 +6,8 @@ RSpec.describe Comment, type: :model do
   it { should have_many :users_shared_by }
   it { should belong_to :post }
   it { should have_many :shares }
+  it { should have_many :badgings }
+  it { should have_many :badges }
 
   describe '#parent_type' do
     context 'when the comment is a root comment' do

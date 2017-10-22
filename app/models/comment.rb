@@ -5,6 +5,8 @@ class Comment < ActiveRecord::Base
   has_ancestry
   has_many :shares, as: :shareable, dependent: :destroy
   has_many :users_shared_by, through: :shares, source: :user
+  has_many :badgings, as: :badgeable
+  has_many :badges, through: :badgings
   belongs_to :user
   belongs_to :post, counter_cache: true
 

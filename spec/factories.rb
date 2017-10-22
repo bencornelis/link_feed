@@ -27,6 +27,16 @@ FactoryGirl.define do
         create_list :user, evaluator.followees_count, followers: [user]
       end
     end
+
+    factory :user_with_badges do
+      transient do
+        badges_count 2
+      end
+
+      after(:create) do |user, evaluator|
+        create_list :badge, evaluator.badges_count, badge_giver: user
+      end
+    end
   end
 
   factory :post do
@@ -68,5 +78,9 @@ FactoryGirl.define do
   factory :follow do
     follower
     followee
+  end
+
+  factory :badge do
+    association :badge_giver, factory: :user
   end
 end

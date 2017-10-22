@@ -57,4 +57,24 @@ class CommentPresenter < ContentPresenter
   def post_link(link_name)
     link_to link_name, post_path(post)
   end
+
+  def badges
+    badges_count = comment.badges.count
+    return unless badges_count > 0
+
+    content_tag 'span', class: 'comment_badges' do
+      concat '| '
+      concat fa_icon 'cogs'
+      concat ' x '
+      concat badges_count
+    end
+  end
+
+  def badge_link
+    return unless user_signed_in? && current_user.badges_to_give.exists?
+
+    link_to comment_badgings_path(comment), method: :post, class: 'comment_badge_link' do
+      fa_icon 'magic'
+    end
+  end
 end

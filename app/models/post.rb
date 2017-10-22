@@ -14,6 +14,8 @@ class Post < ActiveRecord::Base
   has_many :users_shared_by, through: :shares, source: :user
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
+  has_many :badgings, as: :badgeable
+  has_many :badges, through: :badgings
 
   delegate :username, to: :user
 

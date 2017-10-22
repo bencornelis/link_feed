@@ -39,7 +39,36 @@ class UserPresenter < BasePresenter
             class: "btn_yellow"
   end
 
-  def shares
-    pluralize shares_count, 'share'
+  def followers_icon
+    content_tag 'span' do
+      concat fa_icon 'users'
+      concat ' x '
+      concat followers_count
+    end
+  end
+
+  def badges_received_icon
+    badges_received_count = user.badgings_received.count
+
+    content_tag 'span' do
+      concat fa_icon 'cogs'
+      concat ' x '
+      concat badges_received_count
+    end
+  end
+
+  def badges_given
+    total_badges_count = user.badges.count
+    badges_given_count = user.badges_given.count
+
+    "#{badges_given_count} of #{total_badges_count}"
+  end
+
+  def days_a_member
+    time_ago_in_words(user.created_at)
+  end
+
+  def shares_received
+    user.shares_received.count
   end
 end

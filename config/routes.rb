@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :posts do
     resources :shares, only: [:create]
     resources :comments, except: [:index]
+    resources :badgings, only: [:create]
   end
 
   namespace :comments do
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
 
   resources :comments, only: [:index] do
     resources :shares, only: [:create]
+    resources :badgings, only: [:create]
   end
 
   resources :tags, only: [:index]

@@ -18,11 +18,21 @@ class User < ActiveRecord::Base
                              source: :shareable,
                              source_type: 'Comment'
 
+  has_many :shares_received, class_name: 'Share', foreign_key: :share_receiver_id
+
   has_many :followee_follows, class_name: "Follow", foreign_key: :followee_id
   has_many :followers, through: :followee_follows
 
   has_many :follower_follows, class_name: "Follow", foreign_key: :follower_id
   has_many :followees, through: :follower_follows
+
+  has_many :badges, foreign_key: :badge_giver_id
+  has_many :badges_to_give, -> { not_given }, class_name: 'Badge',
+                                              foreign_key: :badge_giver_id
+  has_many :badges_given,   -> { given }, class_name: 'Badge',
+                                          foreign_key: :badge_giver_id
+  has_many :badgings_received, class_name: 'Badging',
+                               foreign_key: :badge_receiver_id
 
   def following?(other_user)
     followees.exists?(other_user.id)

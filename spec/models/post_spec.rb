@@ -7,6 +7,8 @@ RSpec.describe Post, type: :model do
   it { should have_many :users_shared_by }
   it { should have_many :taggings }
   it { should have_many :tags }
+  it { should have_many :badgings }
+  it { should have_many :badges }
 
   it "should assign tags after being saved" do
     post = build :post, tag_names: %w(world news)

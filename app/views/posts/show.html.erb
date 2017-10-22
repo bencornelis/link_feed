@@ -1,8 +1,9 @@
 <div id="post_main">
   <% present @post do |post_presenter| %>
     <h2>
-      <%= post_presenter.linked_title %>
       <%= post_presenter.share_link %>
+      <%= post_presenter.linked_title %>
+      <%= post_presenter.badge_link %>
     </h2>
 
     <h5 class="post_details">
@@ -10,6 +11,7 @@
       <%= post_presenter.time_since_created %>
       <%= post_presenter.time_since_edited if post_presenter.edited? %> |
       <%= post_presenter.shares %>
+      <%= post_presenter.badges %>
     </h5>
 
     <article class="post_text">

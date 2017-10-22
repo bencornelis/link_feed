@@ -10,8 +10,13 @@ RSpec.describe User, type: :model do
   it { should have_many :shares }
   it { should have_many :shared_posts }
   it { should have_many :shared_comments }
+  it { should have_many :shares_received }
   it { should have_many :followers }
   it { should have_many :followees }
+  it { should have_many :badges }
+  it { should have_many :badges_to_give }
+  it { should have_many :badges_given }
+  it { should have_many :badgings_received }
 
   describe '#following?' do
     let(:user)       { create :user }

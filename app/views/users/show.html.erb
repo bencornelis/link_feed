@@ -2,22 +2,39 @@
   <div class="user_info_panel">
     <%= user_presenter.avatar %>
     <h4><%= user_presenter.username %></h4>
+
+    <div class="badges_received">
+      <%= user_presenter.badges_received_icon %>
+    </div>
+
+    <div class="followers">
+      <%= user_presenter.followers_icon %>
+    </div>
+
+    <div class="follow_link">
+      <%= user_presenter.follow_link if policy(@user).follow? %>
+      <%= user_presenter.unfollow_link if policy(@user).unfollow? %>
+    </div>
+
     <div class="user_stats">
       <h5 class="user_info_header">stats</h5>
-      <div class="followees">
-        <%= user_presenter.followee_list %>
-      </div>
-
-      <div class="followers">
-        <%= user_presenter.follower_list %>
-      </div>
-
-      <div class="follow_link">
-        <%= user_presenter.follow_link if policy(@user).follow? %>
-        <%= user_presenter.unfollow_link if policy(@user).unfollow? %>
-      </div>
-
-      <h5><%= user_presenter.shares %></h5>
+      <ul>
+        <li class="followees">
+          following: <%= user_presenter.followees_count %>
+        </li>
+        <li class="badges_given">
+          badges given: <%= user_presenter.badges_given %>
+        </li>
+        <li class="member_time">
+          member for: <%= user_presenter.days_a_member %>
+        </li>
+        <li class="shares_given">
+          shares: <%= user_presenter.shares_count %>
+        </li>
+        <li class="shares_received">
+          shares received: <%= user_presenter.shares_received %>
+        </li>
+      </ul>
     </div>
   </div>
 <% end %>
