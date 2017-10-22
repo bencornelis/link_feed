@@ -30,6 +30,8 @@ gem 'devise'
 gem 'sendgrid-ruby'
 gem 'select2-rails'
 gem 'active_model_serializers'
+gem 'jquery-ui-rails'
+gem 'jquery-modal-rails'
 
 group :production do
   gem 'rails_12factor'

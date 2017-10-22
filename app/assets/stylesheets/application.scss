@@ -14,6 +14,8 @@
  *= require_self
  *= require font-awesome
  *= require select2
+ *= require jquery-ui
+ *= require jquery.modal
  */
 
 body {
@@ -251,6 +253,27 @@ li.error {
     background-color: #cee0ed;
     text-decoration: none;
   }
+}
+
+.modal_header {
+  text-decoration: underline;
+}
+
+.modal_table {
+  padding-bottom: 20px;
+}
+
+.modal_table_row {
+
+}
+
+.modal_table_cell {
+  min-width: 125px;
+}
+
+.jquery-modal {
+  opacity: 0.8 !important;
+  background-color: #CCC !important;
 }
 
 /*

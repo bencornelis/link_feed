@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :follows, only: [:create, :destroy]
+    resources :followers, only: [:index]
   end
 
   resource :profile, only: [:show]

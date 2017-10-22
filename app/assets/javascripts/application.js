@@ -19,3 +19,5 @@
 //= require spin
 //= require jquery.spin
 //= require select2
+//= require jquery-ui
+//= require jquery.modal

@@ -40,14 +40,13 @@ class UserPresenter < BasePresenter
   end
 
   def followers_icon
-    follower_icon_count_span = content_tag 'span', class: 'follower_icon_count' do
-      concat ' x '
-      concat followers_count
-    end
+    follower_icon_count_link = link_to_modal " x #{followers_count}",
+                                             user_followers_path(user),
+                                             class: 'follower_icon_count'
 
     content_tag 'span', class: 'follower_icon_container' do
       concat image_tag 'follower.png', class: 'follower_icon'
-      concat follower_icon_count_span
+      concat follower_icon_count_link
     end
   end
 
