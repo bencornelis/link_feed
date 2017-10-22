@@ -1,4 +1,6 @@
 class BadgingsController < ApplicationController
+  include Polymorphic
+
   def create
     @badgeable = find_badgeable
     badge = current_user.badges_to_give.first
@@ -11,13 +13,7 @@ class BadgingsController < ApplicationController
 
   private
 
-  def find_badgeable
-    params.each do |name, value|
-      if name =~ /(.+)_id$/
-        return $1.classify.constantize.find(value)
-      end
-    end
-  end
+  alias_method :find_badgeable, :find_polymorphic_object
 
   def notice_for(badgeable)
     badgeable_type = badgeable.class.to_s.downcase

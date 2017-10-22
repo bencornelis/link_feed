@@ -1,4 +1,6 @@
 class SharersController < ApplicationController
+  include Polymorphic
+
   def index
     shareable = find_shareable
     @sharers = shareable.users_shared_by
@@ -6,11 +8,5 @@ class SharersController < ApplicationController
 
   private
 
-  def find_shareable
-    params.each do |name, value|
-      if name =~ /(.+)_id$/
-        return $1.classify.constantize.find(value)
-      end
-    end
-  end
+  alias_method :find_shareable, :find_polymorphic_object
 end

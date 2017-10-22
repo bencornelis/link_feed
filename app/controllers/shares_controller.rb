@@ -1,4 +1,5 @@
 class SharesController < ApplicationController
+  include Polymorphic
   before_filter :authenticate_user!
 
   def create
@@ -14,13 +15,7 @@ class SharesController < ApplicationController
 
   private
 
-  def find_shareable
-    params.each do |name, value|
-      if name =~ /(.+)_id$/
-        return $1.classify.constantize.find(value)
-      end
-    end
-  end
+  alias_method :find_shareable, :find_polymorphic_object
 
   def check_if_badge_should_be_awarded(user)
     CheckForBadge.new(user).call
