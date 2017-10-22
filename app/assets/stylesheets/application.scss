@@ -71,12 +71,13 @@ hr {
 
 #main_nav {
   border-bottom: 1px solid #777;
-  padding: 10px;
+  padding: 10px 10px 10px 15px;
   color: #3e6d8e;
   background-color: white;
   height: 35px;
   position: fixed; /* Set the navbar to fixed position */
   top: 0; /* Position the navbar at the top of the page */
+  left: 0;
   width: 100%;
   z-index:2;
   a {
