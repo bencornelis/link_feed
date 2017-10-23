@@ -54,10 +54,11 @@ $(document).on('turbolinks:load', function() {
   });
 });
 
-// prevent turbolinks from caching post comments
+// prevent turbolinks from caching certain things
 $(document).on('turbolinks:before-cache', function() {
   $('.posts.show #comments').html('');
   $('.post_details .more_info').hide();
+  $.modal.close();
 });
 
 function attachCommentListeners() {
