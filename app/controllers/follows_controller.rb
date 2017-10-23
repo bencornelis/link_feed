@@ -1,6 +1,6 @@
 class FollowsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :reload_user_followees!
+  before_filter :reload_user_associations!
 
   def create
     followee_id = params[:user_id]

@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
   end
 
   def shared_comment?(comment)
-    shared_comments.exists?(comment.id)
+    shared_comments.include?(comment)
   end
 
   def recent_posts(count)

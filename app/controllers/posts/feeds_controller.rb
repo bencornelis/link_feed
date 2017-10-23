@@ -1,6 +1,6 @@
 module Posts
   class FeedsController < ApplicationController
-    before_filter :reload_user_followees!
+    before_filter :reload_user_associations!
 
     def show
       @posts = Post::Feed.new(feed_params).posts

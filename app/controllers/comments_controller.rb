@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_filter :authenticate_user!, except: [:index]
-  before_filter :reload_user_followees!, only: [:index]
+  before_filter :reload_user_associations!, only: [:index]
 
   def index
     @comments = Comment::Global.new(global_params).comments

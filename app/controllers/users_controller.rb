@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :reload_user_followees!, only: [:show]
+  before_filter :reload_user_associations!, only: [:show]
 
   def index
     redirect_to join_path

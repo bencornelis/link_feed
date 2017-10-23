@@ -32,8 +32,9 @@ class ApplicationController < ActionController::Base
     redirect_to(request.referrer || root_path)
   end
 
-  def reload_user_followees!
+  def reload_user_associations!
     return unless user_signed_in?
-    @current_user = User.includes(:followees).find(current_user.id)
+    @current_user = User.includes(:followees, :shared_comments, :badges_to_give)
+                        .find(current_user.id)
   end
 end

@@ -1,6 +1,6 @@
 module Comments
   class FeedsController < ApplicationController
-    before_filter :reload_user_followees!
+    before_filter :reload_user_associations!
 
     def show
       @comments = Comment::Feed.new(feed_params).comments

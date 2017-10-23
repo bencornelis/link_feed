@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_filter :reload_user_followees!, only: [:show]
+  before_filter :reload_user_associations!, only: [:show]
 
   def show
     @user = current_user

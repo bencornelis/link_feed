@@ -60,7 +60,7 @@ class CommentPresenter < ContentPresenter
   end
 
   def badges
-    badges_count = comment.badges.count
+    badges_count = comment.badgings_count
     return unless badges_count > 0
 
     content_tag 'span', id: 'comment_badges' do
@@ -72,7 +72,7 @@ class CommentPresenter < ContentPresenter
   end
 
   def badge_link
-    return unless user_signed_in? && current_user.badges_to_give.exists?
+    return unless user_signed_in? && current_user.badges_to_give.any?
 
     link_to comment_badgings_path(comment), method: :post, class: 'badge_link comment_badge_link' do
       fa_icon 'magic'
