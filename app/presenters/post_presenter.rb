@@ -7,7 +7,15 @@ class PostPresenter < ContentPresenter
   end
 
   def linked_title
-    link_to post.title, post.text_only? ? post_path(post) : post.url
+    post.text_only? ? linked_title_to_post_page : linked_title_to_external_page
+  end
+
+  def linked_title_to_post_page
+    link_to post.title, post_path(post)
+  end
+
+  def linked_title_to_external_page
+    link_to post.title, post.url
   end
 
   def linked_comments
