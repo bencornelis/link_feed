@@ -33,7 +33,11 @@ class CommentPresenter < ContentPresenter
 
   def parent_link
     return unless parent_id
-    link_to "parent", "#comment_#{parent_id}", data: { turbolinks: 'false' }
+
+    content_tag 'span' do
+      concat ' · '
+      concat link_to "parent", "#comment_#{parent_id}", data: { turbolinks: 'false' }
+    end
   end
 
   def distant_parent_link
@@ -74,8 +78,12 @@ class CommentPresenter < ContentPresenter
   def badge_link
     return unless user_signed_in? && current_user.badges_to_give.any?
 
-    link_to comment_badgings_path(comment), method: :post, class: 'badge_link comment_badge_link' do
-      fa_icon 'magic'
+    content_tag 'span' do
+      concat ' · '
+      concat link_to 'badge',
+              comment_badgings_path(comment),
+              method: :post,
+              class: 'badge_link comment_badge_link'
     end
   end
 end

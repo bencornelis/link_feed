@@ -72,7 +72,6 @@ describe "adding a post", js: true do
 
     click_on "submit"
 
-    find('#post_main').hover
     within '#post_shares' do
       expect(page).to have_content '1'
     end

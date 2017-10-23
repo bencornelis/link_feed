@@ -97,7 +97,6 @@ describe "giving and receiving badges", js: true do
     login_as(create(:user_with_badges))
     visit post_path(post)
 
-    find('#post_main').hover
     find('#post_badge_link').click
 
     visit user_path(user)

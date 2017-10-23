@@ -3,12 +3,6 @@ $(document).on('turbolinks:load', function() {
     $(this).find('.post_details .more_info').fadeToggle('fast');
   });
 
-  attachCommentHover();
-
-  $('#post_main').hover(function() {
-    $(this).find('#post_badge_link, #post_shares').fadeToggle('fast');
-  });
-
   $('form#new_post').ready(function() {
     $('.tag_input').select2({
       tags: true,
@@ -43,7 +37,7 @@ $(document).on('turbolinks:load', function() {
       },
       success: function() {
         $('#comments_loader').spin(false);
-        attachCommentListeners();
+        attachCommentToggler();
 
         // if linking to a comment anchor, scroll to that comment
         if (location.hash) {
@@ -60,11 +54,6 @@ $(document).on('turbolinks:before-cache', function() {
   $('.post_details .more_info').hide();
   $.modal.close();
 });
-
-function attachCommentListeners() {
-  attachCommentToggler();
-  attachCommentHover();
-}
 
 function attachCommentToggler() {
   $(".comment .comment_toggler").click(function() {
