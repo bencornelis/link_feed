@@ -31,6 +31,7 @@ My goal with this project was to learn more about Active Record associations and
 * Hacker News formula for post and comment ranking
 * Faker data for database seeding
 * Select2 jQuery select box for autocompleting tags via AJAX
+* jQuery modals for displaying views with AJAX
 
 ### Setup
 
