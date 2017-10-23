@@ -34,6 +34,6 @@ class ApplicationController < ActionController::Base
 
   def reload_user_followees!
     return unless user_signed_in?
-    @current_user = User.includes(:followees => :roles).find(current_user.id)
+    @current_user = User.includes(:followees).find(current_user.id)
   end
 end

@@ -4,7 +4,7 @@ module UsersHelper
       "admin"
     elsif user.has_cached_role? :moderator
       "moderator"
-    elsif current_user.present? && current_user.following?(user)
+    elsif current_user.present? && current_user.followees.include?(user)
       "following"
     else
       "regular"
