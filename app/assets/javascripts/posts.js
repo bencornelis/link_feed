@@ -70,9 +70,3 @@ function attachCommentToggler() {
     $comment.find(".share_comment_link").toggle();
   });
 }
-
-function attachCommentHover() {
-  $('.comment').hover(function() {
-    $(this).find('.comment_shares, .comment_badge_link').fadeToggle('fast');
-  });
-}
