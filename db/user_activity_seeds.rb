@@ -119,12 +119,9 @@ def generate_user_activity(options)
                   share_receiver_id: share_receiver.id)
       end
 
-      share_receiver.shares_received_since_last_badge += 1
-      if share_receiver.shares_received_since_last_badge == 10
+      if share_receiver.shares_received_count % 10 == 0
         share_receiver.badges.create
-        share_receiver.shares_received_since_last_badge = 0
       end
-      share_receiver.save
     end
   end
 

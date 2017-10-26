@@ -63,7 +63,7 @@ end
 
 describe "giving and receiving badges", js: true do
   it "assigns a user a badge to give for every 10 shares they receive" do
-    user = create :user, shares_received_since_last_badge: 9
+    user = create :user, shares_received_count: 9
     post = create :post, user: user
 
     visit user_path(user)
@@ -76,7 +76,7 @@ describe "giving and receiving badges", js: true do
     login_as(create(:user))
     visit post_path(post)
     find('.share_link').click
-
+    
     visit user_path(user)
 
     within '.badges_given' do

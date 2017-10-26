@@ -65,7 +65,7 @@ class UserPresenter < BasePresenter
   end
 
   def shares_received
-    user.shares_received.count
+    user.shares_received_count
   end
 
   def followees_link
