@@ -4,6 +4,10 @@ Link aggregator site based loosely on [Hacker News](https://news.ycombinator.com
 
 https://blooming-mesa-35436.herokuapp.com/
 
+Login
+* username: `testuser`
+* password: `foobar`
+
 ### Features
 
 * CRUD operations on posts and comments
