@@ -6,8 +6,6 @@ services:
       - ./tmp/db:/var/lib/postgresql/data
   test:
     build: .
-    volumes:
-      - .:/app
     ports:
       - 3000:3000
     depends_on:
