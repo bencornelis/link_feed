@@ -40,15 +40,16 @@ My goal with this project was to learn more about Active Record associations and
 ### Setup
 
 To get started run:
-* `bundle`
-* `rake db:create`
-* `rake db:migrate`
+* `docker-compose up`
 
-To run the tests:
-* `rake db:test:prepare`
-* `rspec`
+In another terminal run:
+* `docker-compose run web bundle exec rake db:create`
+* `docker-compose run web bundle exec rake db:migrate`
 
-To seed the database with some users, relationships, posts and comments, run `rake db:seed`.
+Navigate to `http://localhost:3000` in your browser.
+
+To seed the database with some users, relationships, posts and comments, run:
+* `docker-compose run web bundle exec rake db:seed`
 
 To explore the app without having to sign up and email confirm, feel free to use the login:
 * username: `testuser`
