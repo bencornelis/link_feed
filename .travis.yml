@@ -4,8 +4,9 @@ rvm:
   2.3.1
 services:
   - docker
-before_script:
+before_install:
   - docker-compose --file docker-compose.test.yml up
   - docker-compose --file docker-compose.test.yml run test bundle exec rake db:test:load
+install: true
 script:
   - docker-compose --file docker-compose.test.yml run test bundle exec rspec
