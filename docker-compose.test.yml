@@ -4,7 +4,7 @@ services:
     image: postgres
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
-  web_test:
+  test:
     build: .
     ports:
       - 3000:3000
