@@ -6,3 +6,5 @@ COPY . /app
 WORKDIR /app
 
 RUN bundle install
+
+RUN chmod +x docker-entrypoint.sh
