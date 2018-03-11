@@ -41,8 +41,7 @@ describe "adding a post", js: true do
     user = create :user
 
     login_as(user)
-    visit root_path
-    click_on "new_post_link"
+    visit new_post_path
 
     fill_in_post_form(
       title:      "What is the best games soundtrack?",
