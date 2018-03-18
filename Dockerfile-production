@@ -5,5 +5,5 @@ RUN npm install -g phantomjs
 COPY . /app
 WORKDIR /app
 
-RUN bundle install
-RUN chmod +x docker-entrypoint.sh
+RUN bundle install --without development
+RUN bundle exec rake assets:precompile

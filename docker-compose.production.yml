@@ -4,8 +4,8 @@ services:
     image: postgres
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
-  web:
-    build: .
+  test:
+    image: production:latest
     command: bundle exec rails s -p 3000
     volumes:
       - .:/app

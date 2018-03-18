@@ -1,11 +1,33 @@
 sudo: required
 language: ruby
-rvm:
-  2.3.1
+rvm: 2.3.1
 services:
-  - docker
-before_install:
-  - docker-compose --file docker-compose.test.yml run test bundle exec rake db:test:load
-install: true
-script:
-  - docker-compose --file docker-compose.test.yml run test bundle exec rspec
+- docker
+env:
+  global:
+  - BASE_DOCKER_REGISTRY=878065134875.dkr.ecr.us-east-1.amazonaws.com/monsters
+  - secure: felCO/E7vLA1F2WTKctRoqs/kPJgAk/Sc5M++DA8w9uQp6s1bRc6TfF5e07g7EPaPo6MGkI1mnA1WYCSU9pdcD2SRh+HwsYEb5H+/5AyJJ/UWZ15wLnv74c4Bp92f/kv5HXycMdeqQzOru4uVAEdHF5Ez0e5fqWZ0zTYKlRABsyehg/Fp8tvNauMJfo2dCLeogvJHhfmbNQXlQc56SPFA8ZV0dHPj+1sLSaoiElj37/Aq6lbBaQeMkO5aPLuI8Gd5s1ef2Z0C8e+iCeZI++uRldhVNuQnlvByP7NggOVjzUeddDILbF1oiKmpAgEjCm5NDpTndGiKYr+DFaxG6ihOKm4nmGZvQu7K9RYqoSNx6cbhF1S1A6kuAv6MisSgPCiyRPDxiHCsB1Inxm8w8l4zbvTeNQZeX2K3jEqis0IDnDpXi2RoGknxK6LzpYGkQdTrg0EDUKRPTuBtyjWricmE7lpZOK19XkAmR/cz9oXErtrHs+cg07bFQaxPbN2gQt+lVk9eVDECWtstKPJ8lLhMqpBVtfdm6w828/LUOV03mcBI1S+D+CPPhOEPthdELpf8ki/QOjlrYAuKkD3+Td8jrlE0UAOsdxdWrazvQrZk2t5nmz1pbeBEM/QBLpvWo704XxCL/hDXn9LY2BcVe7IVKZbMj7Ti0webvHttOtLIkI=
+  - secure: ZgcpVmY8MBRyqZVertY2OrzngbeoAhpJo+LDbpocJF1UQxCXAAUJaoB3UCosSw3sa+u4jLunC5rd91Ycb1r722JbtvpvsQXYveNKnzDi7KF6Pq2tO/1diSPh2gZpZLu5SNJ/WPsr4M7uhAvxVZPoQ42xCAv5PFzlYCh66rdmOmHknQtNoNPnJqM0EQW6RLqmC1DKDItOyiUZ6h84Afacogow1mtaXmEbyuEpJk20i2Vn0O94csaIWvgQf+a+oAoAEIhb++6QEcmBVUJiD8eJsB+vQM+Dnl4KynNBOzs+JuZAfjjbSFe3TGHTSSICO2LoSR2CTmvBPZCCwR3lxTpcSZluGUJliVa7akI/Lmeku3+Esq5nr767+csLg9uLc1BwuwCNeUO0tA+6oNEQ5Ctxt0676GTcqCe/lbY2+bJWDMV8P6RsILh2MP2/kUQECz53W5Cbin7fYuC6solyQOz1pBJADe4vmO8sLPrbb+GjBj1dhSAI+v5LjragZkkvGydsN3fzsBhLUs5UcsdJ570BKpNi8zRUAOA3LlN4Zeu4LFKL60tzRGoGDht5ULGPJCdD6f0kaCd7qB0nr8S8HEQbKuX9dUZx9jkWL7GZRVaZ96kCNc8NvycntgBqhaU7oNZODtIl8wIhfoFpfS2nGHV4rAJKwJd3M0BsH+Mw6YXIm7I=
+jobs:
+- include:
+  - stage: test
+    before_install:
+    - docker-compose --file docker-compose.test.yml run test bundle exec rake db:test:load
+    install: true
+    if: type = pull_request
+    script:
+    - docker-compose --file docker-compose.test.yml run test bundle exec rspec
+  - stage: deploy
+    before_install:
+    - pip install --user awscli
+    - eval $(aws ecr get-login --region us-east-1 --no-include-email)
+    - docker build -t production --file Dockerfile-production .
+    install: true
+    if: branch = master
+    script:
+    - docker-compose --file docker-compose.production.yml run test bundle exec rake
+      db:test:load
+    - docker-compose --file docker-compose.production.yml run test bundle exec rspec
+    after_success:
+    - docker tag production $BASE_DOCKER_REGISTRY/$TRAVIS_BRANCH.$TRAVIS_BUILD_NUMBER
+    - docker push $BASE_DOCKER_REGISTRY/$TRAVIS_BRANCH.$TRAVIS_BUILD_NUMBER
