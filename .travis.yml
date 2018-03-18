@@ -27,5 +27,5 @@ jobs:
     script:
     - docker-compose --file docker-compose.production.yml run test bundle exec rspec
     after_success:
-    - docker tag production $BASE_DOCKER_REGISTRY/monsters.$TRAVIS_BRANCH.$TRAVIS_BUILD_NUMBER
-    - docker push $BASE_DOCKER_REGISTRY/monsters.$TRAVIS_BRANCH.$TRAVIS_BUILD_NUMBER
+    - docker tag production $BASE_DOCKER_REGISTRY/monsters:ci.$TRAVIS_BRANCH.$TRAVIS_BUILD_NUMBER
+    - docker push $BASE_DOCKER_REGISTRY/monsters:ci.$TRAVIS_BRANCH.$TRAVIS_BUILD_NUMBER
