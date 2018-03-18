@@ -14,7 +14,6 @@ before_install:
 install: true
 script:
 - docker-compose --file docker-compose.test.yml run test bundle exec rspec
-
 jobs:
   include:
   - stage: deploy
