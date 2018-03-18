@@ -19,7 +19,7 @@ jobs:
   - stage: deploy
     before_install:
     - pip install --user awscli
-    - eval $(aws ecr get-login --region us-east-1 --no-include-email)
+    - eval $(aws ecr get-login --region us-east-2 --no-include-email)
     - docker build -t production --file Dockerfile-production .
     - docker-compose --file docker-compose.production.yml run test bundle exec rake db:test:load
     install: true
