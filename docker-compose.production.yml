@@ -4,12 +4,10 @@ services:
     image: postgres
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
-  web:
-    build: .
-    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+  test:
+    image: production:latest
     volumes:
       - .:/app
-      - /tmp/pids/
     ports:
       - 3000:3000
     depends_on:
